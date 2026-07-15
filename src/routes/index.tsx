@@ -117,11 +117,11 @@ function Index() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
               Our Strategic Strengths
             </p>
-            <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {strengths.map(({ icon: Icon, title, body }, i) => (
                 <article
                   key={title}
-                  className="group relative flex flex-col bg-card p-8 transition duration-300 hover:bg-secondary"
+                  className="group relative flex flex-col rounded-sm border border-border bg-card p-8 transition duration-300 hover:border-primary/30 hover:bg-secondary"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center border border-primary/20 bg-primary/5 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
