@@ -39,7 +39,7 @@ function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Top bar */}
-      <header className="hairline-b">
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 lg:px-10">
           <a href="/" className="flex items-baseline gap-3">
             <span className="font-serif text-2xl font-medium tracking-tight text-primary">CPM</span>
@@ -117,11 +117,11 @@ function Index() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
               Our Strategic Strengths
             </p>
-            <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {strengths.map(({ icon: Icon, title, body }, i) => (
                 <article
                   key={title}
-                  className="group relative flex flex-col bg-card p-8 transition duration-300 hover:bg-secondary"
+                  className="group relative flex flex-col rounded-sm border border-border bg-card p-8 transition duration-300 hover:border-primary/30 hover:bg-secondary"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center border border-primary/20 bg-primary/5 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
