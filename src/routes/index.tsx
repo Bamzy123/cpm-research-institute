@@ -39,7 +39,7 @@ function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Top bar */}
-      <header className="hairline-b">
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 lg:px-10">
           <a href="/" className="flex items-baseline gap-3">
             <span className="font-serif text-2xl font-medium tracking-tight text-primary">CPM</span>
