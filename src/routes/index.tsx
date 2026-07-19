@@ -39,7 +39,7 @@ const glance: { value: string; numeric?: number; label: string }[] = [
   { value: "Global", label: "International Research Partnerships & Scientific Collaboration Network" },
 ];
 
-const leaders = [
+const leaders: { name: string; title: string; credentials: string; bio: string; photo?: string }[] = [
   { name: "Prof. [Director Name]", title: "Director, CPM International Research Institute for Climate Health", credentials: "MBBS, PhD, FAS", bio: "Leads the institute's scientific vision at the intersection of climate, pathogens and public health, with decades of research and international collaboration experience.", photo: directorPhoto.url },
   { name: "Dr. [Research Lead Name]", title: "Head, Climate–Pathogen Nexus Programme", credentials: "PhD, Genomics & AI", bio: "Directs the flagship CP-Nexus, integrating pathogen genomics, climate modelling and machine learning to advance predictive surveillance." },
   { name: "Dr. [Research Lead Name]", title: "Head, One Health & Laboratory Sciences", credentials: "DVM, PhD", bio: "Oversees One Health research and laboratory operations spanning molecular diagnostics, biospecimen science and antimicrobial resistance." },
