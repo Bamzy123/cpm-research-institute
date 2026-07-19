@@ -534,7 +534,7 @@ function Index() {
                   <Phone className="h-5 w-5 shrink-0 text-primary" aria-hidden />
                   <div>
                     <dt className="font-medium text-foreground">Phone</dt>
-                    <dd className="mt-1 text-muted-foreground">+234 (0) 000 000 0000</dd>
+                    <dd className="mt-1 text-muted-foreground">+234 803 377 0933</dd>
                   </div>
                 </div>
               </dl>
