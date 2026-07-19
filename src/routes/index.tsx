@@ -1,10 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   Network, Layers, Globe2, Building2, LineChart, BookOpen,
   GraduationCap, Scale, Cpu, Dna, Leaf, FlaskConical,
   HeartPulse, Compass, ArrowRight, Menu, X, MapPin, Mail, Phone,
 } from "lucide-react";
+import officeHeader from "../assets/office-header.jpeg.asset.json";
+import directorPhoto from "../assets/director.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -37,8 +39,8 @@ const glance: { value: string; numeric?: number; label: string }[] = [
   { value: "Global", label: "International Research Partnerships & Scientific Collaboration Network" },
 ];
 
-const leaders = [
-  { name: "Prof. [Director Name]", title: "Director, CPM International Research Institute for Climate Health", credentials: "MBBS, PhD, FAS", bio: "Leads the institute's scientific vision at the intersection of climate, pathogens and public health, with decades of research and international collaboration experience." },
+const leaders: { name: string; title: string; credentials: string; bio: string; photo?: string }[] = [
+  { name: "Prof. [Director Name]", title: "Director, CPM International Research Institute for Climate Health", credentials: "MBBS, PhD, FAS", bio: "Leads the institute's scientific vision at the intersection of climate, pathogens and public health, with decades of research and international collaboration experience.", photo: directorPhoto.url },
   { name: "Dr. [Research Lead Name]", title: "Head, Climate–Pathogen Nexus Programme", credentials: "PhD, Genomics & AI", bio: "Directs the flagship CP-Nexus, integrating pathogen genomics, climate modelling and machine learning to advance predictive surveillance." },
   { name: "Dr. [Research Lead Name]", title: "Head, One Health & Laboratory Sciences", credentials: "DVM, PhD", bio: "Oversees One Health research and laboratory operations spanning molecular diagnostics, biospecimen science and antimicrobial resistance." },
 ];
@@ -46,15 +48,16 @@ const leaders = [
 const navItems = [
   { href: "#about", label: "Institute" },
   { href: "#why", label: "Research" },
+  { href: "/chip", label: "CHIP™" },
   { href: "#leadership", label: "Leadership" },
   { href: "#partners", label: "Partners" },
   { href: "#contact", label: "Contact" },
 ];
 
-function useCountUp(target: number, active: boolean, duration = 1200) {
+function useCountUp(target: number, runKey: number, duration = 1000) {
   const [n, setN] = useState(0);
   useEffect(() => {
-    if (!active) return;
+    if (runKey === 0) { setN(0); return; }
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setN(target); return;
     }
@@ -67,32 +70,35 @@ function useCountUp(target: number, active: boolean, duration = 1200) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [target, active, duration]);
+  }, [target, runKey, duration]);
   return n;
 }
 
-function Stat({ item, active }: { item: (typeof glance)[number]; active: boolean }) {
-  const n = useCountUp(item.numeric ?? 0, active);
+function Stat({ item, runKey }: { item: (typeof glance)[number]; runKey: number }) {
+  const n = useCountUp(item.numeric ?? 0, runKey);
   return (
-    <div className="flex flex-col gap-4 border-t border-primary-foreground/20 pt-6">
-      <dt className="font-serif text-5xl font-medium leading-none tracking-tight lg:text-6xl">
+    <div className="flex flex-col gap-3 border-t border-primary-foreground/20 pt-5 sm:gap-4 sm:pt-6">
+      <dt className="font-serif text-4xl font-medium leading-none tracking-tight sm:text-5xl lg:text-6xl">
         {item.numeric != null ? n : item.value}
       </dt>
-      <dd className="text-sm leading-relaxed text-primary-foreground/85">{item.label}</dd>
+      <dd className="text-xs leading-relaxed text-primary-foreground/85 sm:text-sm">{item.label}</dd>
     </div>
   );
 }
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [statsActive, setStatsActive] = useState(false);
+  const [statsRunKey, setStatsRunKey] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!statsRef.current) return;
     const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setStatsActive(true); io.disconnect(); } },
+      ([e]) => {
+        if (e.isIntersecting) setStatsRunKey((k) => k + 1);
+        else setStatsRunKey(0);
+      },
       { threshold: 0.3 },
     );
     io.observe(statsRef.current);
@@ -113,7 +119,9 @@ function Index() {
             </span>
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
-            {navItems.map((n) => (
+            {navItems.map((n) => n.href.startsWith("/") ? (
+              <Link key={n.href} to={n.href} className="transition-colors hover:text-primary">{n.label}</Link>
+            ) : (
               <a key={n.href} href={n.href} className="transition-colors hover:text-primary">{n.label}</a>
             ))}
           </nav>
@@ -132,13 +140,15 @@ function Index() {
             <ul className="mx-auto flex max-w-[1400px] flex-col px-6 py-2">
               {navItems.map((n) => (
                 <li key={n.href}>
-                  <a
-                    href={n.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block border-b border-border/60 py-3 text-sm font-medium text-foreground/85 last:border-b-0 hover:text-primary"
-                  >
-                    {n.label}
-                  </a>
+                  {n.href.startsWith("/") ? (
+                    <Link to={n.href} onClick={() => setMenuOpen(false)} className="block border-b border-border/60 py-3 text-sm font-medium text-foreground/85 last:border-b-0 hover:text-primary">
+                      {n.label}
+                    </Link>
+                  ) : (
+                    <a href={n.href} onClick={() => setMenuOpen(false)} className="block border-b border-border/60 py-3 text-sm font-medium text-foreground/85 last:border-b-0 hover:text-primary">
+                      {n.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -147,37 +157,42 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="hairline-b">
-        <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
+      <section id="top" className="relative hairline-b overflow-hidden">
+        <div className="absolute inset-0" aria-hidden>
+          <img src={officeHeader.url} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/92 via-primary/85 to-primary/75" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08),transparent_60%)]" />
+        </div>
+        <div className="relative mx-auto max-w-[1400px] px-6 py-20 text-primary-foreground lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-8">
-              <p className="mb-6 text-xs font-medium uppercase tracking-[0.22em] text-primary">
+              <p className="mb-6 text-xs font-medium uppercase tracking-[0.22em] text-primary-foreground/85">
                 Climate Health Intelligence · Africa · Worldwide
               </p>
-              <h1 className="font-serif text-4xl leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[72px]">
+              <h1 className="font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-[72px]">
                 Advancing the science of a changing climate — for the health of people, animals and the planet.
               </h1>
-              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/85">
                 The CPM International Research Institute for Climate Health generates transformative scientific knowledge at the intersection of climate, pathogens, genomics and artificial intelligence — strengthening health security in Africa and contributing to global scientific advancement.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <a href="#why" className="inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">
+                <a href="#why" className="inline-flex items-center gap-2 bg-primary-foreground px-6 py-3 text-sm font-medium text-primary transition hover:bg-primary-foreground/90">
                   Discover the Institute <ArrowRight className="h-4 w-4" aria-hidden />
                 </a>
-                <a href="#glance" className="inline-flex items-center gap-2 border border-foreground/25 px-6 py-3 text-sm font-medium text-foreground transition hover:border-foreground/70">
+                <a href="#glance" className="inline-flex items-center gap-2 border border-primary-foreground/40 px-6 py-3 text-sm font-medium text-primary-foreground transition hover:border-primary-foreground">
                   CPM at a Glance
                 </a>
               </div>
             </div>
-            <aside className="lg:col-span-4 lg:border-l lg:border-border lg:pl-10">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">In focus</p>
-              <h2 className="mt-4 font-serif text-2xl leading-tight text-foreground">The Climate–Pathogen Nexus</h2>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Our flagship framework integrates climate science, pathogen biology, genomics and AI-driven decision support to anticipate and contain the epidemics of tomorrow.
+            <aside className="lg:col-span-4 lg:border-l lg:border-primary-foreground/25 lg:pl-10">
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-foreground/70">In focus</p>
+              <h2 className="mt-4 font-serif text-2xl leading-tight">CHIP™ — Climate Health Intelligence Platform</h2>
+              <p className="mt-4 text-sm leading-relaxed text-primary-foreground/85">
+                Our flagship scientific innovation — an AI-enabled Climate Health Digital Twin that integrates climate, pathogen genomics and geospatial intelligence into a single predictive platform.
               </p>
-              <a href="#why" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
+              <Link to="/chip" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-foreground hover:underline">
                 Read the science <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-              </a>
+              </Link>
             </aside>
           </div>
         </div>
@@ -244,8 +259,8 @@ function Index() {
                 Research · Innovation · Education · Policy · Impact
               </p>
             </header>
-            <dl className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-2">
-              {glance.map((g) => <Stat key={g.label} item={g} active={statsActive} />)}
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-10 sm:gap-y-10 lg:col-span-8 lg:grid-cols-2">
+              {glance.map((g) => <Stat key={g.label} item={g} runKey={statsRunKey} />)}
             </dl>
           </div>
         </div>
@@ -267,14 +282,22 @@ function Index() {
             <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-3">
               {leaders.map((p) => (
                 <article key={p.name} className="flex flex-col">
-                  <div
-                    aria-hidden
-                    className="aspect-[4/5] w-full border border-border bg-secondary"
-                    style={{
-                      backgroundImage:
-                        "repeating-linear-gradient(45deg, transparent 0 10px, oklch(0 0 0 / 0.03) 10px 11px)",
-                    }}
-                  />
+                  {p.photo ? (
+                    <img
+                      src={p.photo}
+                      alt={`Portrait of ${p.name}`}
+                      className="aspect-[4/5] w-full border border-border object-cover"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden
+                      className="aspect-[4/5] w-full border border-border bg-secondary"
+                      style={{
+                        backgroundImage:
+                          "repeating-linear-gradient(45deg, transparent 0 10px, oklch(0 0 0 / 0.03) 10px 11px)",
+                      }}
+                    />
+                  )}
                   <h3 className="mt-5 font-serif text-lg text-foreground">{p.name}</h3>
                   <p className="mt-1 text-sm text-primary">{p.title}</p>
                   <p className="mt-1 text-xs uppercase tracking-[0.15em] text-muted-foreground">{p.credentials}</p>
