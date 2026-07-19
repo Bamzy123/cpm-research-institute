@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, Calendar, User, Tag, ArrowRight } from "lucide-react";
+import headerImage from "../assets/header.jpeg?url";
 
 export const Route = createFileRoute("/news")({
   component: NewsPage,
@@ -109,15 +110,20 @@ function NewsPage() {
         </div>
       </header>
 
-      {/* ── Hero Section ────────────────────────────────────────────── */}
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
+      {/* ── Hero Section with Background Image ────────────────────────────── */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0" aria-hidden>
+          <img src={headerImage} alt="" className="h-full w-full object-cover" />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+        <div className="relative mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
           <div className="max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary-foreground/70">News & Updates</p>
-            <h1 className="mt-4 font-serif text-5xl leading-[1.1] tracking-tight lg:text-6xl">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-white/70">News & Updates</p>
+            <h1 className="mt-4 font-serif text-5xl leading-[1.1] tracking-tight text-black lg:text-6xl">
               Latest from CPM Institute
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-primary-foreground/85">
+            <p className="mt-6 text-lg leading-relaxed text-black/80">
               Stay informed about our latest research breakthroughs, partnerships, and updates from the International Research Institute for Climate Health.
             </p>
           </div>
