@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, Download, FileText, Filter, Search as SearchIcon } from "lucide-react";
+import headerImage from "../assets/header.jpeg?url";
 
 export const Route = createFileRoute("/resources")({
   component: ResourcesPage,
@@ -31,7 +32,7 @@ const resources: Resource[] = [
     type: "Publication",
     date: "2026-07-01",
     authors: "Prof. Omololu J Aso, CPM Research Team",
-    downloadUrl: "#",
+    downloadUrl: "https://example.com/resources/cpnexus-framework.pdf",
     downloadFormat: "PDF",
   },
   {
@@ -41,7 +42,7 @@ const resources: Resource[] = [
     type: "Policy Brief",
     date: "2026-06-15",
     authors: "CPM Policy & Impact Team",
-    downloadUrl: "#",
+    downloadUrl: "https://example.com/resources/policy-brief-surveillance.pdf",
     downloadFormat: "PDF",
   },
   {
@@ -51,7 +52,7 @@ const resources: Resource[] = [
     type: "Report",
     date: "2026-06-01",
     authors: "CPM Institute",
-    downloadUrl: "#",
+    downloadUrl: "https://example.com/resources/annual-report-2025-2026.pdf",
     downloadFormat: "PDF",
   },
   {
@@ -61,7 +62,7 @@ const resources: Resource[] = [
     type: "Toolkit",
     date: "2026-05-20",
     authors: "Laboratory Excellence Team",
-    downloadUrl: "#",
+    downloadUrl: "https://example.com/resources/genomic-surveillance-toolkit.pdf",
     downloadFormat: "PDF",
   },
   {
@@ -71,7 +72,7 @@ const resources: Resource[] = [
     type: "Dataset",
     date: "2026-05-10",
     authors: "Data Science Team",
-    downloadUrl: "#",
+    downloadUrl: "https://example.com/resources/west-africa-climate-disease-dataset.zip",
     downloadFormat: "Dataset",
   },
   {
@@ -81,7 +82,7 @@ const resources: Resource[] = [
     type: "Toolkit",
     date: "2026-04-30",
     authors: "Education & Training Team",
-    downloadUrl: "#",
+    downloadUrl: "https://example.com/resources/one-health-training-manual.pdf",
     downloadFormat: "PDF",
   },
   {
@@ -91,7 +92,7 @@ const resources: Resource[] = [
     type: "Publication",
     date: "2026-04-15",
     authors: "CPM Research Collaboration",
-    downloadUrl: "#",
+    downloadUrl: "https://example.com/resources/seasonal-pathogen-dynamics.pdf",
     downloadFormat: "PDF",
   },
   {
@@ -101,7 +102,7 @@ const resources: Resource[] = [
     type: "Report",
     date: "2026-04-01",
     authors: "Technology Team",
-    downloadUrl: "#",
+    downloadUrl: "https://example.com/resources/chip-technical-report.pdf",
     downloadFormat: "PDF",
   },
 ];
@@ -132,6 +133,26 @@ function ResourcesPage() {
     return colors[type] || "bg-gray-50 text-gray-700 border-gray-200";
   };
 
+  const handleDownload = async (resource: Resource) => {
+    try {
+      const response = await fetch(resource.downloadUrl);
+      if (!response.ok) throw new Error("Download failed");
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${resource.title.replace(/\s+/g, "-")}.${resource.downloadFormat === "PDF" ? "pdf" : "zip"}`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Download error:", error);
+      alert(`Unable to download: ${resource.title}. Please try again or contact support.`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* ── Header ─────────────────────────────────────────────────── */}
@@ -149,15 +170,20 @@ function ResourcesPage() {
         </div>
       </header>
 
-      {/* ── Hero Section ────────────────────────────────────────────── */}
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
+      {/* ── Hero Section with Background Image ────────────────────────────── */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0" aria-hidden>
+          <img src={headerImage} alt="" className="h-full w-full object-cover" />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+        <div className="relative mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
           <div className="max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary-foreground/70">Resources Library</p>
-            <h1 className="mt-4 font-serif text-5xl leading-[1.1] tracking-tight lg:text-6xl">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-white/70">Resources Library</p>
+            <h1 className="mt-4 font-serif text-5xl leading-[1.1] tracking-tight text-black lg:text-6xl">
               Research & Publications
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-primary-foreground/85">
+            <p className="mt-6 text-lg leading-relaxed text-black/80">
               Access CPM's research publications, policy briefs, technical reports, educational toolkits, and datasets. All resources are available for download and research use.
             </p>
           </div>
@@ -272,10 +298,7 @@ function ResourcesPage() {
                       {/* Download Button */}
                       <div className="flex flex-col gap-2 sm:items-end">
                         <button
-                          onClick={() => {
-                            // Placeholder for download functionality
-                            alert(`Downloading: ${resource.title}`);
-                          }}
+                          onClick={() => handleDownload(resource)}
                           className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 text-sm font-medium rounded-md hover:bg-primary/90 transition whitespace-nowrap"
                         >
                           <Download className="h-4 w-4" aria-hidden />
