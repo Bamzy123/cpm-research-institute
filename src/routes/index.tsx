@@ -157,37 +157,42 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="hairline-b">
-        <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
+      <section id="top" className="relative hairline-b overflow-hidden">
+        <div className="absolute inset-0" aria-hidden>
+          <img src={officeHeader.url} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/92 via-primary/85 to-primary/75" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08),transparent_60%)]" />
+        </div>
+        <div className="relative mx-auto max-w-[1400px] px-6 py-20 text-primary-foreground lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-8">
-              <p className="mb-6 text-xs font-medium uppercase tracking-[0.22em] text-primary">
+              <p className="mb-6 text-xs font-medium uppercase tracking-[0.22em] text-primary-foreground/85">
                 Climate Health Intelligence · Africa · Worldwide
               </p>
-              <h1 className="font-serif text-4xl leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-[72px]">
+              <h1 className="font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-[72px]">
                 Advancing the science of a changing climate — for the health of people, animals and the planet.
               </h1>
-              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/85">
                 The CPM International Research Institute for Climate Health generates transformative scientific knowledge at the intersection of climate, pathogens, genomics and artificial intelligence — strengthening health security in Africa and contributing to global scientific advancement.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <a href="#why" className="inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">
+                <a href="#why" className="inline-flex items-center gap-2 bg-primary-foreground px-6 py-3 text-sm font-medium text-primary transition hover:bg-primary-foreground/90">
                   Discover the Institute <ArrowRight className="h-4 w-4" aria-hidden />
                 </a>
-                <a href="#glance" className="inline-flex items-center gap-2 border border-foreground/25 px-6 py-3 text-sm font-medium text-foreground transition hover:border-foreground/70">
+                <a href="#glance" className="inline-flex items-center gap-2 border border-primary-foreground/40 px-6 py-3 text-sm font-medium text-primary-foreground transition hover:border-primary-foreground">
                   CPM at a Glance
                 </a>
               </div>
             </div>
-            <aside className="lg:col-span-4 lg:border-l lg:border-border lg:pl-10">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">In focus</p>
-              <h2 className="mt-4 font-serif text-2xl leading-tight text-foreground">The Climate–Pathogen Nexus</h2>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Our flagship framework integrates climate science, pathogen biology, genomics and AI-driven decision support to anticipate and contain the epidemics of tomorrow.
+            <aside className="lg:col-span-4 lg:border-l lg:border-primary-foreground/25 lg:pl-10">
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-foreground/70">In focus</p>
+              <h2 className="mt-4 font-serif text-2xl leading-tight">CHIP™ — Climate Health Intelligence Platform</h2>
+              <p className="mt-4 text-sm leading-relaxed text-primary-foreground/85">
+                Our flagship scientific innovation — an AI-enabled Climate Health Digital Twin that integrates climate, pathogen genomics and geospatial intelligence into a single predictive platform.
               </p>
-              <a href="#why" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
+              <Link to="/chip" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-foreground hover:underline">
                 Read the science <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-              </a>
+              </Link>
             </aside>
           </div>
         </div>
