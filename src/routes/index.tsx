@@ -119,7 +119,9 @@ function Index() {
             </span>
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
-            {navItems.map((n) => (
+            {navItems.map((n) => n.href.startsWith("/") ? (
+              <Link key={n.href} to={n.href} className="transition-colors hover:text-primary">{n.label}</Link>
+            ) : (
               <a key={n.href} href={n.href} className="transition-colors hover:text-primary">{n.label}</a>
             ))}
           </nav>
