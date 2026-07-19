@@ -54,10 +54,10 @@ const navItems = [
   { href: "#contact", label: "Contact" },
 ];
 
-function useCountUp(target: number, active: boolean, duration = 1200) {
+function useCountUp(target: number, runKey: number, duration = 1000) {
   const [n, setN] = useState(0);
   useEffect(() => {
-    if (!active) return;
+    if (runKey === 0) { setN(0); return; }
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setN(target); return;
     }
@@ -70,18 +70,18 @@ function useCountUp(target: number, active: boolean, duration = 1200) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [target, active, duration]);
+  }, [target, runKey, duration]);
   return n;
 }
 
-function Stat({ item, active }: { item: (typeof glance)[number]; active: boolean }) {
-  const n = useCountUp(item.numeric ?? 0, active);
+function Stat({ item, runKey }: { item: (typeof glance)[number]; runKey: number }) {
+  const n = useCountUp(item.numeric ?? 0, runKey);
   return (
-    <div className="flex flex-col gap-4 border-t border-primary-foreground/20 pt-6">
-      <dt className="font-serif text-5xl font-medium leading-none tracking-tight lg:text-6xl">
+    <div className="flex flex-col gap-3 border-t border-primary-foreground/20 pt-5 sm:gap-4 sm:pt-6">
+      <dt className="font-serif text-4xl font-medium leading-none tracking-tight sm:text-5xl lg:text-6xl">
         {item.numeric != null ? n : item.value}
       </dt>
-      <dd className="text-sm leading-relaxed text-primary-foreground/85">{item.label}</dd>
+      <dd className="text-xs leading-relaxed text-primary-foreground/85 sm:text-sm">{item.label}</dd>
     </div>
   );
 }
