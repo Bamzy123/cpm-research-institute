@@ -4,7 +4,7 @@ import {
   Network, Layers, Globe2, Building2, LineChart, BookOpen,
   GraduationCap, Scale, Cpu, Dna, Leaf, FlaskConical,
   HeartPulse, Compass, ArrowRight, Menu, X, MapPin, Mail, Phone,
-  ChevronDown,
+  ChevronDown, Search,
 } from "lucide-react";
 import officeHeader from "../assets/header.jpeg?url";
 import directorPhoto from "../assets/director.jpeg?url";
@@ -17,20 +17,20 @@ export const Route = createFileRoute("/")({
 type Strength = { icon: typeof Network; title: string; body: string; flagship?: boolean };
 
 const strengths: Strength[] = [
-  { icon: Network, flagship: true, title: "Climate–Pathogen Nexus (CP-Nexus)", body: "Our flagship scientific innovation integrating climate science, pathogen biology, genomics, artificial intelligence, epidemiology, and decision-support systems to strengthen predictive disease surveillance and epidemic preparedness." },
-  { icon: Layers, title: "14 Multidisciplinary Research Programmes", body: "Driving cutting-edge research across climate health, infectious diseases, laboratory medicine, genomics, artificial intelligence, antimicrobial resistance, digital public health, and One Health." },
-  { icon: Globe2, title: "Global Research Partnerships", body: "Building strategic collaborations with universities, research institutes, governments, teaching hospitals, multilateral organizations, and development partners to accelerate scientific discovery and capacity development." },
-  { icon: Building2, title: "Centre of Excellence Initiative", body: "Championing the establishment of the Obafemi Awolowo University International Centre of Excellence for Climate Health Intelligence, Infectious Diseases, Pathogenomics, Artificial Intelligence and One Health Innovation, creating a globally connected platform for research, postgraduate education, and innovation." },
-  { icon: LineChart, title: "Climate Health Intelligence Dashboard", body: "Developing an integrated digital platform that combines climate data, disease surveillance, laboratory intelligence, genomic analysis, artificial intelligence, and geospatial information to support evidence-based public health decision-making." },
-  { icon: BookOpen, title: "Scientific Publications and Knowledge Translation", body: "Producing high-quality peer-reviewed publications, technical reports, policy briefs, and educational resources that advance scientific understanding and inform national and international health policies." },
-  { icon: GraduationCap, title: "Education, Training and Fellowships", body: "Building the next generation of scientists through postgraduate education, professional development, research fellowships, internships, and international scientific exchange." },
-  { icon: Scale, title: "Research for Policy and Impact", body: "Transforming scientific evidence into practical solutions that strengthen health systems, improve epidemic preparedness, support climate adaptation, and enhance population health." },
-  { icon: Cpu, title: "Innovation and Digital Health", body: "Harnessing artificial intelligence, bioinformatics, digital epidemiology, and advanced analytics to develop innovative technologies for disease prediction, surveillance, diagnostics, and health systems strengthening." },
-  { icon: Dna, title: "Pathogenomics and Genomic Surveillance", body: "Advancing molecular epidemiology and genomic surveillance to improve the detection, characterization, and monitoring of pathogens with epidemic and pandemic potential." },
-  { icon: Leaf, title: "One Health Leadership", body: "Promoting integrated research that recognizes the interconnectedness of human, animal, plant, and environmental health to address complex health challenges through interdisciplinary collaboration." },
-  { icon: FlaskConical, title: "Laboratory Excellence", body: "Strengthening laboratory science through molecular diagnostics, quality management systems, biospecimen repositories, and advanced research infrastructure that supports high-impact scientific discovery." },
-  { icon: HeartPulse, title: "Health Systems Innovation", body: "Developing resilient, evidence-informed health systems through implementation research, digital transformation, workforce development, and policy engagement." },
-  { icon: Compass, title: "Global Scientific Leadership", body: "Positioning Africa at the forefront of climate-health research by fostering innovation, promoting equitable international collaboration, and translating scientific excellence into meaningful societal impact." },
+  { icon: Network, flagship: true, title: "Climate–Pathogen Nexus (CP-Nexus)", body: "Our flagship scientific innovation integrating climate science, pathogen biology, genomics, artificial intelligence and One Health principles to advance predictive climate health intelligence." },
+  { icon: Layers, title: "14 Multidisciplinary Research Programmes", body: "Driving cutting-edge research across climate health, infectious diseases, laboratory medicine, genomics, artificial intelligence, epidemiology, and public health systems." },
+  { icon: Globe2, title: "Global Research Partnerships", body: "Building strategic collaborations with universities, research institutes, governments, teaching hospitals, and multilateral organizations across Africa and globally." },
+  { icon: Building2, title: "Centre of Excellence Initiative", body: "Championing the establishment of the Obafemi Awolowo University International Centre of Excellence for Climate Health Intelligence." },
+  { icon: LineChart, title: "Climate Health Intelligence Dashboard", body: "Developing an integrated digital platform that combines climate data, disease surveillance, laboratory intelligence, and genomic data streams." },
+  { icon: BookOpen, title: "Scientific Publications and Knowledge Translation", body: "Producing high-quality peer-reviewed publications, technical reports, policy briefs, and educational resources for researchers and policymakers." },
+  { icon: GraduationCap, title: "Education, Training and Fellowships", body: "Building the next generation of scientists through postgraduate education, professional development, and research fellowships." },
+  { icon: Scale, title: "Research for Policy and Impact", body: "Transforming scientific evidence into practical solutions that strengthen health systems and improve epidemic preparedness." },
+  { icon: Cpu, title: "Innovation and Digital Health", body: "Harnessing artificial intelligence, bioinformatics, and advanced analytics to develop innovative technologies for climate health." },
+  { icon: Dna, title: "Pathogenomics and Genomic Surveillance", body: "Advancing molecular epidemiology and genomic surveillance to improve detection and monitoring of pathogens." },
+  { icon: Leaf, title: "One Health Leadership", body: "Promoting integrated research that recognizes the interconnectedness of human, animal, plant, and environmental health." },
+  { icon: FlaskConical, title: "Laboratory Excellence", body: "Strengthening laboratory science through molecular diagnostics, quality management systems, and biospecimen repositories." },
+  { icon: HeartPulse, title: "Health Systems Innovation", body: "Developing resilient, evidence-informed health systems through implementation research and digital transformation." },
+  { icon: Compass, title: "Global Scientific Leadership", body: "Positioning Africa at the forefront of climate-health research by fostering innovation and equitable international collaboration." },
 ];
 
 const glance: { value: string; numeric?: number; label: string }[] = [
@@ -54,23 +54,18 @@ const leaders: Leader[] = [
   {
     name: "Our Research Team",
     title: "CPM International Research Institute",
-    bio: "Our multidisciplinary research team leads CPM's scientific programmes — spanning climate science, epidemiology, genomics, artificial intelligence, and public health — working together to advance the Institute's research agenda and translate science into impact.",
+    bio: "Our multidisciplinary research team leads CPM's scientific programmes — spanning climate science, epidemiology, genomics, artificial intelligence, and public health — working together to advance transformative climate health research.",
     photo: teamPhoto,
   },
-  // {
-  //   name: "Dr. [Research Lead Name]",
-  //   title: "Head, One Health & Laboratory Sciences",
-  //   credentials: "DVM, PhD",
-  //   bio: "Oversees One Health research and laboratory operations spanning molecular diagnostics, biospecimen science and antimicrobial resistance.",
-  // },
 ];
 
 const navItems = [
   { href: "#about", label: "Institute" },
   { href: "#why", label: "Research" },
   { href: "/chip", label: "CHIP™" },
+  { href: "/news", label: "News" },
+  { href: "/resources", label: "Resources" },
   { href: "#leadership", label: "Leadership" },
-  { href: "#partners", label: "Partners" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -317,13 +312,13 @@ function Index() {
                 Advancing the science of a changing climate — for the health of people, animals and the planet.
               </h1>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/85">
-                The CPM International Research Institute for Climate Health generates transformative scientific knowledge at the intersection of climate, pathogens, genomics and artificial intelligence — strengthening health security in Africa and contributing to global scientific advancement.
+                The CPM International Research Institute for Climate Health generates transformative scientific knowledge at the intersection of climate, pathogens, genomics and artificial intelligence.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a href="#why" className="inline-flex items-center gap-2 bg-primary-foreground px-6 py-3 text-sm font-medium text-primary transition hover:bg-primary-foreground/90">
                   Discover the Institute <ArrowRight className="h-4 w-4" aria-hidden />
                 </a>
-                <a href="#glance" className="inline-flex items-center gap-2 border border-primary-foreground/40 px-6 py-3 text-sm font-medium text-primary-foreground transition hover:border-primary-foreground">
+                <a href="#glance" className="inline-flex items-center gap-2 border border-primary-foreground/40 px-6 py-3 text-sm font-medium text-primary-foreground transition hover:border-primary-foreground/60">
                   CPM at a Glance
                 </a>
               </div>
@@ -354,7 +349,7 @@ function Index() {
             </header>
             <div className="lg:col-span-8 lg:pt-3">
               <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                The CPM International Research Institute for Climate Health is committed to generating transformative scientific knowledge that addresses the evolving health challenges of a changing climate. Our multidisciplinary approach integrates research, innovation, education, technology, and policy to strengthen health security in Africa and contribute to global scientific advancement.
+                The CPM International Research Institute for Climate Health is committed to generating transformative scientific knowledge that addresses the evolving health challenges of a changing climate through rigorous science, innovation, and global collaboration.
               </p>
             </div>
           </div>
@@ -372,7 +367,7 @@ function Index() {
                     onClick={() => toggleStrength(i)}
                     aria-expanded={openStrength === i}
                     aria-controls={`strength-body-${i}`}
-                    className="grid w-full grid-cols-[2.5rem_1fr_1.5rem] items-start gap-x-5 py-8 text-left transition-colors hover:bg-primary/[0.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:grid-cols-[3rem_2.5rem_1fr_1.5rem] md:gap-x-8"
+                    className="grid w-full grid-cols-[2.5rem_1fr_1.5rem] items-start gap-x-5 py-8 text-left transition-colors hover:bg-primary/[0.04] focus-visible:outline-2 focus-visible:outline-primary md:grid-cols-[2.5rem_auto_1fr_1.5rem]"
                   >
                     <span className="pt-0.5 font-serif text-sm text-muted-foreground">
                       {String(i + 1).padStart(2, "0")}
@@ -484,25 +479,6 @@ function Index() {
         </div>
       </section>
 
-      {/* ── Partners ───────────────────────────────────────────────── */}
-      <section id="partners" className="hairline-b bg-background">
-        <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10 lg:py-20">
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">In Collaboration With</p>
-          <h2 className="mt-3 font-serif text-2xl text-foreground">Our Partners</h2>
-          <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-3 lg:grid-cols-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex h-24 items-center justify-center bg-background text-xs uppercase tracking-[0.18em] text-muted-foreground"
-                aria-label={`Partner ${i + 1} logo placeholder`}
-              >
-                Partner {i + 1}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── About + Contact ────────────────────────────────────────── */}
       <section id="about" className="hairline-b bg-background">
         <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-24">
@@ -513,7 +489,7 @@ function Index() {
                 Hosted at Obafemi Awolowo University, Nigeria
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-                CPM operates as an international research institute embedded within the academic and clinical ecosystem of Obafemi Awolowo University — advancing climate health science, training and policy engagement in partnership with institutions worldwide.
+                CPM operates as an international research institute embedded within the academic and clinical ecosystem of Obafemi Awolowo University — advancing climate health science, training the next generation of researchers, and strengthening health systems across Africa and globally.
               </p>
               <dl className="mt-10 space-y-5 text-sm">
                 <div className="flex gap-4">
@@ -621,7 +597,7 @@ function Index() {
                     <button
                       type="submit"
                       disabled={formStatus === "loading"}
-                      className="inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {formStatus === "loading" ? (
                         <>
@@ -643,10 +619,55 @@ function Index() {
       </section>
 
       {/* ── Footer ─────────────────────────────────────────────────── */}
-      <footer className="bg-background">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-6 py-10 text-sm text-muted-foreground lg:flex-row lg:items-center lg:justify-between lg:px-10">
-          <p>© {new Date().getFullYear()} CPM International Research Institute for Climate Health · Hosted at Obafemi Awolowo University.</p>
-          <p className="text-xs uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
+      <footer className="bg-background border-t border-border/40">
+        <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
+          <div className="grid gap-10 md:grid-cols-4 lg:gap-16">
+            {/* About */}
+            <div>
+              <p className="font-serif text-lg font-medium text-foreground">CPM Institute</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                International Research Institute for Climate Health, hosted at Obafemi Awolowo University, Nigeria.
+              </p>
+            </div>
+
+            {/* Navigation */}
+            <div>
+              <p className="text-sm font-medium text-foreground">Navigation</p>
+              <ul className="mt-4 space-y-2 text-sm">
+                <li><Link to="/" className="text-muted-foreground hover:text-primary transition">Home</Link></li>
+                <li><Link to="/chip" className="text-muted-foreground hover:text-primary transition">CHIP™</Link></li>
+                <li><Link to="/news" className="text-muted-foreground hover:text-primary transition">News</Link></li>
+                <li><Link to="/resources" className="text-muted-foreground hover:text-primary transition">Resources</Link></li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <p className="text-sm font-medium text-foreground">Contact</p>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <li>info@cpm-institute.org</li>
+                <li>+234 803 377 0933</li>
+                <li className="text-xs">Ile-Ife, Osun State, Nigeria</li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <p className="text-sm font-medium text-foreground">Legal</p>
+              <ul className="mt-4 space-y-2 text-sm">
+                <li><a href="/privacy" className="text-muted-foreground hover:text-primary transition">Privacy Policy</a></li>
+                <li><a href="/terms" className="text-muted-foreground hover:text-primary transition">Terms of Use</a></li>
+                <li><a href="/accessibility" className="text-muted-foreground hover:text-primary transition">Accessibility</a></li>
+                <li><a href="/sitemap" className="text-muted-foreground hover:text-primary transition">Sitemap</a></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="mt-10 border-t border-border/40 pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground">
+            <p>© {new Date().getFullYear()} CPM International Research Institute for Climate Health · Hosted at Obafemi Awolowo University.</p>
+            <p className="uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
+          </div>
         </div>
       </footer>
     </div>
