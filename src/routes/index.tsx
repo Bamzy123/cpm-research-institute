@@ -5,8 +5,8 @@ import {
   GraduationCap, Scale, Cpu, Dna, Leaf, FlaskConical,
   HeartPulse, Compass, ArrowRight, Menu, X, MapPin, Mail, Phone,
 } from "lucide-react";
-import officeHeader from "../assets/office-header.jpeg.asset.json";
-import directorPhoto from "../assets/director.jpeg.asset.json";
+import officeHeader from "../assets/header.jpeg?url";
+import directorPhoto from "../assets/director.jpeg?url";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -40,7 +40,7 @@ const glance: { value: string; numeric?: number; label: string }[] = [
 ];
 
 const leaders: { name: string; title: string; credentials: string; bio: string; photo?: string }[] = [
-  { name: "Prof. [Director Name]", title: "Director, CPM International Research Institute for Climate Health", credentials: "MBBS, PhD, FAS", bio: "Leads the institute's scientific vision at the intersection of climate, pathogens and public health, with decades of research and international collaboration experience.", photo: directorPhoto.url },
+  { name: "Prof. [Director Name]", title: "Director, CPM International Research Institute for Climate Health", credentials: "MBBS, PhD, FAS", bio: "Leads the institute's scientific vision at the intersection of climate, pathogens and public health, with decades of research and international collaboration experience.", photo: directorPhoto },
   { name: "Dr. [Research Lead Name]", title: "Head, Climate–Pathogen Nexus Programme", credentials: "PhD, Genomics & AI", bio: "Directs the flagship CP-Nexus, integrating pathogen genomics, climate modelling and machine learning to advance predictive surveillance." },
   { name: "Dr. [Research Lead Name]", title: "Head, One Health & Laboratory Sciences", credentials: "DVM, PhD", bio: "Oversees One Health research and laboratory operations spanning molecular diagnostics, biospecimen science and antimicrobial resistance." },
 ];
@@ -159,7 +159,7 @@ function Index() {
       {/* Hero */}
       <section id="top" className="relative hairline-b overflow-hidden">
         <div className="absolute inset-0" aria-hidden>
-          <img src={officeHeader.url} alt="" className="h-full w-full object-cover" />
+          <img src={officeHeader} alt="" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/92 via-primary/85 to-primary/75" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08),transparent_60%)]" />
         </div>
