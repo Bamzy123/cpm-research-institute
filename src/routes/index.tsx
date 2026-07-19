@@ -250,8 +250,8 @@ function Index() {
                 Research · Innovation · Education · Policy · Impact
               </p>
             </header>
-            <dl className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-2">
-              {glance.map((g) => <Stat key={g.label} item={g} active={statsActive} />)}
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-10 sm:gap-y-10 lg:col-span-8 lg:grid-cols-2">
+              {glance.map((g) => <Stat key={g.label} item={g} runKey={statsRunKey} />)}
             </dl>
           </div>
         </div>
