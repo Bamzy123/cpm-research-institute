@@ -88,14 +88,17 @@ function Stat({ item, runKey }: { item: (typeof glance)[number]; runKey: number 
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [statsActive, setStatsActive] = useState(false);
+  const [statsRunKey, setStatsRunKey] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!statsRef.current) return;
     const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setStatsActive(true); io.disconnect(); } },
+      ([e]) => {
+        if (e.isIntersecting) setStatsRunKey((k) => k + 1);
+        else setStatsRunKey(0);
+      },
       { threshold: 0.3 },
     );
     io.observe(statsRef.current);
