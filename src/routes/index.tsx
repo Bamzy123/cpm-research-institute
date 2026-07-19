@@ -282,14 +282,22 @@ function Index() {
             <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-3">
               {leaders.map((p) => (
                 <article key={p.name} className="flex flex-col">
-                  <div
-                    aria-hidden
-                    className="aspect-[4/5] w-full border border-border bg-secondary"
-                    style={{
-                      backgroundImage:
-                        "repeating-linear-gradient(45deg, transparent 0 10px, oklch(0 0 0 / 0.03) 10px 11px)",
-                    }}
-                  />
+                  {p.photo ? (
+                    <img
+                      src={p.photo}
+                      alt={`Portrait of ${p.name}`}
+                      className="aspect-[4/5] w-full border border-border object-cover"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden
+                      className="aspect-[4/5] w-full border border-border bg-secondary"
+                      style={{
+                        backgroundImage:
+                          "repeating-linear-gradient(45deg, transparent 0 10px, oklch(0 0 0 / 0.03) 10px 11px)",
+                      }}
+                    />
+                  )}
                   <h3 className="mt-5 font-serif text-lg text-foreground">{p.name}</h3>
                   <p className="mt-1 text-sm text-primary">{p.title}</p>
                   <p className="mt-1 text-xs uppercase tracking-[0.15em] text-muted-foreground">{p.credentials}</p>
