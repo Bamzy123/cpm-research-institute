@@ -48,6 +48,7 @@ const leaders = [
 const navItems = [
   { href: "#about", label: "Institute" },
   { href: "#why", label: "Research" },
+  { href: "/chip", label: "CHIP™" },
   { href: "#leadership", label: "Leadership" },
   { href: "#partners", label: "Partners" },
   { href: "#contact", label: "Contact" },
