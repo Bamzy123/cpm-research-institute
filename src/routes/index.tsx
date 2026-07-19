@@ -4,9 +4,11 @@ import {
   Network, Layers, Globe2, Building2, LineChart, BookOpen,
   GraduationCap, Scale, Cpu, Dna, Leaf, FlaskConical,
   HeartPulse, Compass, ArrowRight, Menu, X, MapPin, Mail, Phone,
+  ChevronDown,
 } from "lucide-react";
 import officeHeader from "../assets/header.jpeg?url";
 import directorPhoto from "../assets/director.jpeg?url";
+import teamPhoto from "../assets/team.jpeg?url";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -39,10 +41,28 @@ const glance: { value: string; numeric?: number; label: string }[] = [
   { value: "Global", label: "International Research Partnerships & Scientific Collaboration Network" },
 ];
 
-const leaders: { name: string; title: string; credentials: string; bio: string; photo?: string }[] = [
-  { name: "Prof. [Director Name]", title: "Director, CPM International Research Institute for Climate Health", credentials: "MBBS, PhD, FAS", bio: "Leads the institute's scientific vision at the intersection of climate, pathogens and public health, with decades of research and international collaboration experience.", photo: directorPhoto },
-  { name: "Dr. [Research Lead Name]", title: "Head, Climate–Pathogen Nexus Programme", credentials: "PhD, Genomics & AI", bio: "Directs the flagship CP-Nexus, integrating pathogen genomics, climate modelling and machine learning to advance predictive surveillance." },
-  { name: "Dr. [Research Lead Name]", title: "Head, One Health & Laboratory Sciences", credentials: "DVM, PhD", bio: "Oversees One Health research and laboratory operations spanning molecular diagnostics, biospecimen science and antimicrobial resistance." },
+type Leader = { name: string; title: string; credentials?: string; bio: string; photo?: string };
+
+const leaders: Leader[] = [
+  {
+    name: "Prof. [Director Name]",
+    title: "Director, CPM International Research Institute for Climate Health",
+    credentials: "MBBS, PhD, FAS",
+    bio: "Leads the institute's scientific vision at the intersection of climate, pathogens and public health, with decades of research and international collaboration experience.",
+    photo: directorPhoto,
+  },
+  {
+    name: "Our Research Team",
+    title: "CPM International Research Institute",
+    bio: "Our multidisciplinary research team leads CPM's scientific programmes — spanning climate science, epidemiology, genomics, artificial intelligence, and public health — working together to advance the Institute's research agenda and translate science into impact.",
+    photo: teamPhoto,
+  },
+  // {
+  //   name: "Dr. [Research Lead Name]",
+  //   title: "Head, One Health & Laboratory Sciences",
+  //   credentials: "DVM, PhD",
+  //   bio: "Oversees One Health research and laboratory operations spanning molecular diagnostics, biospecimen science and antimicrobial resistance.",
+  // },
 ];
 
 const navItems = [
@@ -53,6 +73,21 @@ const navItems = [
   { href: "#partners", label: "Partners" },
   { href: "#contact", label: "Contact" },
 ];
+
+// ── Utilities ────────────────────────────────────────────────────────
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return reduced;
+}
 
 function useCountUp(target: number, runKey: number, duration = 1000) {
   const [n, setN] = useState(0);
@@ -86,12 +121,21 @@ function Stat({ item, runKey }: { item: (typeof glance)[number]; runKey: number 
   );
 }
 
+// ── Form state ───────────────────────────────────────────────────────
+type FormStatus = "idle" | "loading" | "success" | "error";
+
+// ── Component ────────────────────────────────────────────────────────
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuClosing, setMenuClosing] = useState(false);
   const [statsRunKey, setStatsRunKey] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
+  const [formStatus, setFormStatus] = useState<FormStatus>("idle");
+  const [formError, setFormError] = useState("");
+  const [openStrength, setOpenStrength] = useState<number | null>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = usePrefersReducedMotion();
 
+  // Stats intersection observer
   useEffect(() => {
     if (!statsRef.current) return;
     const io = new IntersectionObserver(
@@ -105,11 +149,47 @@ function Index() {
     return () => io.disconnect();
   }, []);
 
-  const onSubmit = (e: FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  // Close mobile nav — plays slide-out animation then unmounts
+  const closeMenu = () => {
+    if (prefersReduced) { setMenuOpen(false); return; }
+    setMenuClosing(true);
+    setTimeout(() => { setMenuOpen(false); setMenuClosing(false); }, 290);
+  };
+
+  // Strength accordion toggle
+  const toggleStrength = (i: number) =>
+    setOpenStrength((prev) => (prev === i ? null : i));
+
+  // Contact form — Web3Forms
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus("loading");
+    setFormError("");
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = (await res.json()) as { success?: boolean; message?: string };
+      if (res.ok && json.success) {
+        setFormStatus("success");
+      } else {
+        throw new Error(json.message ?? "Submission failed. Please try again.");
+      }
+    } catch (err) {
+      setFormStatus("error");
+      setFormError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      );
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Top bar */}
+
+      {/* ── Sticky header ─────────────────────────────────────────── */}
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-5 lg:px-10">
           <a href="#top" className="flex min-w-0 items-baseline gap-3">
@@ -119,49 +199,113 @@ function Index() {
             </span>
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
-            {navItems.map((n) => n.href.startsWith("/") ? (
-              <Link key={n.href} to={n.href} className="transition-colors hover:text-primary">{n.label}</Link>
-            ) : (
-              <a key={n.href} href={n.href} className="transition-colors hover:text-primary">{n.label}</a>
-            ))}
+            {navItems.map((n) =>
+              n.href.startsWith("/") ? (
+                <Link key={n.href} to={n.href} className="transition-colors hover:text-primary">{n.label}</Link>
+              ) : (
+                <a key={n.href} href={n.href} className="transition-colors hover:text-primary">{n.label}</a>
+              ),
+            )}
           </nav>
+          {/* Hamburger — icon morphs Menu ↔ X */}
           <button
             type="button"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center border border-border md:hidden"
+            onClick={menuOpen ? closeMenu : () => setMenuOpen(true)}
+            className="relative inline-flex h-10 w-10 items-center justify-center border border-border transition-colors hover:border-primary/60 md:hidden"
           >
-            {menuOpen ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
+            <span
+              className="absolute"
+              style={{
+                opacity: menuOpen ? 0 : 1,
+                transform: menuOpen ? "rotate(45deg) scale(0.6)" : "none",
+                transition: prefersReduced ? "none" : "opacity 200ms, transform 200ms",
+              }}
+            >
+              <Menu className="h-5 w-5" aria-hidden />
+            </span>
+            <span
+              className="absolute"
+              style={{
+                opacity: menuOpen ? 1 : 0,
+                transform: menuOpen ? "none" : "rotate(-45deg) scale(0.6)",
+                transition: prefersReduced ? "none" : "opacity 200ms, transform 200ms",
+              }}
+            >
+              <X className="h-5 w-5" aria-hidden />
+            </span>
           </button>
         </div>
-        {menuOpen && (
-          <nav aria-label="Mobile" className="border-t border-border bg-background md:hidden">
-            <ul className="mx-auto flex max-w-[1400px] flex-col px-6 py-2">
+      </header>
+
+      {/* ── Mobile nav — fixed right-side slide panel ──────────────── */}
+      {menuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className={`fixed inset-0 z-40 bg-foreground/40 md:hidden ${menuClosing ? "nav-backdrop-out" : "nav-backdrop-in"}`}
+            onClick={closeMenu}
+            aria-hidden
+          />
+          {/* Panel */}
+          <nav
+            aria-label="Mobile"
+            className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl md:hidden ${menuClosing ? "nav-slide-out" : "nav-slide-in"}`}
+          >
+            <div className="flex items-center justify-between border-b border-border px-6 py-5">
+              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM</span>
+              <button
+                type="button"
+                onClick={closeMenu}
+                aria-label="Close menu"
+                className="inline-flex h-9 w-9 items-center justify-center border border-border transition-colors hover:border-primary/60 hover:text-primary"
+              >
+                <X className="h-4 w-4" aria-hidden />
+              </button>
+            </div>
+            <ul className="flex flex-col py-2">
               {navItems.map((n) => (
                 <li key={n.href}>
                   {n.href.startsWith("/") ? (
-                    <Link to={n.href} onClick={() => setMenuOpen(false)} className="block border-b border-border/60 py-3 text-sm font-medium text-foreground/85 last:border-b-0 hover:text-primary">
+                    <Link
+                      to={n.href}
+                      onClick={closeMenu}
+                      className="block px-6 py-4 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary"
+                    >
                       {n.label}
                     </Link>
                   ) : (
-                    <a href={n.href} onClick={() => setMenuOpen(false)} className="block border-b border-border/60 py-3 text-sm font-medium text-foreground/85 last:border-b-0 hover:text-primary">
+                    <a
+                      href={n.href}
+                      onClick={closeMenu}
+                      className="block px-6 py-4 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary"
+                    >
                       {n.label}
                     </a>
                   )}
                 </li>
               ))}
             </ul>
+            <div className="mt-auto border-t border-border px-6 py-6">
+              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                Research · Innovation · Policy · Impact
+              </p>
+            </div>
           </nav>
-        )}
-      </header>
+        </>
+      )}
 
-      {/* Hero */}
+      {/* ── Hero — lighter layered gradient so photo reads clearly ──── */}
       <section id="top" className="relative hairline-b overflow-hidden">
         <div className="absolute inset-0" aria-hidden>
           <img src={officeHeader} alt="" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/92 via-primary/85 to-primary/75" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08),transparent_60%)]" />
+          {/* Thin overall tint — keeps image visible */}
+          <div className="absolute inset-0 bg-primary/18" />
+          {/* Bottom-to-top gradient — anchors text readability at base */}
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent" />
+          {/* Left-to-right gradient — soft tint behind text columns */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary/20 to-transparent" />
         </div>
         <div className="relative mx-auto max-w-[1400px] px-6 py-20 text-primary-foreground lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -198,7 +342,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Why CPM? */}
+      {/* ── Why CPM? — Strategic Strengths (accordion) ─────────────── */}
       <section id="why" className="hairline-b bg-background">
         <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-10 lg:grid-cols-12">
@@ -222,14 +366,21 @@ function Index() {
             <ol className="mt-6 border-t border-border">
               {strengths.map(({ icon: Icon, title, body, flagship }, i) => (
                 <li key={title} className="border-b border-border">
-                  <article className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 py-8 md:grid-cols-[3rem_2.5rem_1fr] md:gap-x-8">
-                    <span className="font-serif text-sm text-muted-foreground md:pt-1">
+                  {/* ── Accordion trigger ── */}
+                  <button
+                    type="button"
+                    onClick={() => toggleStrength(i)}
+                    aria-expanded={openStrength === i}
+                    aria-controls={`strength-body-${i}`}
+                    className="grid w-full grid-cols-[2.5rem_1fr_1.5rem] items-start gap-x-5 py-8 text-left transition-colors hover:bg-primary/[0.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:grid-cols-[3rem_2.5rem_1fr_1.5rem] md:gap-x-8"
+                  >
+                    <span className="pt-0.5 font-serif text-sm text-muted-foreground">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="hidden text-primary md:inline-flex md:pt-0.5" aria-hidden>
+                    <span className="hidden pt-0.5 text-primary md:inline-flex" aria-hidden>
                       <Icon className="h-6 w-6" strokeWidth={1.5} />
                     </span>
-                    <div className="col-span-2 md:col-span-1">
+                    <div>
                       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
                         <h3 className="font-serif text-xl leading-snug text-foreground md:text-2xl">{title}</h3>
                         {flagship && (
@@ -238,9 +389,31 @@ function Index() {
                           </span>
                         )}
                       </div>
-                      <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">{body}</p>
                     </div>
-                  </article>
+                    <ChevronDown
+                      className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                      style={{
+                        transform: openStrength === i ? "rotate(180deg)" : "none",
+                        transition: prefersReduced ? "none" : "transform 300ms ease",
+                      }}
+                      aria-hidden
+                    />
+                  </button>
+                  {/* ── Accordion body — CSS grid-template-rows trick for smooth height ── */}
+                  <div
+                    id={`strength-body-${i}`}
+                    style={{
+                      display: "grid",
+                      gridTemplateRows: openStrength === i ? "1fr" : "0fr",
+                      transition: prefersReduced ? "none" : "grid-template-rows 300ms ease",
+                    }}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="pb-8 pl-0 max-w-3xl text-[15px] leading-relaxed text-muted-foreground md:pl-[calc(3rem+2.5rem+2rem)]">
+                        {body}
+                      </p>
+                    </div>
+                  </div>
                 </li>
               ))}
             </ol>
@@ -248,7 +421,7 @@ function Index() {
         </div>
       </section>
 
-      {/* CPM at a Glance */}
+      {/* ── CPM at a Glance ────────────────────────────────────────── */}
       <section id="glance" className="bg-primary text-primary-foreground">
         <div ref={statsRef} className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-10 lg:grid-cols-12">
@@ -266,7 +439,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Leadership */}
+      {/* ── Leadership ─────────────────────────────────────────────── */}
       <section id="leadership" className="hairline-b bg-background">
         <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-10 lg:grid-cols-12">
@@ -285,7 +458,7 @@ function Index() {
                   {p.photo ? (
                     <img
                       src={p.photo}
-                      alt={`Portrait of ${p.name}`}
+                      alt={p.name === "Our Research Team" ? "CPM research team group photo" : `Portrait of ${p.name}`}
                       className="aspect-[4/5] w-full border border-border object-cover"
                     />
                   ) : (
@@ -300,7 +473,9 @@ function Index() {
                   )}
                   <h3 className="mt-5 font-serif text-lg text-foreground">{p.name}</h3>
                   <p className="mt-1 text-sm text-primary">{p.title}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-muted-foreground">{p.credentials}</p>
+                  {p.credentials && (
+                    <p className="mt-1 text-xs uppercase tracking-[0.15em] text-muted-foreground">{p.credentials}</p>
+                  )}
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.bio}</p>
                 </article>
               ))}
@@ -309,7 +484,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Partners */}
+      {/* ── Partners ───────────────────────────────────────────────── */}
       <section id="partners" className="hairline-b bg-background">
         <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10 lg:py-20">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">In Collaboration With</p>
@@ -328,7 +503,7 @@ function Index() {
         </div>
       </section>
 
-      {/* About + Contact */}
+      {/* ── About + Contact ────────────────────────────────────────── */}
       <section id="about" className="hairline-b bg-background">
         <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-16 lg:grid-cols-12">
@@ -365,6 +540,7 @@ function Index() {
               </dl>
             </div>
 
+            {/* ── Contact form — Web3Forms ───────────────────────── */}
             <div id="contact" className="lg:col-span-7 lg:border-l lg:border-border lg:pl-16">
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Contact</p>
               <h2 className="mt-4 font-serif text-3xl leading-tight text-foreground lg:text-4xl">Get in touch</h2>
@@ -372,31 +548,91 @@ function Index() {
                 For research collaborations, funding enquiries, media requests and academic partnerships.
               </p>
 
-              {submitted ? (
-                <div className="mt-10 border border-primary/30 bg-secondary p-6 text-sm text-foreground" role="status">
-                  Thank you — your message has been received. A member of the CPM team will respond by email.
+              {formStatus === "success" ? (
+                <div className="mt-10 border border-primary/30 bg-primary/5 p-6 text-sm text-foreground" role="status">
+                  <p className="font-medium text-primary">Message received</p>
+                  <p className="mt-1 text-muted-foreground">
+                    Thank you — your message has been received. We'll be in touch shortly.
+                  </p>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <form onSubmit={onSubmit} className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2" noValidate>
+                  {/*
+                    ── Web3Forms configuration ──────────────────────────────
+                    Sign up free at https://web3forms.com, get your Access Key,
+                    then replace YOUR_WEB3FORMS_ACCESS_KEY below with your real key.
+                    ──────────────────────────────────────────────────────── */}
+                  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+                  <input type="hidden" name="subject" value="CPM Institute — Website Enquiry" />
+                  <input type="hidden" name="from_name" value="CPM Research Institute Website" />
+                  {/* Honeypot spam field — must stay empty */}
+                  <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} aria-hidden />
+
                   <label className="flex flex-col gap-2 text-sm">
-                    <span className="font-medium text-foreground">Name</span>
-                    <input required name="name" type="text" className="border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none" />
+                    <span className="font-medium text-foreground">Name <span className="text-destructive" aria-hidden>*</span></span>
+                    <input
+                      required
+                      name="name"
+                      type="text"
+                      autoComplete="name"
+                      disabled={formStatus === "loading"}
+                      className="border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none disabled:opacity-50"
+                    />
                   </label>
                   <label className="flex flex-col gap-2 text-sm">
-                    <span className="font-medium text-foreground">Email</span>
-                    <input required name="email" type="email" className="border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none" />
+                    <span className="font-medium text-foreground">Email <span className="text-destructive" aria-hidden>*</span></span>
+                    <input
+                      required
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      disabled={formStatus === "loading"}
+                      className="border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none disabled:opacity-50"
+                    />
                   </label>
                   <label className="flex flex-col gap-2 text-sm sm:col-span-2">
                     <span className="font-medium text-foreground">Institution</span>
-                    <input name="institution" type="text" className="border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none" />
+                    <input
+                      name="institution"
+                      type="text"
+                      disabled={formStatus === "loading"}
+                      className="border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none disabled:opacity-50"
+                    />
                   </label>
                   <label className="flex flex-col gap-2 text-sm sm:col-span-2">
-                    <span className="font-medium text-foreground">Message</span>
-                    <textarea required name="message" rows={5} className="resize-y border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none" />
+                    <span className="font-medium text-foreground">Message <span className="text-destructive" aria-hidden>*</span></span>
+                    <textarea
+                      required
+                      name="message"
+                      rows={5}
+                      disabled={formStatus === "loading"}
+                      className="resize-y border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none disabled:opacity-50"
+                    />
                   </label>
+
+                  {/* Error message */}
+                  {formStatus === "error" && formError && (
+                    <div className="sm:col-span-2 border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive" role="alert">
+                      {formError}
+                    </div>
+                  )}
+
                   <div className="sm:col-span-2">
-                    <button type="submit" className="inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">
-                      Send message <ArrowRight className="h-4 w-4" aria-hidden />
+                    <button
+                      type="submit"
+                      disabled={formStatus === "loading"}
+                      className="inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {formStatus === "loading" ? (
+                        <>
+                          <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground" aria-hidden />
+                          Sending…
+                        </>
+                      ) : (
+                        <>
+                          Send message <ArrowRight className="h-4 w-4" aria-hidden />
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>
@@ -406,7 +642,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ── Footer ─────────────────────────────────────────────────── */}
       <footer className="bg-background">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-6 py-10 text-sm text-muted-foreground lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <p>© {new Date().getFullYear()} CPM International Research Institute for Climate Health · Hosted at Obafemi Awolowo University.</p>
