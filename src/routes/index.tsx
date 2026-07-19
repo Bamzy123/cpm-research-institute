@@ -140,13 +140,15 @@ function Index() {
             <ul className="mx-auto flex max-w-[1400px] flex-col px-6 py-2">
               {navItems.map((n) => (
                 <li key={n.href}>
-                  <a
-                    href={n.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block border-b border-border/60 py-3 text-sm font-medium text-foreground/85 last:border-b-0 hover:text-primary"
-                  >
-                    {n.label}
-                  </a>
+                  {n.href.startsWith("/") ? (
+                    <Link to={n.href} onClick={() => setMenuOpen(false)} className="block border-b border-border/60 py-3 text-sm font-medium text-foreground/85 last:border-b-0 hover:text-primary">
+                      {n.label}
+                    </Link>
+                  ) : (
+                    <a href={n.href} onClick={() => setMenuOpen(false)} className="block border-b border-border/60 py-3 text-sm font-medium text-foreground/85 last:border-b-0 hover:text-primary">
+                      {n.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
