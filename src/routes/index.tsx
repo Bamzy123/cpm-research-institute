@@ -45,7 +45,7 @@ type Leader = { name: string; title: string; credentials?: string; bio: string; 
 
 const leaders: Leader[] = [
   {
-    name: "Prof. [Director Name]",
+    name: "Prof. Omololu J Aso",
     title: "Director, CPM International Research Institute for Climate Health",
     credentials: "MBBS, PhD, FAS",
     bio: "Leads the institute's scientific vision at the intersection of climate, pathogens and public health, with decades of research and international collaboration experience.",
