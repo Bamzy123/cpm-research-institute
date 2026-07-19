@@ -1,10 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   Network, Layers, Globe2, Building2, LineChart, BookOpen,
   GraduationCap, Scale, Cpu, Dna, Leaf, FlaskConical,
   HeartPulse, Compass, ArrowRight, Menu, X, MapPin, Mail, Phone,
 } from "lucide-react";
+import officeHeader from "../assets/office-header.jpeg.asset.json";
+import directorPhoto from "../assets/director.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
