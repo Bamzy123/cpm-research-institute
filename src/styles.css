@@ -32,6 +32,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-navy: var(--navy);
+  --color-sky: var(--sky);
 }
 
 :root {
@@ -64,6 +67,11 @@
   --border: oklch(0.84 0.008 140);
   --input: oklch(0.84 0.008 140);
   --ring: oklch(0.34 0.06 160);
+
+  /* Extended palette */
+  --gold: oklch(0.72 0.14 75);               /* warm accent gold */
+  --navy: oklch(0.20 0.06 230);              /* deep navy blue */
+  --sky: oklch(0.94 0.03 220);              /* light sky blue */
 }
 
 @layer base {
@@ -85,7 +93,14 @@
 @utility hairline-t { border-top: 1px solid var(--color-border); }
 @utility hairline-b { border-bottom: 1px solid var(--color-border); }
 
-/* ── Fade-up (existing) ─────────────────────────────────────────────── */
+/* ── Section background utilities ────────────────────────────────────── */
+@utility bg-navy   { background-color: var(--color-navy); }
+@utility bg-sky    { background-color: var(--color-sky); }
+@utility text-gold { color: var(--color-gold); }
+@utility border-gold { border-color: var(--color-gold); }
+@utility bg-gold   { background-color: var(--color-gold); }
+
+/* ── Fade-up ──────────────────────────────────────────────────────────── */
 @keyframes cpm-fade-up {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -134,4 +149,58 @@
   .nav-slide-out  { animation: none; }
   .nav-backdrop-in,
   .nav-backdrop-out { animation: none; }
+}
+
+/* ── CHIP™ flow pulse ────────────────────────────────────────────────── */
+@keyframes cpm-pulse-dot {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.35); }
+}
+@utility chip-dot {
+  animation: cpm-pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes cpm-flow-line {
+  0%   { stroke-dashoffset: 60; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ── Card lift hover ─────────────────────────────────────────────────── */
+@utility card-lift {
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -8px oklch(0.20 0.06 230 / 0.18);
+}
+
+/* ── Shimmer bar (publications / news skeleton) ─────────────────────── */
+@keyframes cpm-shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position: 400px 0; }
+}
+
+/* ── Counter bounce-in ───────────────────────────────────────────────── */
+@keyframes cpm-count-pop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@utility count-pop {
+  animation: cpm-count-pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── World map dot pulse ─────────────────────────────────────────────── */
+@keyframes cpm-map-ping {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+@utility map-ping {
+  animation: cpm-map-ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ── Section divider gradient line ──────────────────────────────────── */
+@utility grad-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  border: none;
 }

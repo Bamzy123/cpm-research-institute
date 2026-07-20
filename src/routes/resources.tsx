@@ -137,11 +137,8 @@ function ResourcesPage() {
       {/* ── Header ─────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-5 lg:px-10">
-          <Link to="/" className="flex min-w-0 items-baseline gap-3">
-            <span className="font-serif text-2xl font-medium tracking-tight text-primary">CPM</span>
-            <span className="hidden truncate text-xs uppercase tracking-[0.18em] text-muted-foreground sm:inline">
-              International Research Institute for Climate Health
-            </span>
+          <Link to="/" className="flex min-w-0 items-center">
+            <img src="/cpm-logo.png" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
           </Link>
           <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary">
             <ArrowLeft className="h-4 w-4" aria-hidden /> Back to Home
@@ -365,7 +362,10 @@ function ResourcesPage() {
             </div>
           </div>
           <div className="mt-10 border-t border-border/40 pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground">
-            <p>© {new Date().getFullYear()} CPM International Research Institute for Climate Health · Hosted at Obafemi Awolowo University.</p>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="bg-white/95 px-2.5 py-1.5 rounded-md shadow-sm"><img src="/cpm-logo.png" alt="CPM Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-multiply" /></div>
+              <p>© {new Date().getFullYear()} CPM International Research Institute.</p>
+            </div>
             <p className="uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
           </div>
         </div>
