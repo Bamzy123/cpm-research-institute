@@ -34,16 +34,7 @@ const newsItems: NewsItem[] = [
     category: "Research",
     featured: true,
   },
-  {
-    id: "2",
-    title: "CPM and Obafemi Awolowo University Establish International Centre of Excellence",
-    excerpt: "Strategic partnership to strengthen climate health research capacity and international collaboration in West Africa.",
-    content: "Building on decades of research excellence, CPM and Obafemi Awolowo University have established a formal Centre of Excellence for Climate Health Intelligence. This initiative aims to strengthen laboratory capacity, train the next generation of scientists, and position Africa as a leader in climate health research.",
-    date: "2026-07-15",
-    author: "University Administration",
-    category: "Partnership",
-    featured: false,
-  },
+
   {
     id: "3",
     title: "New Study Reveals Climate-Disease Links in West African Populations",
@@ -286,7 +277,7 @@ function NewsPage() {
             <div>
               <p className="font-serif text-lg font-medium text-foreground">CPM Institute</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                International Research Institute for Climate Health, hosted at Obafemi Awolowo University, Nigeria.
+                7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria
               </p>
             </div>
             <div>

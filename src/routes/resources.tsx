@@ -331,7 +331,7 @@ function ResourcesPage() {
             <div>
               <p className="font-serif text-lg font-medium text-foreground">CPM Institute</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                International Research Institute for Climate Health, hosted at Obafemi Awolowo University, Nigeria.
+                7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria.
               </p>
             </div>
             <div>
