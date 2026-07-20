@@ -324,6 +324,7 @@ function ResourcesPage() {
         </div>
       </section>
 
+
       {/* ── Footer ─────────────────────────────────────────────────── */}
       <footer className="bg-background border-t border-border/40">
         <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
