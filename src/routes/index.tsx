@@ -869,7 +869,7 @@ function Index() {
           <div className="grid gap-10 md:grid-cols-5 lg:gap-16">
             {/* Brand */}
             <div className="md:col-span-2">
-              <div className="bg-white/95 px-3 py-2 rounded-lg shadow-sm inline-block mb-4">
+              <div className="px-3 py-2 inline-block mb-4">
                 <img src="/cpm-logo.png" alt="CPM International Research Institute for Climate Health" className="h-12 md:h-16 w-auto object-contain mix-blend-multiply" />
               </div>
               <p className="mt-4 text-sm leading-relaxed" style={{ color: "oklch(0.65 0.03 220)" }}>
