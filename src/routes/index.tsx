@@ -779,7 +779,7 @@ function Index() {
                   <MapPin className="h-5 w-5 shrink-0 text-primary" aria-hidden />
                   <div>
                     <dt className="font-medium text-foreground">Address</dt>
-                    <dd className="mt-1 text-muted-foreground">Obafemi Awolowo University, Ile-Ife, Osun State, Nigeria</dd>
+                    <dd className="mt-1 text-muted-foreground">7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria</dd>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -925,7 +925,7 @@ function Index() {
               <ul className="mt-4 space-y-3 text-sm" style={{ color: "oklch(0.65 0.03 220)" }}>
                 <li className="flex items-start gap-2">
                   <MapPin className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color: "oklch(0.72 0.14 75)" }} />
-                  <span className="text-xs">Obafemi Awolowo University, Ile-Ife, Osun State, Nigeria</span>
+                  <span className="text-xs">7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-3.5 w-3.5 shrink-0" style={{ color: "oklch(0.72 0.14 75)" }} />

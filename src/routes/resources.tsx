@@ -348,7 +348,7 @@ function ResourcesPage() {
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <li>info@cpm-institute.org</li>
                 <li>+234 803 377 0933</li>
-                <li className="text-xs">Ile-Ife, Osun State, Nigeria</li>
+                <li className="text-xs">7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria</li>
               </ul>
             </div>
             <div>
