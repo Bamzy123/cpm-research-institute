@@ -27,6 +27,7 @@ const navItems = [
   { href: "/#about", label: "About CPM" },
   { href: "/#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
+  { href: "/events", label: "Events" },
   { href: "/news", label: "News" },
   { href: "/resources", label: "Resources" },
   { href: "/leadership", label: "Leadership" },

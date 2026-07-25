@@ -24,6 +24,7 @@ const navItems = [
   { href: "/about", label: "About CPM" },
   { href: "#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
+  { href: "/events", label: "Events" },
   { href: "#digital-twin", label: "Digital Twin" },
   { href: "#partnerships", label: "Partnerships" },
   { href: "/news", label: "News" },

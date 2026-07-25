@@ -25,6 +25,36 @@ type NewsItem = {
 
 const newsItems: NewsItem[] = [
   {
+    id: "acegid-delegation",
+    title: "ACEGID Hosts Delegation from CPM Institute, OAUTHC and OAU for Scientific Engagement on Pathogenomics and Climate-Health Innovation",
+    excerpt: "Redeemer’s University showcases world-class genomics infrastructure to emerging national climate-health and infectious disease consortium.",
+    content: "The African Centre of Excellence for Genomics of Infectious Diseases (ACEGID), Redeemer’s University, Ede, hosted a scientific delegation led by Prof. Joseph Omololu-Aso alongside OAU and OAUTHC leadership to advance molecular diagnostics, pathogen genomics, AMR, and One Health surveillance.",
+    date: "2026-07-22",
+    author: "CPM Scientific Delegation",
+    category: "Events",
+    featured: true,
+  },
+  {
+    id: "hpa-bmz-germany",
+    title: "Global Kick-off Dialogue on Climate Change & Health with Hospital Partnerships Alliance (HPA–BMZ), Germany",
+    excerpt: "CPM Research Institute presents AI-enabled CP-Nexus framework for early disease threat prediction at high-level international forum.",
+    content: "Participating in the Global Kick-off Dialogue organized by HPA, BMZ, and GIZ Germany, CPM Research Institute presented its vision for AI-driven climate-health intelligence and low- and middle-income country (LMIC) health system resilience.",
+    date: "2026-07-07",
+    author: "Global Engagement Team",
+    category: "Events",
+    featured: true,
+  },
+  {
+    id: "olubadan-audience",
+    title: "Olubadan of Ibadanland Receives CPM Institute Delegation, Expresses Support for Climate-Health Innovation",
+    excerpt: "Historic palace engagement strengthens vision for climate-sensitive disease research, pathogenomics, AMR, and One Health in Ibadanland.",
+    content: "His Imperial Majesty Oba Rashidi Adewolu Akanmu Ladoja granted an official audience to Prof. Joseph Omololu-Aso and Are Aago Rear Admiral Ibikunle Akintola (Rtd.), endorsing plans for an innovation and research hub.",
+    date: "2026-04-13",
+    author: "Director-General Office",
+    category: "Events",
+    featured: false,
+  },
+  {
     id: "1",
     title: "CPM Launches Climate–Pathogen Nexus Framework for Advanced Disease Surveillance",
     excerpt: "The institute introduces its flagship scientific innovation, integrating climate science with pathogen genomics for predictive public health intelligence.",
@@ -32,17 +62,6 @@ const newsItems: NewsItem[] = [
     date: "2026-07-18",
     author: "Prof. Omololu J Aso",
     category: "Research",
-    featured: true,
-  },
-
-  {
-    id: "3",
-    title: "New Study Reveals Climate-Disease Links in West African Populations",
-    excerpt: "Research team publishes findings on seasonal pathogen dynamics under shifting climate patterns.",
-    content: "CPM researchers have completed a comprehensive study examining the intersection of climate variability and infectious disease patterns in West African communities. The study, conducted over three years, provides critical insights for epidemic preparedness and climate-informed public health planning.",
-    date: "2026-07-10",
-    author: "Research Team",
-    category: "Publication",
     featured: false,
   },
   {
@@ -53,7 +72,7 @@ const newsItems: NewsItem[] = [
     date: "2026-07-05",
     author: "Technology Team",
     category: "Innovation",
-    featured: true,
+    featured: false,
   },
   {
     id: "5",
@@ -67,7 +86,7 @@ const newsItems: NewsItem[] = [
   },
 ];
 
-const categories = ["All", "Research", "Partnership", "Publication", "Innovation", "Training"];
+const categories = ["All", "Events", "Research", "Partnership", "Publication", "Innovation", "Training"];
 
 function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -185,9 +204,12 @@ function NewsPage() {
                       <User className="h-3 w-3" aria-hidden />
                       {item.author}
                     </span>
-                    <button className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:gap-2 transition-all">
-                      Read more <ArrowRight className="h-4 w-4" aria-hidden />
-                    </button>
+                    <Link
+                      to={item.category === "Events" ? "/events" : "/news"}
+                      className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:gap-2 transition-all"
+                    >
+                      Read full article <ArrowRight className="h-4 w-4" aria-hidden />
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -238,9 +260,12 @@ function NewsPage() {
                             <User className="h-3 w-3" aria-hidden />
                             {item.author}
                           </span>
-                          <button className="inline-flex items-center gap-1 text-primary hover:gap-2 transition-all font-medium">
-                            Read more <ArrowRight className="h-3 w-3" aria-hidden />
-                          </button>
+                          <Link
+                            to={item.category === "Events" ? "/events" : "/news"}
+                            className="inline-flex items-center gap-1 text-primary hover:gap-2 transition-all font-medium"
+                          >
+                            Read full article <ArrowRight className="h-3 w-3" aria-hidden />
+                          </Link>
                         </div>
                       </div>
                     </div>

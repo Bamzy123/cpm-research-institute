@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as LeadershipRouteImport } from './routes/leadership'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as ChipRouteImport } from './routes/chip'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -30,6 +31,11 @@ const NewsRoute = NewsRouteImport.update({
 const LeadershipRoute = LeadershipRouteImport.update({
   id: '/leadership',
   path: '/leadership',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChipRoute = ChipRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
+  '/events': typeof EventsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
+  '/events': typeof EventsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
+  '/events': typeof EventsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chip'
+    | '/events'
     | '/leadership'
     | '/news'
     | '/resources'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chip'
+    | '/events'
     | '/leadership'
     | '/news'
     | '/resources'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chip'
+    | '/events'
     | '/leadership'
     | '/news'
     | '/resources'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ChipRoute: typeof ChipRoute
+  EventsRoute: typeof EventsRoute
   LeadershipRoute: typeof LeadershipRoute
   NewsRoute: typeof NewsRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/leadership'
       fullPath: '/leadership'
       preLoaderRoute: typeof LeadershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chip': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ChipRoute: ChipRoute,
+  EventsRoute: EventsRoute,
   LeadershipRoute: LeadershipRoute,
   NewsRoute: NewsRoute,
   ResourcesRoute: ResourcesRoute,
