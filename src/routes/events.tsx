@@ -187,8 +187,9 @@ function EventsPage() {
 
         <div className="relative mx-auto max-w-[1400px] px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/90 backdrop-blur-sm">
-              <Sparkles className="h-3.5 w-3.5 text-emerald-300" /> Events & Scientific Engagements
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300 backdrop-blur-md shadow-sm">
+              <Sparkles className="h-4 w-4 text-emerald-300 shrink-0" />
+              <span>EVENTS & SCIENTIFIC ENGAGEMENTS</span>
             </div>
             
             <h1 className="mt-4 font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.12] tracking-tight">
@@ -257,7 +258,9 @@ function EventsPage() {
           <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
-                <span className="rounded-md bg-primary/10 px-2.5 py-1 uppercase tracking-wider">Facility Tour & Scientific Engagement</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Facility Tour & Scientific Engagement
+                </span>
                 <span className="text-muted-foreground">•</span>
                 <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Redeemer’s University, Ede, Nigeria</span>
               </div>
@@ -580,7 +583,9 @@ function EventsPage() {
           <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
-                <span className="rounded-md bg-primary/10 px-2.5 py-1 uppercase tracking-wider">Royal Audience & Stakeholder Engagement</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Royal Audience & Stakeholder Engagement
+                </span>
                 <span className="text-muted-foreground">•</span>
                 <span className="flex items-center gap-1 text-muted-foreground"><Calendar className="h-3.5 w-3.5" /> 13 April 2026</span>
                 <span className="text-muted-foreground">•</span>
@@ -700,7 +705,9 @@ function EventsPage() {
           <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
-                <span className="rounded-md bg-primary/10 px-2.5 py-1 uppercase tracking-wider">Global International Dialogue</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Global International Dialogue
+                </span>
                 <span className="text-muted-foreground">•</span>
                 <span className="flex items-center gap-1 text-muted-foreground"><Calendar className="h-3.5 w-3.5" /> 7 July 2026</span>
                 <span className="text-muted-foreground">•</span>
