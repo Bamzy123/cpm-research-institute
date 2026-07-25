@@ -885,7 +885,7 @@ function EventsPage() {
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <div className="bg-white/95 px-2 py-1 rounded-md shadow-xs w-fit">
+            <div className="py-1 rounded-md shadow-xs w-fit">
               <img src="/cpm-logo.png" alt="CPM Logo" className="h-7 sm:h-8 w-auto object-contain mix-blend-multiply" />
             </div>
             <p>© {new Date().getFullYear()} CPM International Research Institute for Climate Health.</p>
