@@ -59,6 +59,7 @@ const acegidPhotos = [
   { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM.jpeg", title: "Consortium Gathering", caption: "Institutional group gathering commemorating the scientific visit to Ede." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (1).jpeg", title: "Leadership Conclusion", caption: "Delegation leadership concluding facility tour with Redeemer's University hosts." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (2).jpeg", title: "Final Delegation Group Photo", caption: "Final commemorative group photo of CPM Institute, OAUTHC, and OAU delegation at ACEGID." },
+  { url: "/cpm google meeting.jpeg", title: "Google Meet   with ACEGID", caption: "Google Meet with ACEGID, OAUTHC, and OAU delegation at ACEGID." },
 ];
 
 function EventsPage() {
