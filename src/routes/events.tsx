@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef, TouchEvent } from "react";
 import {
-  ArrowLeft, Calendar, MapPin, User, Building2, Globe, Shield, Sparkles,
-  ChevronLeft, ChevronRight, Play, Pause, Maximize2, X, Microscope, Dna,
-  CheckCircle2, Award, HeartPulse, ArrowRight, Menu, Layers, Image as ImageIcon,
-  Grid, Share2, Info, ArrowUpRight
+  Calendar, MapPin, Building2, Globe, Shield, Sparkles,
+  ChevronLeft, ChevronRight, Play, Pause, Maximize2, X, Microscope,
+  CheckCircle2, Award, Menu, Image as ImageIcon,
+  Grid
 } from "lucide-react";
 
 export const Route = createFileRoute("/events")({
@@ -241,7 +241,7 @@ function EventsPage() {
                     : "bg-white/10 text-primary-foreground hover:bg-white/20"
                 }`}
               >
-                <Globe className="h-4 w-4" /> Global Dialogue (HPA–BMZ Germany)
+                <Globe className="h-4 w-4" /> Global Dialogue (HPA-BMZ Germany)
               </button>
             </div>
           </div>
@@ -262,7 +262,7 @@ function EventsPage() {
                   <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Facility Tour & Scientific Engagement
                 </span>
                 <span className="text-muted-foreground">•</span>
-                <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Redeemer’s University, Ede, Nigeria</span>
+                <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Redeemer's University, Ede, Nigeria</span>
               </div>
 
               <h2 className="font-serif text-2xl sm:text-4xl leading-tight font-normal text-foreground tracking-tight">
@@ -270,7 +270,7 @@ function EventsPage() {
               </h2>
 
               <p className="mt-3 font-serif text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Redeemer’s University Showcases World-Class Genomics Infrastructure to Emerging National Climate-Health and Infectious Disease Consortium
+                Redeemer's University Showcases World-Class Genomics Infrastructure to Emerging National Climate-Health and Infectious Disease Consortium
               </p>
             </div>
 
@@ -385,11 +385,6 @@ function EventsPage() {
                         {activePhotoIndex + 1} / {acegidPhotos.length}
                       </span>
                     </div>
-                  </div>
-
-                  {/* Swipe hint for mobile */}
-                  <div className="absolute top-3 left-3 sm:hidden rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-medium text-white/90 backdrop-blur-sm">
-                    Swipe left/right
                   </div>
 
                   {/* Prev / Next Buttons */}
