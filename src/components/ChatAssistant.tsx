@@ -6,7 +6,7 @@ type Msg = { role: "user" | "assistant"; content: string };
 const GREETING: Msg = {
   role: "assistant",
   content:
-    "Hello! I am the CPM Scientific Assistant. Ask me anything about our CHIP™ platform, pathogenomics research, ACEGID visit, Olubadan palace audience, or global climate-health initiatives.",
+    "Hello! I am the CPM INT'L Scientific Assistant. Ask me anything about our CHIP™ platform, pathogenomics research, ACEGID visit, Olubadan palace audience, or global climate-health initiatives.",
 };
 
 const SUGGESTIONS = [
