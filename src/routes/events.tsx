@@ -136,7 +136,7 @@ function EventsPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-10">
           <Link to="/" className="flex min-w-0 items-center gap-3">
-            <img src="/logo 9.jpeg" alt="CPM Logo" className="h-9 sm:h-11 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo_8-removebg-preview.png" alt="CPM Logo" className="h-9 sm:h-11 w-auto object-contain mix-blend-multiply" />
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-6 text-sm font-medium text-foreground/80 lg:flex">
             {navItems.map((n) =>

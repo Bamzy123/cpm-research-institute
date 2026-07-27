@@ -235,7 +235,7 @@ function Index() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-4 lg:px-10">
           <a href="#top" className="flex min-w-0 items-center">
-            <img src="/logo 9.jpeg" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo_8-removebg-preview.png" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain" />
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-6 text-xs font-medium text-foreground/80 lg:flex">
             {navItems.map((n) =>
@@ -958,7 +958,7 @@ function Index() {
           {/* Copyright */}
           <div className="mt-10 border-t pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ borderColor: "oklch(1 0 0 / 0.1)", color: "oklch(0.45 0.02 220)" }}>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="bg-white/95 px-2.5 py-1.5 rounded-md shadow-sm"><img src="/cpm-logo.png" alt="CPM Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-multiply" /></div>
+              <div className="px-2.5 py-1.5 rounded-md shadow-sm"><img src="/logo 3.jpeg" alt="CPM Logo" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" /></div>
               <p>© {new Date().getFullYear()} CPM International Research Institute.</p>
             </div>
             <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>
