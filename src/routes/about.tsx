@@ -114,7 +114,7 @@ function AboutPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link to="/" className="flex min-w-0 items-center">
-            <img src="/cpm-logo.png" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo 9.jpeg" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-7 text-sm font-medium text-foreground/80 md:flex">
             {navItems.map((n) =>
@@ -605,9 +605,7 @@ function AboutPage() {
         <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ color: "oklch(0.50 0.02 220)" }}>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="bg-white/95 px-2.5 py-1.5 rounded-md shadow-sm">
-                <img src="/cpm-logo.png" alt="CPM Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-multiply" />
-              </div>
+              <img src="/logo 3.jpeg" alt="CPM Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
               <p>© {new Date().getFullYear()} CPM International Research Institute.</p>
             </div>
             <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>

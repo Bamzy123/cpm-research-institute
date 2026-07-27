@@ -235,7 +235,7 @@ function Index() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-4 lg:px-10">
           <a href="#top" className="flex min-w-0 items-center">
-            <img src="/cpm-logo.png" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo 9.jpeg" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-6 text-xs font-medium text-foreground/80 lg:flex">
             {navItems.map((n) =>
@@ -870,8 +870,8 @@ function Index() {
           <div className="grid gap-10 md:grid-cols-5 lg:gap-16">
             {/* Brand */}
             <div className="md:col-span-2">
-              <div className="px-3 py-2 inline-block mb-4">
-                <img src="/cpm-logo.png" alt="CPM International Research Institute for Climate Health" className="h-12 md:h-16 w-auto object-contain mix-blend-multiply" />
+              <div className="inline-block mb-2">
+                <img src="/logo 3.jpeg" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" />
               </div>
               <p className="mt-4 text-sm leading-relaxed" style={{ color: "oklch(0.65 0.03 220)" }}>
                 An independent multidisciplinary research institute dedicated to advancing scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, AI, and One Health.
@@ -883,37 +883,34 @@ function Index() {
               <div className="mt-6">
                 <p className="text-xs font-medium uppercase tracking-[0.15em] text-white mb-2">Newsletter</p>
                 <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="flex-1 border bg-transparent px-3 py-2 text-xs text-white placeholder:text-white/40 focus:outline-none"
-                    style={{ borderColor: "oklch(1 0 0 / 0.15)" }}
-                  />
-                  <button type="submit" className="px-3 py-2 text-xs font-medium" style={{ background: "oklch(0.72 0.14 75)", color: "oklch(0.15 0.04 230)" }}>
-                    Subscribe
-                  </button>
+                  <input type="email" placeholder="Enter your email" className="h-9 min-w-0 flex-1 border border-border bg-black/30 px-3 text-xs text-white outline-none focus:border-primary/80" />
+                  <button type="submit" className="h-9 border border-primary/50 bg-primary/20 px-3 text-xs font-medium text-white transition hover:bg-primary/40">Join</button>
                 </form>
               </div>
             </div>
 
+            {/* Scientific Pillars */}
+            <div>
+              <p className="text-sm font-medium text-white">Research Focus</p>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                {researchAreas.slice(0, 6).map((area) => (
+                  <li key={area.label}>
+                    <a href="#research" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{area.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             {/* Quick Links */}
             <div>
-              <p className="text-sm font-medium text-white">Navigation</p>
+              <p className="text-sm font-medium text-white">Institute</p>
               <ul className="mt-4 space-y-2.5 text-sm">
-                {[
-                  { href: "#top", label: "Home" },
-                  { href: "#about", label: "About CPM" },
-                  { href: "#research", label: "Research" },
-                  { href: "/chip", label: "CHIP™", internal: true },
-                  { href: "/leadership", label: "Leadership", internal: true },
-                  { href: "/news", label: "News", internal: true },
-                  { href: "/resources", label: "Resources", internal: true },
-                ].map(({ href, label, internal }) => (
-                  <li key={label}>
-                    {internal ? (
-                      <Link to={href} className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{label}</Link>
+                {navItems.map((n) => (
+                  <li key={n.label}>
+                    {n.href.startsWith("/") ? (
+                      <Link to={n.href} className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{n.label}</Link>
                     ) : (
-                      <a href={href} className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{label}</a>
+                      <a href={n.href} className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{n.label}</a>
                     )}
                   </li>
                 ))}

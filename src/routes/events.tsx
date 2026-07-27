@@ -136,7 +136,7 @@ function EventsPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-10">
           <Link to="/" className="flex min-w-0 items-center gap-3">
-            <img src="/cpm-logo.png" alt="CPM Logo" className="h-9 sm:h-11 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo 9.jpeg" alt="CPM Logo" className="h-9 sm:h-11 w-auto object-contain mix-blend-multiply" />
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-6 text-sm font-medium text-foreground/80 lg:flex">
             {navItems.map((n) =>
@@ -166,7 +166,7 @@ function EventsPage() {
       {menuOpen && (
         <div className={`fixed inset-0 z-50 flex flex-col bg-background/98 px-6 py-6 backdrop-blur-md transition-opacity duration-300 lg:hidden ${menuClosing ? "opacity-0" : "opacity-100"}`}>
           <div className="flex items-center justify-between border-b border-border pb-4">
-            <img src="/cpm-logo.png" alt="CPM Logo" className="h-9 w-auto object-contain" />
+            <img src="/logo 9.jpeg" alt="CPM Logo" className="h-9 w-auto object-contain mix-blend-multiply" />
             <button onClick={closeMenu} className="p-2 text-foreground"><X className="h-6 w-6" /></button>
           </div>
           <nav className="mt-6 flex flex-col gap-4 text-base font-medium">
@@ -881,9 +881,7 @@ function EventsPage() {
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <div className="py-1 rounded-md shadow-xs w-fit">
-              <img src="/cpm-logo.png" alt="CPM Logo" className="h-7 sm:h-8 w-auto object-contain mix-blend-multiply" />
-            </div>
+            <img src="/logo 3.jpeg" alt="CPM Logo" className="h-7 sm:h-9 w-auto object-contain mix-blend-screen" />
             <p>© {new Date().getFullYear()} CPM International Research Institute for Climate Health.</p>
           </div>
           <p className="text-xs uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
