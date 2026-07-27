@@ -12,11 +12,11 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About — CPM International Research Institute for Climate Health" },
+      { title: "About — CPM Int'l Research Institute for Climate Health" },
       {
         name: "description",
         content:
-          "Learn about CPM International Research Institute for Climate Health — our identity, vision, mission, and the multidisciplinary mandate that drives everything we do.",
+          "Learn about CPM Int'l Research Institute for Climate Health — our identity, vision, mission, and the multidisciplinary mandate that drives everything we do.",
       },
     ],
   }),
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/about")({
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About CPM" },
+  { href: "/about", label: "About CPM Int'l" },
   { href: "/#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
   { href: "/events", label: "Events" },
@@ -114,7 +114,7 @@ function AboutPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link to="/" className="flex min-w-0 items-center">
-            <img src="/logo_8-removebg-preview.png" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-7 text-sm font-medium text-foreground/80 md:flex">
             {navItems.map((n) =>
@@ -148,7 +148,7 @@ function AboutPage() {
           <div className={`fixed inset-0 z-40 bg-foreground/40 md:hidden ${menuClosing ? "nav-backdrop-out" : "nav-backdrop-in"}`} onClick={closeMenu} aria-hidden />
           <nav aria-label="Mobile" className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl md:hidden ${menuClosing ? "nav-slide-out" : "nav-slide-in"}`}>
             <div className="flex items-center justify-between border-b border-border px-6 py-5">
-              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM</span>
+              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM Int'l</span>
               <button type="button" onClick={closeMenu} aria-label="Close menu"
                 className="inline-flex h-9 w-9 items-center justify-center border border-border transition-colors hover:border-primary/60">
                 <X className="h-4 w-4" aria-hidden />
@@ -187,7 +187,7 @@ function AboutPage() {
         <div className="absolute left-0 top-0 h-1 w-full" style={{ background: "linear-gradient(90deg, transparent, oklch(0.72 0.14 75), transparent)" }} aria-hidden />
         <div className="relative mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
           <p className="text-xs font-medium uppercase tracking-[0.25em]" style={{ color: "oklch(0.72 0.14 75)" }}>
-            CPM International Research Institute for Climate Health
+            CPM Int'l Research Institute for Climate Health
           </p>
           <h1 className="mt-5 font-serif text-4xl leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl max-w-3xl">
             About Us
@@ -210,7 +210,7 @@ function AboutPage() {
             <div className="lg:col-span-7">
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Introduction</p>
               <h2 className="mt-4 font-serif text-3xl leading-[1.1] tracking-tight text-foreground lg:text-4xl">
-                Welcome to CPM International Research Institute for Climate Health
+                Welcome to CPM Int'l Research Institute for Climate Health
               </h2>
               <div className="mt-3 h-0.5 w-16" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
               
@@ -605,8 +605,8 @@ function AboutPage() {
         <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ color: "oklch(0.50 0.02 220)" }}>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <img src="/logo 3.jpeg" alt="CPM Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
-              <p>© {new Date().getFullYear()} CPM International Research Institute.</p>
+              <img src="/logo 3.jpeg" alt="CPM Int'l Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
+              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
             </div>
             <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>
           </div>
