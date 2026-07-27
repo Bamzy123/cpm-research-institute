@@ -11,11 +11,11 @@ export const Route = createFileRoute("/events")({
   component: EventsPage,
   head: () => ({
     meta: [
-      { title: "Events & Scientific Engagements | CPM International Research Institute" },
+      { title: "Events & Scientific Engagements | CPM Int'l Research Institute" },
       {
         name: "description",
         content:
-          "Discover landmark scientific visits, institutional partnerships, and global dialogues in pathogenomics, climate-health innovation, and One Health by CPM International Research Institute.",
+          "Discover landmark scientific visits, institutional partnerships, and global dialogues in pathogenomics, climate-health innovation, and One Health by CPM Int'l Research Institute.",
       },
     ],
   }),
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/events")({
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About CPM" },
+  { href: "/about", label: "About CPM Int'l" },
   { href: "/#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
   { href: "/events", label: "Events" },
@@ -34,7 +34,7 @@ const navItems = [
 ];
 
 const acegidPhotos = [
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.26 AM.jpeg", title: "Delegation Arrival at ACEGID", caption: "Scientific delegation from CPM International Research Institute, OAUTHC, and OAU arriving at ACEGID, Redeemer's University, Ede." },
+  { url: "/WhatsApp Image 2026-07-25 at 5.11.26 AM.jpeg", title: "Delegation Arrival at ACEGID", caption: "Scientific delegation from CPM Int'l Research Institute, OAUTHC, and OAU arriving at ACEGID, Redeemer's University, Ede." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM.jpeg", title: "Genomics Infrastructure Inspection", caption: "Delegation members observing high-throughput pathogen genomics sequencing platforms." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM (1).jpeg", title: "Molecular Diagnostics Suite", caption: "Guided facility tour showcasing advanced molecular diagnostics and PCR platforms." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM (2).jpeg", title: "Surveillance Workflows", caption: "ACEGID scientific team demonstrating cutting-edge genomic surveillance workflows." },
@@ -46,19 +46,19 @@ const acegidPhotos = [
   { url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (4).jpeg", title: "Infectious Disease Surveillance", caption: "Group interaction on climate-sensitive infectious disease surveillance systems." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM.jpeg", title: "Advanced PCR & Genotyping", caption: "Delegation observing advanced PCR and HPV genotyping instrumentation." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (1).jpeg", title: "Outbreak Response Briefing", caption: "Scientific briefing on outbreak response and computational biology pipelines." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (2).jpeg", title: "Genomic Data Interpretation", caption: "CPM Research Institute delegates reviewing pathogen genome sequencing output data." },
+  { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (2).jpeg", title: "Genomic Data Interpretation", caption: "CPM Int'l Research Institute delegates reviewing pathogen genome sequencing output data." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (3).jpeg", title: "Cleanroom Biology Suites", caption: "Facility tour of cleanroom molecular biology suites at ACEGID." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (4).jpeg", title: "Institutional Leadership Dialogue", caption: "Prof. Joseph Omololu-Aso exchanging insights with Redeemer's University hosts." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM.jpeg", title: "AMR Monitoring Systems", caption: "Demonstration of antimicrobial resistance (AMR) detection technologies." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (1).jpeg", title: "Computational Science Hub", caption: "Delegation exploring computational biology and data science workstations." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (2).jpeg", title: "Consortium Partnership", caption: "Scientific collaboration exchange between ACEGID, CPM Institute, OAU, and OAUTHC." },
+  { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (2).jpeg", title: "Consortium Partnership", caption: "Scientific collaboration exchange between ACEGID, CPM Int'l Institute, OAU, and OAUTHC." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (3).jpeg", title: "Osun State Surveillance Pilot", caption: "Delegates discussing Osun State Climate-Health Surveillance Pilot synergies." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM.jpeg", title: "ACEGID Group Commemoration", caption: "Group photo highlight of visiting scientific consortium delegates inside ACEGID." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM (1).jpeg", title: "Biosafety & Preparedness", caption: "Guided tour highlighting public health preparedness and biosafety standards." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM (2).jpeg", title: "Data Visualization Platform", caption: "Delegation viewing high-throughput genomic data visualization platforms." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM.jpeg", title: "Consortium Gathering", caption: "Institutional group gathering commemorating the scientific visit to Ede." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (1).jpeg", title: "Leadership Conclusion", caption: "Delegation leadership concluding facility tour with Redeemer's University hosts." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (2).jpeg", title: "Final Delegation Group Photo", caption: "Final commemorative group photo of CPM Institute, OAUTHC, and OAU delegation at ACEGID." },
+  { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (2).jpeg", title: "Final Delegation Group Photo", caption: "Final commemorative group photo of CPM Int'l Institute, OAUTHC, and OAU delegation at ACEGID." },
   { url: "/cpm google meeting.jpeg", title: "Google Meet   with ACEGID", caption: "Google Meet with ACEGID, OAUTHC, and OAU delegation at ACEGID." },
 ];
 
@@ -881,8 +881,8 @@ function EventsPage() {
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <img src="/logo 3.jpeg" alt="CPM Logo" className="h-7 sm:h-9 w-auto object-contain mix-blend-screen" />
-            <p>© {new Date().getFullYear()} CPM International Research Institute for Climate Health.</p>
+            <img src="/logo 3.jpeg" alt="CPM Int'l Logo" className="h-7 sm:h-9 w-auto object-contain mix-blend-screen" />
+            <p>© {new Date().getFullYear()} CPM Int'l Research Institute for Climate Health.</p>
           </div>
           <p className="text-xs uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
         </div>
