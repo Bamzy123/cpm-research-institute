@@ -78,12 +78,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Int'l CPM International Research Institute for Climate Health" },
-      { name: "description", content: "The Int'l CPM International Research Institute for Climate Health advances transformative science on climate, pathogens, genomics and AI to strengthen health security in Africa and worldwide." },
-      { property: "og:title", content: "Int'l CPM International Research Institute for Climate Health" },
+      { title: "CPM Int'l Research Institute for Climate Health" },
+      { name: "description", content: "The CPM Int'l Research Institute for Climate Health advances transformative science on climate, pathogens, genomics and AI to strengthen health security in Africa and worldwide." },
+      { property: "og:title", content: "CPM Int'l Research Institute for Climate Health" },
       { property: "og:description", content: "Advancing climate health intelligence through science, innovation and global partnership." },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Int'l CPM International Research Institute for Climate Health" },
+      { property: "og:site_name", content: "CPM Int'l Research Institute for Climate Health" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

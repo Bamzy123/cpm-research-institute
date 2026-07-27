@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
 
 const navItems = [
   { href: "#top", label: "Home" },
-  { href: "/about", label: "About CPM" },
+  { href: "/about", label: "About CPM Int'l Int'l" },
   { href: "#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
   { href: "/events", label: "Events" },
@@ -235,7 +235,7 @@ function Index() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-4 lg:px-10">
           <a href="#top" className="flex min-w-0 items-center">
-            <img src="/logo_8-removebg-preview.png" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain" />
+            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain" />
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-6 text-xs font-medium text-foreground/80 lg:flex">
             {navItems.map((n) =>
@@ -269,7 +269,7 @@ function Index() {
           <div className={`fixed inset-0 z-40 bg-foreground/40 lg:hidden ${menuClosing ? "nav-backdrop-out" : "nav-backdrop-in"}`} onClick={closeMenu} aria-hidden />
           <nav aria-label="Mobile" className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl lg:hidden ${menuClosing ? "nav-slide-out" : "nav-slide-in"}`}>
             <div className="flex items-center justify-between border-b border-border px-6 py-5">
-              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM</span>
+              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM Int'l Int'l</span>
               <button type="button" onClick={closeMenu} aria-label="Close menu" className="inline-flex h-9 w-9 items-center justify-center border border-border transition-colors hover:border-primary/60">
                 <X className="h-4 w-4" aria-hidden />
               </button>
@@ -317,7 +317,7 @@ function Index() {
             Transforming Climate Intelligence into Health Security
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed" style={{ color: "oklch(0.87 0.04 220)" }}>
-            CPM International Research Institute for Climate Health advances scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, artificial intelligence, and One Health.
+            CPM Int'l Int'l Research Institute for Climate Health advances scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, artificial intelligence, and One Health.
           </p>
           <p className="mt-2 text-sm" style={{ color: "oklch(0.72 0.14 75)" }}>
             Advancing Climate Health Intelligence for a Resilient World
@@ -371,7 +371,7 @@ function Index() {
               <div className="mt-6 h-0.5 w-16" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
               <div className="mt-8 space-y-4 text-sm leading-relaxed" style={{ color: "oklch(0.80 0.03 220)" }}>
                 <p>
-                  CHIP™ is CPM's flagship scientific framework and technological innovation: an AI-enabled Climate Health Digital Twin that continuously integrates climate observations, environmental intelligence, disease surveillance, laboratory diagnostics, pathogen genomics, satellite information, and predictive analytics into a unified decision-support ecosystem.
+                  CHIP™ is CPM Int'l's flagship scientific framework and technological innovation: an AI-enabled Climate Health Digital Twin that continuously integrates climate observations, environmental intelligence, disease surveillance, laboratory diagnostics, pathogen genomics, satellite information, and predictive analytics into a unified decision-support ecosystem.
                 </p>
                 <p>
                   Rather than reacting after disease transmission has begun, CHIP™ enables governments, hospitals, researchers, and public health agencies to anticipate emerging risks, simulate future scenarios, and support timely evidence-based interventions.
@@ -522,7 +522,7 @@ function Index() {
               Research Areas
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              CPM works across the complete climate-health continuum, integrating 12 multidisciplinary research programmes to address the defining health challenges of a changing climate.
+              CPM Int'l works across the complete climate-health continuum, integrating 12 multidisciplinary research programmes to address the defining health challenges of a changing climate.
             </p>
           </div>
           <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
@@ -543,21 +543,21 @@ function Index() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SECTION 7 — WHY CPM?
+          SECTION 7 — WHY CPM Int'l?
       ══════════════════════════════════════════════════════════════════ */}
       <section
-        id="why-cpm"
+        id="why-cpm Int'l"
         style={{ background: "linear-gradient(135deg, oklch(0.18 0.05 230) 0%, oklch(0.22 0.07 225) 50%, oklch(0.20 0.06 230) 100%)" }}
       >
         <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             <div className="lg:col-span-4">
-              <p className="text-xs font-medium uppercase tracking-[0.22em]" style={{ color: "oklch(0.72 0.14 75)" }}>Why CPM?</p>
+              <p className="text-xs font-medium uppercase tracking-[0.22em]" style={{ color: "oklch(0.72 0.14 75)" }}>Why CPM Int'l?</p>
               <h2 className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight text-white lg:text-5xl">
-                Defining What Makes CPM Different
+                Defining What Makes CPM Int'l Different
               </h2>
               <p className="mt-6 text-sm leading-relaxed" style={{ color: "oklch(0.75 0.03 220)" }}>
-                CPM represents a new model for climate health research, integrating science, technology, policy, and global partnerships to address the most pressing health challenges of our era.
+                CPM Int'l represents a new model for climate health research, integrating science, technology, policy, and global partnerships to address the most pressing health challenges of our era.
               </p>
             </div>
             <div className="lg:col-span-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -588,7 +588,7 @@ function Index() {
                 Collaboration Without Borders
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-                CPM actively fosters partnerships among universities, teaching hospitals, national public health agencies, research institutes, governments, international organizations, and development partners to accelerate innovation and strengthen scientific capacity.
+                CPM Int'l actively fosters partnerships among universities, teaching hospitals, national public health agencies, research institutes, governments, international organizations, and development partners to accelerate innovation and strengthen scientific capacity.
               </p>
               {/* Active partner detail */}
               {activePartner && (
@@ -622,7 +622,7 @@ function Index() {
                     viewBox="0 0 400 225"
                     className="w-full h-full"
                     style={{ background: "oklch(0.97 0.006 95)" }}
-                    aria-label="World map showing CPM partner countries"
+                    aria-label="World map showing CPM Int'l partner countries"
                   >
                     {/* Continent outlines (simplified) */}
                     <g fill="oklch(0.88 0.008 130)" stroke="oklch(0.84 0.008 140)" strokeWidth="0.5">
@@ -718,7 +718,7 @@ function Index() {
               Impact Dashboard
             </p>
             <h2 className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight text-white lg:text-5xl">
-              CPM by the Numbers
+              CPM Int'l by the Numbers
             </h2>
             <p className="mt-5 text-sm leading-relaxed max-w-xl mx-auto" style={{ color: "oklch(0.75 0.03 220)" }}>
               Building the scientific ecosystem — from research programmes and innovation platforms to global partnerships and policy impact.
@@ -735,17 +735,17 @@ function Index() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SECTION 12 — JOIN THE CPM NETWORK
+          SECTION 12 — JOIN THE CPM Int'l NETWORK
       ══════════════════════════════════════════════════════════════════ */}
       <section id="join" className="bg-sky hairline-b">
         <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-24">
           <div className="text-center max-w-2xl mx-auto">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Get Involved</p>
             <h2 className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight text-foreground lg:text-5xl">
-              Join the CPM Network
+              Join the CPM Int'l Network
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Whether you are a researcher, institution, government agency, or development partner, there are multiple ways to engage with CPM International Research Institute and contribute to our mission.
+              Whether you are a researcher, institution, government agency, or development partner, there are multiple ways to engage with CPM Int'l International Research Institute and contribute to our mission.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a href="#contact" id="btn-partner" className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium transition-all hover:scale-105" style={{ background: "oklch(0.72 0.14 75)", color: "oklch(0.15 0.04 230)" }}>
@@ -787,7 +787,7 @@ function Index() {
                   <Mail className="h-5 w-5 shrink-0 text-primary" aria-hidden />
                   <div>
                     <dt className="font-medium text-foreground">Email</dt>
-                    <dd className="mt-1 text-muted-foreground">info@cpm-institute.org</dd>
+                    <dd className="mt-1 text-muted-foreground">info@cpm Int'l-institute.org</dd>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -816,8 +816,8 @@ function Index() {
               ) : (
                 <form onSubmit={onSubmit} className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2" noValidate>
                   <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-                  <input type="hidden" name="subject" value="CPM Institute — Website Enquiry" />
-                  <input type="hidden" name="from_name" value="CPM Research Institute Website" />
+                  <input type="hidden" name="subject" value="CPM Int'l Institute — Website Enquiry" />
+                  <input type="hidden" name="from_name" value="CPM Int'l Research Institute Website" />
                   <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} aria-hidden />
 
                   <label className="flex flex-col gap-2 text-sm">
@@ -871,7 +871,7 @@ function Index() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="inline-block mb-2">
-                <img src="/logo 3.jpeg" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" />
+                <img src="/logo 3.jpeg" alt="CPM Int'l International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" />
               </div>
               <p className="mt-4 text-sm leading-relaxed" style={{ color: "oklch(0.65 0.03 220)" }}>
                 An independent multidisciplinary research institute dedicated to advancing scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, AI, and One Health.
@@ -927,7 +927,7 @@ function Index() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-3.5 w-3.5 shrink-0" style={{ color: "oklch(0.72 0.14 75)" }} />
-                  <span className="text-xs">info@cpm-institute.org</span>
+                  <span className="text-xs">info@cpm Int'l-institute.org</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="h-3.5 w-3.5 shrink-0" style={{ color: "oklch(0.72 0.14 75)" }} />
@@ -949,7 +949,7 @@ function Index() {
               {/* Institutional statement */}
               <div className="mt-8 border-t pt-5" style={{ borderColor: "oklch(1 0 0 / 0.1)" }}>
                 <p className="text-xs leading-relaxed italic" style={{ color: "oklch(0.50 0.02 220)" }}>
-                  CPM is more than a research institute. It is a platform for scientific discovery, technological innovation, and global collaboration.
+                  CPM Int'l Int'l is more than a research institute. It is a platform for scientific discovery, technological innovation, and global collaboration.
                 </p>
               </div>
             </div>
@@ -958,8 +958,8 @@ function Index() {
           {/* Copyright */}
           <div className="mt-10 border-t pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ borderColor: "oklch(1 0 0 / 0.1)", color: "oklch(0.45 0.02 220)" }}>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="px-2.5 py-1.5 rounded-md shadow-sm"><img src="/logo 3.jpeg" alt="CPM Logo" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" /></div>
-              <p>© {new Date().getFullYear()} CPM International Research Institute.</p>
+              <div className="px-2.5 py-1.5 rounded-md shadow-sm"><img src="/logo 3.jpeg" alt="CPM Int'l Int'l Logo" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" /></div>
+              <p>© {new Date().getFullYear()} CPM Int'l Int'l Research Institute.</p>
             </div>
             <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>
           </div>
