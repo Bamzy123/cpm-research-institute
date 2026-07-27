@@ -6,7 +6,7 @@ type Msg = { role: "user" | "assistant"; content: string };
 const GREETING: Msg = {
   role: "assistant",
   content:
-    "Hello! I am the CPM INT'L Scientific Assistant. Ask me anything about our CHIP™ platform, pathogenomics research, ACEGID visit, Olubadan palace audience, or global climate-health initiatives.",
+    "Hello! I am the  CPM Int'l Scientific Assistant. Ask me anything about our CHIP™ platform, pathogenomics research, ACEGID visit, Olubadan palace audience, or global climate-health initiatives.",
 };
 
 const SUGGESTIONS = [
@@ -54,7 +54,7 @@ export function ChatAssistant() {
         }
       }
     } catch (err) {
-      console.warn("Server API call error, using local CPM knowledge engine:", err);
+      console.warn("Server API call error, using local  CPM Int'l knowledge engine:", err);
     }
 
     // Instant Client Fallback Knowledge Matcher - ALWAYS responds reliably!
@@ -70,7 +70,7 @@ export function ChatAssistant() {
       {/* Floating Launcher Button */}
       <button
         onClick={() => setOpen((o) => !o)}
-        aria-label={open ? "Close assistant" : "Open CPM Assistant"}
+        aria-label={open ? "Close assistant" : "Open  CPM Int'l Assistant"}
         className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xl shadow-primary/30 transition-all duration-300 hover:scale-110 hover:bg-primary/95 focus:outline-none ring-2 ring-primary/20"
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
@@ -86,7 +86,7 @@ export function ChatAssistant() {
                 <Sparkles className="h-4 w-4" />
               </div>
               <div>
-                <p className="font-serif text-base font-medium leading-tight">CPM Assistant</p>
+                <p className="font-serif text-base font-medium leading-tight"> CPM Int'l Assistant</p>
                 <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-primary-foreground/80">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Always Active 24/7
                 </div>
@@ -138,7 +138,7 @@ export function ChatAssistant() {
             {loading && (
               <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground p-2">
                 <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
-                CPM Assistant is querying response…
+                 CPM Int'l Assistant is querying response…
               </div>
             )}
           </div>
@@ -155,7 +155,7 @@ export function ChatAssistant() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about CPM research, CHIP™, events..."
+              placeholder="Ask about  CPM Int'l research, CHIP™, events..."
               className="flex-1 rounded-xl border border-border bg-background px-3.5 py-2.5 text-xs sm:text-sm text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
             />
             <button
@@ -177,11 +177,11 @@ function getLocalCPMReply(query: string): string {
   const q = query.toLowerCase();
 
   if (q.includes("chip") || q.includes("digital twin") || q.includes("platform")) {
-    return "CHIP™ (Climate Health Intelligence Platform) is CPM International Research Institute's flagship scientific innovation — an AI-enabled Climate Health Digital Twin that transforms public health surveillance into an intelligent, predictive decision-support ecosystem. It unifies one platform, one database, one AI engine, one Digital Twin, and one decision dashboard across 9 core capabilities. Explore more on our /chip page!";
+    return "CHIP™ (Climate Health Intelligence Platform) is  CPM Int'l International Research Institute's flagship scientific innovation — an AI-enabled Climate Health Digital Twin that transforms public health surveillance into an intelligent, predictive decision-support ecosystem. It unifies one platform, one database, one AI engine, one Digital Twin, and one decision dashboard across 9 core capabilities. Explore more on our /chip page!";
   }
 
   if (q.includes("acegid") || q.includes("redeemer") || q.includes("ede") || q.includes("pcr") || q.includes("genomics")) {
-    return "CPM International Research Institute, along with OAU and OAUTHC leadership, recently led a scientific delegation to ACEGID at Redeemer's University, Ede. The visit focused on pathogenomics, molecular diagnostics, AMR surveillance, and outbreak response. You can explore the full report and interactive 25-photo gallery on our /events page!";
+    return " CPM Int'l International Research Institute, along with OAU and OAUTHC leadership, recently led a scientific delegation to ACEGID at Redeemer's University, Ede. The visit focused on pathogenomics, molecular diagnostics, AMR surveillance, and outbreak response. You can explore the full report and interactive 25-photo gallery on our /events page!";
   }
 
   if (q.includes("olubadan") || q.includes("ibadan") || q.includes("palace") || q.includes("ladoja")) {
@@ -189,20 +189,20 @@ function getLocalCPMReply(query: string): string {
   }
 
   if (q.includes("germany") || q.includes("hpa") || q.includes("bmz") || q.includes("giz") || q.includes("dialogue")) {
-    return "On 7 July 2026, CPM Institute participated in the Global Kick-off Dialogue on Climate Change and Health organized by HPA, BMZ, and GIZ Germany. Our multidisciplinary team presented the AI-enabled Climate–Pathogen Nexus (CP-Nexus) framework for early threat prediction in low- and middle-income countries.";
+    return "On 7 July 2026,  CPM Int'l Institute participated in the Global Kick-off Dialogue on Climate Change and Health organized by HPA, BMZ, and GIZ Germany. Our multidisciplinary team presented the AI-enabled Climate–Pathogen Nexus (CP-Nexus) framework for early threat prediction in low- and middle-income countries.";
   }
 
   if (q.includes("osun") || q.includes("pilot") || q.includes("surveillance")) {
-    return "The Osun State Climate-Health Surveillance Pilot is an active clinical demonstration platform developed by CPM Institute in collaboration with OAU and OAUTHC to generate real-time evidence for climate-sensitive pathogen surveillance and precision public health.";
+    return "The Osun State Climate-Health Surveillance Pilot is an active clinical demonstration platform developed by  CPM Int'l Institute in collaboration with OAU and OAUTHC to generate real-time evidence for climate-sensitive pathogen surveillance and precision public health.";
   }
 
   if (q.includes("director") || q.includes("omololu") || q.includes("ceo") || q.includes("leader") || q.includes("okeniyi")) {
-    return "CPM International Research Institute for Climate Health is led by Director-General/CEO Professor Joseph Omololu-Aso (OAU). Our collaborating leadership includes Chief Medical Director Prof. John Akíntúndé Ọládọ̀tun Òkèníyì (OAUTHC) and our multidisciplinary team of climate scientists, genomicists, and epidemiologists. Visit /leadership to read more!";
+    return " CPM Int'l International Research Institute for Climate Health is led by Director-General/CEO Professor Joseph Omololu-Aso (OAU). Our collaborating leadership includes Chief Medical Director Prof. John Akíntúndé Ọládọ̀tun Òkèníyì (OAUTHC) and our multidisciplinary team of climate scientists, genomicists, and epidemiologists. Visit /leadership to read more!";
   }
 
   if (q.includes("contact") || q.includes("email") || q.includes("location") || q.includes("address") || q.includes("where")) {
-    return "CPM International Research Institute for Climate Health is headquartered in Osun State, Nigeria, in collaboration with Obafemi Awolowo University (OAU) and OAUTHC. You can get in touch with us via the contact form on our home page or by emailing our secretariat.";
+    return " CPM Int'l International Research Institute for Climate Health is headquartered in Osun State, Nigeria, in collaboration with Obafemi Awolowo University (OAU) and OAUTHC. You can get in touch with us via the contact form on our home page or by emailing our secretariat.";
   }
 
-  return "Welcome to CPM International Research Institute for Climate Health! We advance research across climate-sensitive infectious diseases, pathogenomics, AI-driven surveillance (CHIP™), antimicrobial resistance, and One Health innovation. Feel free to ask about our CHIP™ platform, recent ACEGID genomics visit, Olubadan palace audience, or global partnerships!";
+  return "Welcome to  CPM Int'l International Research Institute for Climate Health! We advance research across climate-sensitive infectious diseases, pathogenomics, AI-driven surveillance (CHIP™), antimicrobial resistance, and One Health innovation. Feel free to ask about our CHIP™ platform, recent ACEGID genomics visit, Olubadan palace audience, or global partnerships!";
 }

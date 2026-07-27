@@ -6,8 +6,8 @@ export const Route = createFileRoute("/news")({
   component: NewsPage,
   head: () => ({
     meta: [
-      { title: "News & Updates | CPM International Research Institute" },
-      { name: "description", content: "Latest research updates, news, and announcements from CPM International Research Institute for Climate Health." },
+      { title: "News & Updates | CPM Int'l Research Institute" },
+      { name: "description", content: "Latest research updates, news, and announcements from CPM Int'l Research Institute for Climate Health." },
     ],
   }),
 });
@@ -26,19 +26,19 @@ type NewsItem = {
 const newsItems: NewsItem[] = [
   {
     id: "acegid-delegation",
-    title: "ACEGID Hosts Delegation from CPM Institute, OAUTHC and OAU for Scientific Engagement on Pathogenomics and Climate-Health Innovation",
+    title: "ACEGID Hosts Delegation from CPM Int'l Institute, OAUTHC and OAU for Scientific Engagement on Pathogenomics and Climate-Health Innovation",
     excerpt: "Redeemer’s University showcases world-class genomics infrastructure to emerging national climate-health and infectious disease consortium.",
     content: "The African Centre of Excellence for Genomics of Infectious Diseases (ACEGID), Redeemer’s University, Ede, hosted a scientific delegation led by Prof. Joseph Omololu-Aso alongside OAU and OAUTHC leadership to advance molecular diagnostics, pathogen genomics, AMR, and One Health surveillance.",
     date: "2026-07-22",
-    author: "CPM Scientific Delegation",
+    author: "CPM Int'l Scientific Delegation",
     category: "Events",
     featured: true,
   },
   {
     id: "hpa-bmz-germany",
     title: "Global Kick-off Dialogue on Climate Change & Health with Hospital Partnerships Alliance (HPA–BMZ), Germany",
-    excerpt: "CPM Research Institute presents AI-enabled CP-Nexus framework for early disease threat prediction at high-level international forum.",
-    content: "Participating in the Global Kick-off Dialogue organized by HPA, BMZ, and GIZ Germany, CPM Research Institute presented its vision for AI-driven climate-health intelligence and low- and middle-income country (LMIC) health system resilience.",
+    excerpt: "CPM Int'l Research Institute presents AI-enabled CP-Nexus framework for early disease threat prediction at high-level international forum.",
+    content: "Participating in the Global Kick-off Dialogue organized by HPA, BMZ, and GIZ Germany, CPM Int'l Research Institute presented its vision for AI-driven climate-health intelligence and low- and middle-income country (LMIC) health system resilience.",
     date: "2026-07-07",
     author: "Global Engagement Team",
     category: "Events",
@@ -46,7 +46,7 @@ const newsItems: NewsItem[] = [
   },
   {
     id: "olubadan-audience",
-    title: "Olubadan of Ibadanland Receives CPM Institute Delegation, Expresses Support for Climate-Health Innovation",
+    title: "Olubadan of Ibadanland Receives CPM Int'l Institute Delegation, Expresses Support for Climate-Health Innovation",
     excerpt: "Historic palace engagement strengthens vision for climate-sensitive disease research, pathogenomics, AMR, and One Health in Ibadanland.",
     content: "His Imperial Majesty Oba Rashidi Adewolu Akanmu Ladoja granted an official audience to Prof. Joseph Omololu-Aso and Are Aago Rear Admiral Ibikunle Akintola (Rtd.), endorsing plans for an innovation and research hub.",
     date: "2026-04-13",
@@ -56,9 +56,9 @@ const newsItems: NewsItem[] = [
   },
   {
     id: "1",
-    title: "CPM Launches Climate–Pathogen Nexus Framework for Advanced Disease Surveillance",
+    title: "CPM Int'l Launches Climate–Pathogen Nexus Framework for Advanced Disease Surveillance",
     excerpt: "The institute introduces its flagship scientific innovation, integrating climate science with pathogen genomics for predictive public health intelligence.",
-    content: "The CPM International Research Institute for Climate Health has officially launched the Climate–Pathogen Nexus (CP-Nexus) framework, a groundbreaking scientific innovation that integrates climate science, pathogen biology, genomics, and artificial intelligence. This framework represents a major step toward advancing climate health intelligence across Africa and globally.",
+    content: "The CPM Int'l Research Institute for Climate Health has officially launched the Climate–Pathogen Nexus (CP-Nexus) framework, a groundbreaking scientific innovation that integrates climate science, pathogen biology, genomics, and artificial intelligence. This framework represents a major step toward advancing climate health intelligence across Africa and globally.",
     date: "2026-07-18",
     author: "Prof. Omololu J Aso",
     category: "Research",
@@ -76,9 +76,9 @@ const newsItems: NewsItem[] = [
   },
   {
     id: "5",
-    title: "CPM Hosts Regional Training Workshop on Genomic Surveillance",
+    title: "CPM Int'l Hosts Regional Training Workshop on Genomic Surveillance",
     excerpt: "Over 50 scientists and public health professionals participate in capacity-building initiative.",
-    content: "CPM successfully conducted a week-long training workshop on pathogenomics and genomic surveillance for researchers and public health professionals across West Africa. The workshop covered molecular epidemiology, sequencing technologies, and data interpretation for outbreak response.",
+    content: "CPM Int'l successfully conducted a week-long training workshop on pathogenomics and genomic surveillance for researchers and public health professionals across West Africa. The workshop covered molecular epidemiology, sequencing technologies, and data interpretation for outbreak response.",
     date: "2026-06-28",
     author: "Education Team",
     category: "Training",
@@ -108,7 +108,7 @@ function NewsPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-5 lg:px-10">
           <Link to="/" className="flex min-w-0 items-center">
-            <img src="/logo_8-removebg-preview.png" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
           </Link>
           <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary">
             <ArrowLeft className="h-4 w-4" aria-hidden /> Back to Home
@@ -122,7 +122,7 @@ function NewsPage() {
           <div className="max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary-foreground/70">News & Updates</p>
             <h1 className="mt-4 font-serif text-5xl leading-[1.1] tracking-tight lg:text-6xl">
-              Latest from CPM Institute
+              Latest from CPM Int'l Institute
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-primary-foreground/85">
               Stay informed about our latest research breakthroughs, partnerships, and updates from the International Research Institute for Climate Health.
@@ -300,7 +300,7 @@ function NewsPage() {
         <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
           <div className="grid gap-10 md:grid-cols-4 lg:gap-16">
             <div>
-              <p className="font-serif text-lg font-medium text-foreground">CPM Institute</p>
+              <p className="font-serif text-lg font-medium text-foreground">CPM Int'l Institute</p>
               <p className="mt-2 text-sm text-muted-foreground">
                 7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria
               </p>
@@ -334,8 +334,8 @@ function NewsPage() {
           </div>
           <div className="mt-10 border-t border-border/40 pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <img src="/logo_1-removebg-preview.png" alt="CPM Logo" className="h-8 md:h-10 w-auto object-contain" />
-              <p>© {new Date().getFullYear()} CPM International Research Institute.</p>
+              <img src="/logo_1-removebg-preview.png" alt="CPM Int'l Logo" className="h-8 md:h-10 w-auto object-contain" />
+              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
             </div>
             <p className="uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
           </div>

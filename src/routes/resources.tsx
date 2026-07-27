@@ -6,8 +6,8 @@ export const Route = createFileRoute("/resources")({
   component: ResourcesPage,
   head: () => ({
     meta: [
-      { title: "Resources & Publications | CPM International Research Institute" },
-      { name: "description", content: "Download research publications, policy briefs, technical reports, and educational resources from CPM International Research Institute for Climate Health." },
+      { title: "Resources & Publications | CPM Int'l Research Institute" },
+      { name: "description", content: "Download research publications, policy briefs, technical reports, and educational resources from CPM Int'l Research Institute for Climate Health." },
     ],
   }),
 });
@@ -30,7 +30,7 @@ const resources: Resource[] = [
     description: "Comprehensive framework paper on the CP-Nexus approach, methodology, and applications for public health surveillance.",
     type: "Publication",
     date: "2026-07-01",
-    authors: "Prof. Omololu J Aso, CPM Research Team",
+    authors: "Prof. Omololu J Aso, CPM Int'l Research Team",
     downloadUrl: "#",
     downloadFormat: "PDF",
   },
@@ -40,17 +40,17 @@ const resources: Resource[] = [
     description: "Evidence-based policy recommendations for integrating climate data into national disease surveillance systems.",
     type: "Policy Brief",
     date: "2026-06-15",
-    authors: "CPM Policy & Impact Team",
+    authors: "CPM Int'l Policy & Impact Team",
     downloadUrl: "#",
     downloadFormat: "PDF",
   },
   {
     id: "3",
     title: "Annual Research Report 2025-2026",
-    description: "Comprehensive overview of CPM research activities, findings, partnerships, and institutional achievements.",
+    description: "Comprehensive overview of CPM Int'l research activities, findings, partnerships, and institutional achievements.",
     type: "Report",
     date: "2026-06-01",
-    authors: "CPM Institute",
+    authors: "CPM Int'l Institute",
     downloadUrl: "#",
     downloadFormat: "PDF",
   },
@@ -138,7 +138,7 @@ function ResourcesPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-5 lg:px-10">
           <Link to="/" className="flex min-w-0 items-center">
-            <img src="/logo 9.jpeg" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo 9.jpeg" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
           </Link>
           <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary">
             <ArrowLeft className="h-4 w-4" aria-hidden /> Back to Home
@@ -155,7 +155,7 @@ function ResourcesPage() {
               Research & Publications
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-primary-foreground/85">
-              Access CPM's research publications, policy briefs, technical reports, educational toolkits, and datasets. All resources are available for download and research use.
+              Access CPM Int'l's research publications, policy briefs, technical reports, educational toolkits, and datasets. All resources are available for download and research use.
             </p>
           </div>
         </div>
@@ -330,7 +330,7 @@ function ResourcesPage() {
         <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
           <div className="grid gap-10 md:grid-cols-4 lg:gap-16">
             <div>
-              <p className="font-serif text-lg font-medium text-foreground">CPM Institute</p>
+              <p className="font-serif text-lg font-medium text-foreground">CPM Int'l Institute</p>
               <p className="mt-2 text-sm text-muted-foreground">
                 7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria.
               </p>
@@ -364,8 +364,8 @@ function ResourcesPage() {
           </div>
           <div className="mt-10 border-t border-border/40 pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <img src="/logo 3.jpeg" alt="CPM Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
-              <p>© {new Date().getFullYear()} CPM International Research Institute.</p>
+              <img src="/logo 3.jpeg" alt="CPM Int'l Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
+              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
             </div>
             <p className="uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
           </div>

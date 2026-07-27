@@ -10,10 +10,10 @@ export const Route = createFileRoute("/chip")({
   component: ChipPage,
   head: () => ({
     meta: [
-      { title: "CHIP™ — Climate Health Intelligence Platform | CPM International Research Institute" },
-      { name: "description", content: "CHIP™ is the flagship scientific innovation of CPM International Research Institute for Climate Health — an AI-enabled Climate Health Digital Twin for predictive public health." },
+      { title: "CHIP™ — Climate Health Intelligence Platform | CPM Int'l Research Institute" },
+      { name: "description", content: "CHIP™ is the flagship scientific innovation of CPM Int'l Research Institute for Climate Health — an AI-enabled Climate Health Digital Twin for predictive public health." },
       { property: "og:title", content: "CHIP™ — Climate Health Intelligence Platform" },
-      { property: "og:description", content: "The flagship scientific innovation of CPM International Research Institute for Climate Health." },
+      { property: "og:description", content: "The flagship scientific innovation of CPM Int'l Research Institute for Climate Health." },
       { property: "og:image", content: "/chip.jpeg" },
       { property: "og:type", content: "article" },
     ],
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/chip")({
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About CPM" },
+  { href: "/about", label: "About CPM Int'l" },
   { href: "/#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
   { href: "/events", label: "Events" },
@@ -459,7 +459,7 @@ function ChipPage() {
             </div>
             <div className="space-y-4 text-sm leading-relaxed text-muted-foreground border-t border-border pt-4">
               <p>
-                CPM International Research Institute for Climate Health expresses its profound appreciation to the Director-General of the Nigeria Centre for Disease Control and Prevention (NCDC) for his visionary leadership, institutional support, and commitment to strengthening climate-sensitive disease surveillance and public health innovation in Nigeria.
+                CPM Int'l Research Institute for Climate Health expresses its profound appreciation to the Director-General of the Nigeria Centre for Disease Control and Prevention (NCDC) for his visionary leadership, institutional support, and commitment to strengthening climate-sensitive disease surveillance and public health innovation in Nigeria.
               </p>
               <p>
                 We are equally grateful to the Chief Medical Director and the management of the Obafemi Awolowo University Teaching Hospitals Complex (OAUTHC) for their invaluable collaboration, ethical oversight, and unwavering support in advancing this pioneering initiative. Their partnership has been instrumental in laying the foundation for a nationally relevant and internationally connected climate-health research and innovation ecosystem.
@@ -497,8 +497,8 @@ function ChipPage() {
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <img src="/logo_1-removebg-preview.png" alt="CPM Logo" className="h-7 sm:h-9 w-auto object-contain" />
-            <p>© {new Date().getFullYear()} CPM International Research Institute for Climate Health.</p>
+            <img src="/logo_1-removebg-preview.png" alt="CPM Int'l Logo" className="h-7 sm:h-9 w-auto object-contain" />
+            <p>© {new Date().getFullYear()} CPM Int'l Research Institute for Climate Health.</p>
           </div>
           <p className="text-xs uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
         </div>

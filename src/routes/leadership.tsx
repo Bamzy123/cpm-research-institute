@@ -12,11 +12,11 @@ export const Route = createFileRoute("/leadership")({
   component: LeadershipPage,
   head: () => ({
     meta: [
-      { title: "Leadership CPM International Research Institute for Climate Health" },
+      { title: "Leadership CPM Int'l Research Institute for Climate Health" },
       {
         name: "description",
         content:
-          "Meet the visionary leadership team of CPM International Research Institute for Climate Health, committed to scientific excellence, innovation, and global impact.",
+          "Meet the visionary leadership team of CPM Int'l Research Institute for Climate Health, committed to scientific excellence, innovation, and global impact.",
       },
     ],
   }),
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/leadership")({
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/#about", label: "About CPM" },
+  { href: "/#about", label: "About CPM Int'l" },
   { href: "/#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
   { href: "/events", label: "Events" },
@@ -100,7 +100,7 @@ function LeadershipPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-4 lg:px-10">
           <Link to="/" className="flex min-w-0 items-center">
-            <img src="/logo 9.jpeg" alt="CPM International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo 9.jpeg" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-7 text-sm font-medium text-foreground/80 md:flex">
             {navItems.map((n) =>
@@ -140,7 +140,7 @@ function LeadershipPage() {
             className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl md:hidden ${menuClosing ? "nav-slide-out" : "nav-slide-in"}`}
           >
             <div className="flex items-center justify-between border-b border-border px-6 py-5">
-              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM</span>
+              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM Int'l</span>
               <button type="button" onClick={closeMenu} aria-label="Close menu"
                 className="inline-flex h-9 w-9 items-center justify-center border border-border transition-colors hover:border-primary/60">
                 <X className="h-4 w-4" aria-hidden />
@@ -189,16 +189,16 @@ function LeadershipPage() {
 
         <div className="relative mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
           <p className="text-xs font-medium uppercase tracking-[0.25em]" style={{ color: "oklch(0.72 0.14 75)" }}>
-            CPM International Research Institute for Climate Health
+            CPM Int'l Research Institute for Climate Health
           </p>
           <h1 className="mt-5 font-serif text-4xl leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl max-w-3xl">
-            Leadership at CPM
+            Leadership at CPM Int'l
           </h1>
           <p className="mt-5 text-lg font-light tracking-wide" style={{ color: "oklch(0.85 0.04 220)" }}>
             Visionary Leadership &nbsp;·&nbsp; Scientific Excellence &nbsp;·&nbsp; Global Impact
           </p>
           <p className="mt-6 max-w-2xl text-base leading-relaxed" style={{ color: "oklch(0.80 0.03 220)" }}>
-            At CPM International Research Institute for Climate Health, leadership is founded on the principles of scientific integrity, innovation, collaboration, accountability, and service to humanity.
+            At CPM Int'l Research Institute for Climate Health, leadership is founded on the principles of scientific integrity, innovation, collaboration, accountability, and service to humanity.
           </p>
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mt-10 flex items-center gap-2 text-xs" style={{ color: "oklch(0.70 0.04 220)" }}>
@@ -214,7 +214,7 @@ function LeadershipPage() {
         <div className="mx-auto max-w-[1400px] px-6 py-14 lg:px-10">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-base leading-relaxed text-foreground/80">
-              We believe that addressing the complex challenges posed by climate change and emerging infectious diseases requires leaders who can bridge disciplines, inspire partnerships, and translate research into meaningful societal impact. Through strategic partnerships with universities, teaching hospitals, government agencies, international organizations, and development partners, CPM provides a platform where science becomes a catalyst for sustainable development and global health security.
+              We believe that addressing the complex challenges posed by climate change and emerging infectious diseases requires leaders who can bridge disciplines, inspire partnerships, and translate research into meaningful societal impact. Through strategic partnerships with universities, teaching hospitals, government agencies, international organizations, and development partners, CPM Int'l provides a platform where science becomes a catalyst for sustainable development and global health security.
             </p>
           </div>
         </div>
@@ -247,7 +247,7 @@ function LeadershipPage() {
                   Infectious Disease &amp; Climate Change Intervention
                 </p>
                 <p className="mt-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">Institute</p>
-                <p className="mt-2 text-sm text-muted-foreground">CPM International Research Institute for Climate Health</p>
+                <p className="mt-2 text-sm text-muted-foreground">CPM Int'l Research Institute for Climate Health</p>
               </div>
             </div>
 
@@ -267,7 +267,7 @@ function LeadershipPage() {
                   Professor Joseph Omololu-Aso is an internationally engaged academic, researcher, and scientific leader whose work focuses on the intersection of climate change, infectious diseases, clinical microbiology, pathogen genomics, antimicrobial resistance, artificial intelligence, and One Health.
                 </p>
                 <p>
-                  He founded CPM International Research Institute with the vision of creating a multidisciplinary platform capable of addressing the growing challenges posed by climate-sensitive infectious diseases through innovative research, advanced technology, strategic partnerships, and evidence-informed policy.
+                  He founded CPM Int'l Research Institute with the vision of creating a multidisciplinary platform capable of addressing the growing challenges posed by climate-sensitive infectious diseases through innovative research, advanced technology, strategic partnerships, and evidence-informed policy.
                 </p>
                 <p>
                   His research philosophy emphasises integrating climate science, microbiology, epidemiology, digital health, and artificial intelligence to improve disease prediction, surveillance, preparedness, and response.
@@ -302,7 +302,7 @@ function LeadershipPage() {
               Our Leadership Philosophy
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Leadership at CPM is guided by five core principles that underpin every research programme, partnership, and institutional decision.
+              Leadership at CPM Int'l is guided by five core principles that underpin every research programme, partnership, and institutional decision.
             </p>
           </div>
 
@@ -339,7 +339,7 @@ function LeadershipPage() {
             </header>
             <div className="lg:col-span-8 lg:pt-2">
               <p className="text-base leading-relaxed text-muted-foreground">
-                The Institute's Executive Leadership Team provides strategic direction across research, innovation, administration, partnerships, finance, capacity development, and institutional growth. Working collaboratively, the Executive Leadership Team ensures that CPM continues to deliver scientific excellence while remaining responsive to emerging global health priorities.
+                The Institute's Executive Leadership Team provides strategic direction across research, innovation, administration, partnerships, finance, capacity development, and institutional growth. Working collaboratively, the Executive Leadership Team ensures that CPM Int'l continues to deliver scientific excellence while remaining responsive to emerging global health priorities.
               </p>
 
               {/* Placeholder structure for future team members */}
@@ -378,7 +378,7 @@ function LeadershipPage() {
               Scientific Leadership
             </h2>
             <p className="mt-5 text-base leading-relaxed" style={{ color: "oklch(0.80 0.03 220)" }}>
-              Scientific leadership at CPM is multidisciplinary and collaborative. The Institute brings together expertise across 14 domains of climate health science to generate innovative solutions to complex health challenges.
+              Scientific leadership at CPM Int'l is multidisciplinary and collaborative. The Institute brings together expertise across 14 domains of climate health science to generate innovative solutions to complex health challenges.
             </p>
           </div>
 
@@ -409,7 +409,7 @@ function LeadershipPage() {
                 Advisory Boards
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                CPM benefits from the guidance of distinguished national and international experts who contribute strategic advice, scientific oversight, and global perspectives. The Institute is committed to engaging respected leaders from academia, healthcare, government, industry, and international organizations to strengthen research quality and institutional development.
+                CPM Int'l benefits from the guidance of distinguished national and international experts who contribute strategic advice, scientific oversight, and global perspectives. The Institute is committed to engaging respected leaders from academia, healthcare, government, industry, and international organizations to strengthen research quality and institutional development.
               </p>
             </div>
             <div className="lg:col-span-7 grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -442,7 +442,7 @@ function LeadershipPage() {
                 Building Future Leaders
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                One of CPM's defining priorities is developing the next generation of scientific leaders. Through mentorship, fellowships, postgraduate training, research internships, leadership programmes, and international collaborations, the Institute seeks to equip young scientists with the knowledge, skills, and networks required to address future climate and health challenges.
+                One of CPM Int'l's defining priorities is developing the next generation of scientific leaders. Through mentorship, fellowships, postgraduate training, research internships, leadership programmes, and international collaborations, the Institute seeks to equip young scientists with the knowledge, skills, and networks required to address future climate and health challenges.
               </p>
               <Link
                 to="/resources"
@@ -515,7 +515,7 @@ function LeadershipPage() {
         <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
           <div className="grid gap-10 md:grid-cols-4 lg:gap-16">
             <div>
-              <p className="font-serif text-lg font-medium text-white">CPM Institute</p>
+              <p className="font-serif text-lg font-medium text-white">CPM Int'l Institute</p>
               <p className="mt-2 text-sm leading-relaxed" style={{ color: "oklch(0.65 0.03 220)" }}>
                 International Research Institute for Climate Health, hosted at Obafemi Awolowo University, Nigeria.
               </p>
@@ -553,8 +553,8 @@ function LeadershipPage() {
           </div>
           <div className="mt-10 border-t pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ borderColor: "oklch(1 0 0 / 0.1)", color: "oklch(0.50 0.02 220)" }}>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <img src="/logo 3.jpeg" alt="CPM Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
-              <p>© {new Date().getFullYear()} CPM International Research Institute.</p>
+              <img src="/logo 3.jpeg" alt="CPM Int'l Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
+              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
             </div>
             <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>
           </div>
