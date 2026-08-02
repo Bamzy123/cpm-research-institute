@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as LeadershipRouteImport } from './routes/leadership'
+import { Route as FellowshipsRouteImport } from './routes/fellowships'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ChipRouteImport } from './routes/chip'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -33,9 +35,19 @@ const LeadershipRoute = LeadershipRouteImport.update({
   path: '/leadership',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FellowshipsRoute = FellowshipsRouteImport.update({
+  id: '/fellowships',
+  path: '/fellowships',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChipRoute = ChipRouteImport.update({
@@ -63,7 +75,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
+  '/fellowships': typeof FellowshipsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
@@ -73,7 +87,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
+  '/fellowships': typeof FellowshipsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
@@ -84,7 +100,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
+  '/fellowships': typeof FellowshipsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
@@ -96,7 +114,9 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chip'
+    | '/donate'
     | '/events'
+    | '/fellowships'
     | '/leadership'
     | '/news'
     | '/resources'
@@ -106,7 +126,9 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chip'
+    | '/donate'
     | '/events'
+    | '/fellowships'
     | '/leadership'
     | '/news'
     | '/resources'
@@ -116,7 +138,9 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chip'
+    | '/donate'
     | '/events'
+    | '/fellowships'
     | '/leadership'
     | '/news'
     | '/resources'
@@ -127,7 +151,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ChipRoute: typeof ChipRoute
+  DonateRoute: typeof DonateRoute
   EventsRoute: typeof EventsRoute
+  FellowshipsRoute: typeof FellowshipsRoute
   LeadershipRoute: typeof LeadershipRoute
   NewsRoute: typeof NewsRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -157,11 +183,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LeadershipRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fellowships': {
+      id: '/fellowships'
+      path: '/fellowships'
+      fullPath: '/fellowships'
+      preLoaderRoute: typeof FellowshipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events': {
       id: '/events'
       path: '/events'
       fullPath: '/events'
       preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chip': {
@@ -199,7 +239,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ChipRoute: ChipRoute,
+  DonateRoute: DonateRoute,
   EventsRoute: EventsRoute,
+  FellowshipsRoute: FellowshipsRoute,
   LeadershipRoute: LeadershipRoute,
   NewsRoute: NewsRoute,
   ResourcesRoute: ResourcesRoute,

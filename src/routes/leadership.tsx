@@ -6,6 +6,10 @@ import {
   Syringe, Laptop2, Activity,
 } from "lucide-react";
 import { useState } from "react";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+
+
 import directorPhoto from "../assets/prof.jpg?url";
 
 export const Route = createFileRoute("/leadership")({
@@ -96,76 +100,8 @@ function LeadershipPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
 
-      {/* ── Sticky Header ──────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-4 lg:px-10">
-          <Link to="/" className="flex min-w-0 items-center">
-            <img src="/logo 9.jpeg" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
-          </Link>
-          <nav aria-label="Primary" className="hidden items-center gap-7 text-sm font-medium text-foreground/80 md:flex">
-            {navItems.map((n) =>
-              n.href.startsWith("/") && !n.href.includes("#") ? (
-                <Link key={n.href} to={n.href} className="transition-colors hover:text-primary">{n.label}</Link>
-              ) : (
-                <a key={n.href} href={n.href} className="transition-colors hover:text-primary">{n.label}</a>
-              )
-            )}
-          </nav>
-          <button
-            type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={menuOpen ? closeMenu : () => setMenuOpen(true)}
-            className="relative inline-flex h-10 w-10 items-center justify-center border border-border transition-colors hover:border-primary/60 md:hidden"
-          >
-            <span className="absolute" style={{ opacity: menuOpen ? 0 : 1, transition: "opacity 200ms" }}>
-              <Menu className="h-5 w-5" aria-hidden />
-            </span>
-            <span className="absolute" style={{ opacity: menuOpen ? 1 : 0, transition: "opacity 200ms" }}>
-              <X className="h-5 w-5" aria-hidden />
-            </span>
-          </button>
-        </div>
-      </header>
-
-      {/* ── Mobile Nav ─────────────────────────────────────────────────── */}
-      {menuOpen && (
-        <>
-          <div
-            className={`fixed inset-0 z-40 bg-foreground/40 md:hidden ${menuClosing ? "nav-backdrop-out" : "nav-backdrop-in"}`}
-            onClick={closeMenu} aria-hidden
-          />
-          <nav
-            aria-label="Mobile"
-            className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl md:hidden ${menuClosing ? "nav-slide-out" : "nav-slide-in"}`}
-          >
-            <div className="flex items-center justify-between border-b border-border px-6 py-5">
-              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM Int'l</span>
-              <button type="button" onClick={closeMenu} aria-label="Close menu"
-                className="inline-flex h-9 w-9 items-center justify-center border border-border transition-colors hover:border-primary/60">
-                <X className="h-4 w-4" aria-hidden />
-              </button>
-            </div>
-            <ul className="flex flex-col py-2">
-              {navItems.map((n) => (
-                <li key={n.href}>
-                  {n.href.startsWith("/") && !n.href.includes("#") ? (
-                    <Link to={n.href} onClick={closeMenu}
-                      className="block px-6 py-4 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary">
-                      {n.label}
-                    </Link>
-                  ) : (
-                    <a href={n.href} onClick={closeMenu}
-                      className="block px-6 py-4 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary">
-                      {n.label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </>
-      )}
+      {/* ── Shared Header ──────────────────────────────────────────────── */}
+      <Header />
 
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <section
@@ -342,22 +278,24 @@ function LeadershipPage() {
                 The Institute's Executive Leadership Team provides strategic direction across research, innovation, administration, partnerships, finance, capacity development, and institutional growth. Working collaboratively, the Executive Leadership Team ensures that CPM Int'l continues to deliver scientific excellence while remaining responsive to emerging global health priorities.
               </p>
 
-              {/* Placeholder structure for future team members */}
               <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {[
-                  { role: "Director-General & CEO", note: "Professor Joseph Omololu-Aso" },
-                  { role: "Research Director", note: "To be announced" },
-                  { role: "Director of Innovation", note: "To be announced" },
-                  { role: "Director of Partnerships", note: "To be announced" },
-                  { role: "Director of Finance & Administration", note: "To be announced" },
-                  { role: "Director of Capacity Development", note: "To be announced" },
-                ].map(({ role, note }) => (
-                  <div key={role} className="border border-border bg-card p-5">
-                    <div className="mb-3 h-10 w-10 rounded-full border border-primary/20 bg-primary/8 flex items-center justify-center">
-                      <Users className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                  { role: "Director-General & CEO", name: "Prof. Joseph Omololu-Aso", desc: "Executive leadership & strategic research direction" },
+                  { role: "Scientific Advisory Board", name: "International Advisory Council", desc: "Distinguished academic & clinical leaders" },
+                  { role: "Pathogen Genomics Lead", name: "Genomics Research Group", desc: "Microbial surveillance & sequencing initiatives" },
+                  { role: "CHIP™ AI & Digital Twin Lead", name: "Data Science Directorate", desc: "Machine learning & epidemiological modeling" },
+                  { role: "One Health & Field Operations", name: "Regional Network Leads", desc: "Vector monitoring & clinical surveillance" },
+                  { role: "Institutional Expansion", name: "Executive Directorate 2026", desc: "Recruiting senior research chairs in AMR & Climate Policy" },
+                ].map(({ role, name, desc }) => (
+                  <div key={role} className="border border-border bg-card p-5 flex flex-col justify-between transition-all hover:border-primary/40">
+                    <div>
+                      <div className="mb-3 h-9 w-9 rounded-full border border-primary/20 bg-primary/8 flex items-center justify-center">
+                        <Users className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                      </div>
+                      <p className="text-[11px] font-semibold text-primary uppercase tracking-wider">{role}</p>
+                      <p className="mt-1 font-serif text-sm font-medium text-foreground">{name}</p>
+                      <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{desc}</p>
                     </div>
-                    <p className="text-xs font-medium uppercase tracking-[0.15em] text-primary">{role}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{note}</p>
                   </div>
                 ))}
               </div>
@@ -511,55 +449,7 @@ function LeadershipPage() {
       </section>
 
       {/* ── Footer ───────────────────────────────────────────────────── */}
-      <footer style={{ background: "oklch(0.14 0.04 230)" }}>
-        <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
-          <div className="grid gap-10 md:grid-cols-4 lg:gap-16">
-            <div>
-              <p className="font-serif text-lg font-medium text-white">CPM Int'l Institute</p>
-              <p className="mt-2 text-sm leading-relaxed" style={{ color: "oklch(0.65 0.03 220)" }}>
-                International Research Institute for Climate Health, hosted at Obafemi Awolowo University, Nigeria.
-              </p>
-              <p className="mt-4 text-xs uppercase tracking-[0.18em]" style={{ color: "oklch(0.72 0.14 75)" }}>
-                Science · Innovation · Intelligence · Impact
-              </p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-white">Navigation</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li><Link to="/" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>Home</Link></li>
-                <li><Link to="/leadership" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>Leadership</Link></li>
-                <li><Link to="/chip" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>CHIP™</Link></li>
-                <li><Link to="/news" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>News</Link></li>
-                <li><Link to="/resources" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>Resources</Link></li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-white">Contact</p>
-              <ul className="mt-4 space-y-2 text-sm" style={{ color: "oklch(0.65 0.03 220)" }}>
-                <li>info@cpm-institute.org</li>
-                <li>+234 803 377 0933</li>
-                <li className="text-xs">7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria</li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-white">Quick Links</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li><a href="/privacy" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>Privacy Policy</a></li>
-                <li><a href="/terms" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>Terms of Use</a></li>
-                <li><a href="/accessibility" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>Accessibility</a></li>
-                <li><a href="/sitemap" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>Sitemap</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-10 border-t pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ borderColor: "oklch(1 0 0 / 0.1)", color: "oklch(0.50 0.02 220)" }}>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <img src="/logo 3.jpeg" alt="CPM Int'l Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
-              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
-            </div>
-            <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

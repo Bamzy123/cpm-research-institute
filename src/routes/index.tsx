@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import React, { useEffect, useRef, useState, type FormEvent } from "react";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+
+
 import {
   Network, Layers, Globe2, Building2, BookOpen,
   GraduationCap, Scale, Cpu, Dna, Leaf, FlaskConical,
@@ -57,18 +61,66 @@ const digitalTwinFlow = [
 ];
 
 const researchAreas = [
-  { icon: Thermometer, label: "Climate Change & Health" },
-  { icon: FlaskConical, label: "Clinical Microbiology" },
-  { icon: HeartPulse, label: "One Health" },
-  { icon: Shield, label: "Antimicrobial Resistance" },
-  { icon: Cpu, label: "Artificial Intelligence" },
-  { icon: Dna, label: "Pathogen Genomics" },
-  { icon: BarChart3, label: "Public Health Surveillance" },
-  { icon: Network, label: "Climate–Pathogen Nexus" },
-  { icon: Zap, label: "Digital Health" },
-  { icon: Leaf, label: "Environmental Health" },
-  { icon: Microscope, label: "Data Science" },
-  { icon: Building2, label: "Health Systems" },
+  {
+    icon: Thermometer,
+    label: "Climate Change & Health",
+    description: "Investigating temperature extremes, rainfall variability, and ecological shifts impacting disease vectors and population health."
+  },
+  {
+    icon: FlaskConical,
+    label: "Clinical Microbiology",
+    description: "Diagnostic innovation, laboratory capacity strengthening, and rapid pathogen characterization for emerging threats."
+  },
+  {
+    icon: HeartPulse,
+    label: "One Health",
+    description: "Bridging human, animal, and environmental health domains to evaluate zoonotic spillover risks and ecosystem resilience."
+  },
+  {
+    icon: Shield,
+    label: "Antimicrobial Resistance",
+    description: "Surveillance of resistance genes, environmental drug residues, and microbial evolution to safeguard essential therapeutics."
+  },
+  {
+    icon: Cpu,
+    label: "Artificial Intelligence",
+    description: "Leveraging machine learning, neural networks, and predictive algorithms to model disease dynamics and outbreak risks."
+  },
+  {
+    icon: Dna,
+    label: "Pathogen Genomics",
+    description: "High-throughput genomic sequencing, lineage tracking, and phylodynamic modeling of viral, bacterial, and fungal pathogens."
+  },
+  {
+    icon: BarChart3,
+    label: "Public Health Surveillance",
+    description: "Integrated real-time epidemic intelligence, early warning systems, and automated anomaly detection across health networks."
+  },
+  {
+    icon: Network,
+    label: "Climate–Pathogen Nexus",
+    description: "Quantifying complex interactions between climatic drivers, microclimates, and pathogen virulence or dispersion patterns."
+  },
+  {
+    icon: Zap,
+    label: "Digital Health",
+    description: "Mobile health technologies, remote diagnostic tools, and cloud-integrated data platforms for field epidemiological studies."
+  },
+  {
+    icon: Leaf,
+    label: "Environmental Health",
+    description: "Monitoring water quality, air pollution, soil contamination, and environmental disruptions affecting community health."
+  },
+  {
+    icon: Microscope,
+    label: "Data Science",
+    description: "Advanced biostatistics, spatial epidemiology, big data integration, and computational modeling for actionable intelligence."
+  },
+  {
+    icon: Building2,
+    label: "Health Systems",
+    description: "Evaluating climate resilience in health infrastructure, resource allocation strategies, and evidence-based policy formulation."
+  },
 ];
 
 const whyCPM = [
@@ -231,66 +283,8 @@ function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
 
-      {/* ── Sticky Header ──────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-4 lg:px-10">
-          <a href="#top" className="flex min-w-0 items-center">
-            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain" />
-          </a>
-          <nav aria-label="Primary" className="hidden items-center gap-6 text-xs font-medium text-foreground/80 lg:flex">
-            {navItems.map((n) =>
-              n.href.startsWith("/") ? (
-                <Link key={n.href} to={n.href} className="transition-colors hover:text-primary">{n.label}</Link>
-              ) : (
-                <a key={n.href} href={n.href} className="transition-colors hover:text-primary">{n.label}</a>
-              )
-            )}
-          </nav>
-          <button
-            type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={menuOpen ? closeMenu : () => setMenuOpen(true)}
-            className="relative inline-flex h-10 w-10 items-center justify-center border border-border transition-colors hover:border-primary/60 lg:hidden"
-          >
-            <span className="absolute" style={{ opacity: menuOpen ? 0 : 1, transition: prefersReduced ? "none" : "opacity 200ms, transform 200ms", transform: menuOpen ? "rotate(45deg) scale(0.6)" : "none" }}>
-              <Menu className="h-5 w-5" aria-hidden />
-            </span>
-            <span className="absolute" style={{ opacity: menuOpen ? 1 : 0, transition: prefersReduced ? "none" : "opacity 200ms, transform 200ms", transform: menuOpen ? "none" : "rotate(-45deg) scale(0.6)" }}>
-              <X className="h-5 w-5" aria-hidden />
-            </span>
-          </button>
-        </div>
-      </header>
-
-      {/* ── Mobile Nav ─────────────────────────────────────────────────── */}
-      {menuOpen && (
-        <>
-          <div className={`fixed inset-0 z-40 bg-foreground/40 lg:hidden ${menuClosing ? "nav-backdrop-out" : "nav-backdrop-in"}`} onClick={closeMenu} aria-hidden />
-          <nav aria-label="Mobile" className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl lg:hidden ${menuClosing ? "nav-slide-out" : "nav-slide-in"}`}>
-            <div className="flex items-center justify-between border-b border-border px-6 py-5">
-              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM Int'l</span>
-              <button type="button" onClick={closeMenu} aria-label="Close menu" className="inline-flex h-9 w-9 items-center justify-center border border-border transition-colors hover:border-primary/60">
-                <X className="h-4 w-4" aria-hidden />
-              </button>
-            </div>
-            <ul className="flex flex-col py-2">
-              {navItems.map((n) => (
-                <li key={n.href}>
-                  {n.href.startsWith("/") ? (
-                    <Link to={n.href} onClick={closeMenu} className="block px-6 py-4 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary">{n.label}</Link>
-                  ) : (
-                    <a href={n.href} onClick={closeMenu} className="block px-6 py-4 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary">{n.label}</a>
-                  )}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-auto border-t border-border px-6 py-6">
-              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Science · Innovation · Intelligence · Impact</p>
-            </div>
-          </nav>
-        </>
-      )}
+      {/* ── Shared Header ──────────────────────────────────────────────── */}
+      <Header />
 
       {/* ══════════════════════════════════════════════════════════════════
           HERO
@@ -319,9 +313,13 @@ function Index() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed" style={{ color: "oklch(0.87 0.04 220)" }}>
             CPM Int'l Research Institute for Climate Health advances scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, artificial intelligence, and One Health.
           </p>
-          <p className="mt-2 text-sm" style={{ color: "oklch(0.72 0.14 75)" }}>
+          <p className="mt-2 text-sm font-medium" style={{ color: "oklch(0.72 0.14 75)" }}>
             Advancing Climate Health Intelligence for a Resilient World
           </p>
+          <div className="mt-4 inline-flex items-center gap-2 border px-4 py-2 text-xs font-medium text-white/95 backdrop-blur-sm" style={{ borderColor: "oklch(1 0 0 / 0.25)", background: "oklch(1 0 0 / 0.08)" }}>
+            <Building2 className="h-4 w-4" style={{ color: "oklch(0.72 0.14 75)" }} />
+            <span>Hosted at <strong>Obafemi Awolowo University (OAU)</strong>, Ile-Ife, Nigeria</span>
+          </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#research"
@@ -525,17 +523,20 @@ function Index() {
               CPM Int'l works across the complete climate-health continuum, integrating 12 multidisciplinary research programmes to address the defining health challenges of a changing climate.
             </p>
           </div>
-          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {researchAreas.map(({ icon: Icon, label }) => (
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {researchAreas.map(({ icon: Icon, label, description }) => (
               <div
                 key={label}
-                className="group border border-border bg-background p-6 text-center card-lift cursor-default"
+                className="group border border-border bg-background p-6 text-left card-lift flex flex-col justify-between transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
               >
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/8 transition-all duration-300 group-hover:bg-primary/15">
-                  <Icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
+                <div>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/8 transition-all duration-300 group-hover:bg-primary/15">
+                    <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="mt-4 text-base font-semibold text-foreground transition-colors group-hover:text-primary">{label}</h3>
+                  <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">{description}</p>
                 </div>
-                <h3 className="mt-4 text-sm font-medium text-foreground">{label}</h3>
-                <div className="mt-2 mx-auto h-0.5 w-0 transition-all duration-300 group-hover:w-8" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
+                <div className="mt-5 h-0.5 w-0 transition-all duration-300 group-hover:w-10" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
               </div>
             ))}
           </div>
@@ -751,10 +752,10 @@ function Index() {
               <a href="#contact" id="btn-partner" className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium transition-all hover:scale-105" style={{ background: "oklch(0.72 0.14 75)", color: "oklch(0.15 0.04 230)" }}>
                 Partner With Us <Handshake className="h-4 w-4" aria-hidden />
               </a>
-              <a href="#contact" id="btn-support" className="inline-flex items-center gap-2 bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">
-                Support Research <ArrowRight className="h-4 w-4" aria-hidden />
-              </a>
-              <Link to="/resources" id="btn-fellowship" className="inline-flex items-center gap-2 border border-border px-7 py-3.5 text-sm font-medium transition hover:border-primary/60 hover:text-primary">
+              <Link to="/donate" id="btn-support" className="inline-flex items-center gap-2 bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90">
+                Support Research / Donate <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link to="/fellowships" id="btn-fellowship" className="inline-flex items-center gap-2 border border-border px-7 py-3.5 text-sm font-medium transition hover:border-primary/60 hover:text-primary">
                 <GraduationCap className="h-4 w-4" aria-hidden /> Apply for Fellowship
               </Link>
               <a href="#contact" id="btn-contact" className="inline-flex items-center gap-2 border border-border px-7 py-3.5 text-sm font-medium transition hover:border-primary/60 hover:text-primary">
@@ -863,108 +864,7 @@ function Index() {
       {/* ══════════════════════════════════════════════════════════════════
           FOOTER (dark)
       ══════════════════════════════════════════════════════════════════ */}
-      <footer style={{ background: "oklch(0.14 0.04 230)" }}>
-        {/* Gold top accent */}
-        <div className="h-0.5" style={{ background: "linear-gradient(90deg, transparent, oklch(0.72 0.14 75), transparent)" }} aria-hidden />
-        <div className="mx-auto max-w-[1400px] px-6 py-14 lg:px-10">
-          <div className="grid gap-10 md:grid-cols-5 lg:gap-16">
-            {/* Brand */}
-            <div className="md:col-span-2">
-              <div className="inline-block mb-2">
-                <img src="/logo 3.jpeg" alt="CPM Int'l International Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" />
-              </div>
-              <p className="mt-4 text-sm leading-relaxed" style={{ color: "oklch(0.65 0.03 220)" }}>
-                An independent multidisciplinary research institute dedicated to advancing scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, AI, and One Health.
-              </p>
-              <p className="mt-5 text-xs uppercase tracking-[0.2em]" style={{ color: "oklch(0.72 0.14 75)" }}>
-                Science · Innovation · Intelligence · Impact
-              </p>
-              {/* Newsletter */}
-              <div className="mt-6">
-                <p className="text-xs font-medium uppercase tracking-[0.15em] text-white mb-2">Newsletter</p>
-                <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                  <input type="email" placeholder="Enter your email" className="h-9 min-w-0 flex-1 border border-border bg-black/30 px-3 text-xs text-white outline-none focus:border-primary/80" />
-                  <button type="submit" className="h-9 border border-primary/50 bg-primary/20 px-3 text-xs font-medium text-white transition hover:bg-primary/40">Join</button>
-                </form>
-              </div>
-            </div>
-
-            {/* Scientific Pillars */}
-            <div>
-              <p className="text-sm font-medium text-white">Research Focus</p>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {researchAreas.slice(0, 6).map((area) => (
-                  <li key={area.label}>
-                    <a href="#research" className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{area.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <p className="text-sm font-medium text-white">Institute</p>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {navItems.map((n) => (
-                  <li key={n.label}>
-                    {n.href.startsWith("/") ? (
-                      <Link to={n.href} className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{n.label}</Link>
-                    ) : (
-                      <a href={n.href} className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{n.label}</a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <p className="text-sm font-medium text-white">Contact</p>
-              <ul className="mt-4 space-y-3 text-sm" style={{ color: "oklch(0.65 0.03 220)" }}>
-                <li className="flex items-start gap-2">
-                  <MapPin className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color: "oklch(0.72 0.14 75)" }} />
-                  <span className="text-xs">7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Mail className="h-3.5 w-3.5 shrink-0" style={{ color: "oklch(0.72 0.14 75)" }} />
-                  <span className="text-xs">info@cpm-institute.org</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="h-3.5 w-3.5 shrink-0" style={{ color: "oklch(0.72 0.14 75)" }} />
-                  <span className="text-xs">+234 803 377 0933</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Legal / Social */}
-            <div>
-              <p className="text-sm font-medium text-white">Information</p>
-              <ul className="mt-4 space-y-2.5 text-sm">
-                {["Privacy Policy", "Terms of Use", "Accessibility", "Sitemap"].map((item) => (
-                  <li key={item}>
-                    <a href={`/${item.toLowerCase().replace(/ /g, "-")}`} className="transition hover:text-white" style={{ color: "oklch(0.65 0.03 220)" }}>{item}</a>
-                  </li>
-                ))}
-              </ul>
-              {/* Institutional statement */}
-              <div className="mt-8 border-t pt-5" style={{ borderColor: "oklch(1 0 0 / 0.1)" }}>
-                <p className="text-xs leading-relaxed italic" style={{ color: "oklch(0.50 0.02 220)" }}>
-                  CPM Int'l is more than a research institute. It is a platform for scientific discovery, technological innovation, and global collaboration.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="mt-10 border-t pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ borderColor: "oklch(1 0 0 / 0.1)", color: "oklch(0.45 0.02 220)" }}>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="px-2.5 py-1.5 rounded-md shadow-sm"><img src="/logo 3.jpeg" alt="CPM Int'l Int'l Logo" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" /></div>
-              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
-            </div>
-            <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

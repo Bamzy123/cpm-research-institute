@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+
+
 import {
   ArrowRight, Menu, X,
   Microscope, Globe2, BrainCircuit, Dna, Activity, BarChart3,
@@ -110,70 +114,7 @@ function AboutPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
 
-      {/* ── Sticky Header ──────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-4 lg:px-10">
-          <Link to="/" className="flex min-w-0 items-center">
-            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
-          </Link>
-          <nav aria-label="Primary" className="hidden items-center gap-7 text-sm font-medium text-foreground/80 md:flex">
-            {navItems.map((n) =>
-              n.href.startsWith("/") && !n.href.includes("#") ? (
-                <Link key={n.href} to={n.href} className="transition-colors hover:text-primary">{n.label}</Link>
-              ) : (
-                <a key={n.href} href={n.href} className="transition-colors hover:text-primary">{n.label}</a>
-              )
-            )}
-          </nav>
-          <button
-            type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={menuOpen ? closeMenu : () => setMenuOpen(true)}
-            className="relative inline-flex h-10 w-10 items-center justify-center border border-border transition-colors hover:border-primary/60 md:hidden"
-          >
-            <span className="absolute" style={{ opacity: menuOpen ? 0 : 1, transition: "opacity 200ms" }}>
-              <Menu className="h-5 w-5" aria-hidden />
-            </span>
-            <span className="absolute" style={{ opacity: menuOpen ? 1 : 0, transition: "opacity 200ms" }}>
-              <X className="h-5 w-5" aria-hidden />
-            </span>
-          </button>
-        </div>
-      </header>
-
-      {/* ── Mobile Nav ─────────────────────────────────────────────────── */}
-      {menuOpen && (
-        <>
-          <div className={`fixed inset-0 z-40 bg-foreground/40 md:hidden ${menuClosing ? "nav-backdrop-out" : "nav-backdrop-in"}`} onClick={closeMenu} aria-hidden />
-          <nav aria-label="Mobile" className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl md:hidden ${menuClosing ? "nav-slide-out" : "nav-slide-in"}`}>
-            <div className="flex items-center justify-between border-b border-border px-6 py-5">
-              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM Int'l</span>
-              <button type="button" onClick={closeMenu} aria-label="Close menu"
-                className="inline-flex h-9 w-9 items-center justify-center border border-border transition-colors hover:border-primary/60">
-                <X className="h-4 w-4" aria-hidden />
-              </button>
-            </div>
-            <ul className="flex flex-col py-2">
-              {navItems.map((n) => (
-                <li key={n.href}>
-                  {n.href.startsWith("/") && !n.href.includes("#") ? (
-                    <Link to={n.href} onClick={closeMenu}
-                      className="block px-6 py-4 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary">
-                      {n.label}
-                    </Link>
-                  ) : (
-                    <a href={n.href} onClick={closeMenu}
-                      className="block px-6 py-4 text-sm font-medium text-foreground/80 transition-colors hover:bg-primary/5 hover:text-primary">
-                      {n.label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </>
-      )}
+      <Header />
 
       {/* ── Page Hero ──────────────────────────────────────────────────── */}
       <section
@@ -216,7 +157,7 @@ function AboutPage() {
               
               <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-muted-foreground">
                 <p className="font-medium text-foreground">
-                  The CPM International Research Institute for Climate Health (CPM Int’l) is an independent, multidisciplinary research and innovation institute committed to advancing scientific excellence at the intersection of climate change, infectious diseases, artificial intelligence, pathogen genomics, One Health, and health systems innovation.
+                  The CPM International Research Institute for Climate Health (CPM Int’l) is an independent, multidisciplinary research and innovation institute hosted at <strong>Obafemi Awolowo University (OAU), Ile-Ife, Nigeria</strong> — committed to advancing scientific excellence at the intersection of climate change, infectious diseases, artificial intelligence, pathogen genomics, One Health, and health systems innovation.
                 </p>
                 <p>
                   We were established on a simple but powerful conviction: the future of global health depends on our ability to anticipate health threats rather than merely respond to them.
@@ -245,6 +186,63 @@ function AboutPage() {
                   "The future of global health depends on our ability to anticipate health threats rather than merely respond to them."
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section: Institute Facts & Governance ───────────────────────── */}
+      <section id="governance-facts" className="bg-sky/20 hairline-b py-16 lg:py-20">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Institutional Disclosure & Governance</p>
+            <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+              Institute Facts & Legal Framework
+            </h2>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Official registration, institutional hosting, and governing structures supporting transparent scientific inquiry.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="border border-border bg-card p-6 flex flex-col justify-between">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Founding Year</p>
+                <p className="mt-2 font-serif text-3xl font-semibold text-primary">2024</p>
+              </div>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Established as an independent scientific research institute pioneering climate-health prediction models.
+              </p>
+            </div>
+
+            <div className="border border-border bg-card p-6 flex flex-col justify-between">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Host Institution</p>
+                <p className="mt-2 font-serif text-xl font-semibold text-foreground">Obafemi Awolowo University</p>
+              </div>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Hosted at Obafemi Awolowo University (OAU), Ile-Ife, Nigeria, fostering academic research and laboratory collaboration.
+              </p>
+            </div>
+
+            <div className="border border-border bg-card p-6 flex flex-col justify-between">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Legal & Regulatory Status</p>
+                <p className="mt-2 font-serif text-lg font-semibold text-foreground">Independent Research Institute</p>
+              </div>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Registered non-profit scientific institute in Nigeria, dedicated to public health research and international partnerships.
+              </p>
+            </div>
+
+            <div className="border border-border bg-card p-6 flex flex-col justify-between">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Governance Model</p>
+                <p className="mt-2 font-serif text-lg font-semibold text-foreground">Directorate & Advisory Council</p>
+              </div>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Governed by the Director-General and an International Scientific Advisory Board spanning climate, health, and AI ethics.
+              </p>
             </div>
           </div>
         </div>
@@ -600,18 +598,7 @@ function AboutPage() {
       </section>
 
       {/* ── Footer ─────────────────────────────────────────────────────── */}
-      <footer style={{ background: "oklch(0.14 0.04 230)" }}>
-        <div className="h-0.5" style={{ background: "linear-gradient(90deg, transparent, oklch(0.72 0.14 75), transparent)" }} aria-hidden />
-        <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ color: "oklch(0.50 0.02 220)" }}>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <img src="/logo 3.jpeg" alt="CPM Int'l Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
-              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
-            </div>
-            <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -1,9 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef, TouchEvent } from "react";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+
+
 import {
   Calendar, MapPin, Building2, Globe, Shield, Sparkles,
   ChevronLeft, ChevronRight, Play, Pause, Maximize2, X, Microscope,
-  CheckCircle2, Award, Menu, Image as ImageIcon,
+  CheckCircle2, Award, Menu, Image as ImageIcon, Users,
   Grid
 } from "lucide-react";
 
@@ -59,11 +63,48 @@ const acegidPhotos = [
   { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM.jpeg", title: "Consortium Gathering", caption: "Institutional group gathering commemorating the scientific visit to Ede." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (1).jpeg", title: "Leadership Conclusion", caption: "Delegation leadership concluding facility tour with Redeemer's University hosts." },
   { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (2).jpeg", title: "Final Delegation Group Photo", caption: "Final commemorative group photo of CPM Int'l Institute, OAUTHC, and OAU delegation at ACEGID." },
-  { url: "/cpm google meeting.jpeg", title: "Google Meet   with ACEGID", caption: "Google Meet with ACEGID, OAUTHC, and OAU delegation at ACEGID." },
+  { url: "/cpm google meeting.jpeg", title: "Google Meet with ACEGID", caption: "Google Meet with ACEGID, OAUTHC, and OAU delegation at ACEGID." },
+];
+
+const cpmPhotos = [
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.23.59 PM.jpeg", title: "Strategic Planning Session", caption: "CPM Int'l Research Institute leadership and core scientific team during strategic planning sessions." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.04 PM.jpeg", title: "Research Consortium Dialogue", caption: "Interdisciplinary research discussion on climate-sensitive disease surveillance and One Health." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.07 PM.jpeg", title: "Pathogenomics & Digital Health Forum", caption: "Delegates reviewing computational biology and pathogen genomics frameworks." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.24 PM.jpeg", title: "Institutional Executive Session", caption: "Prof. Joseph Omololu-Aso addressing consortium partners on institutional development." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.26 PM.jpeg", title: "Climate Health Science Briefing", caption: "Scientific briefing on vector-borne disease dynamics and climate modeling." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM.jpeg", title: "AMR & Surveillance Strategy", caption: "Antimicrobial resistance monitoring and surveillance strategy exchange." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM (1).jpeg", title: "Clinical Microbiology Consultation", caption: "Consultation between hospital leaders and CPM research investigators." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM (2).jpeg", title: "Field Operations Planning", caption: "Planning field operations for regional environmental health and vector surveillance." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.29 PM.jpeg", title: "CHIP Platform Technical Review", caption: "Technical discussion on AI-driven Climate Health Intelligence Platform (CHIP™) deployment." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.29 PM (1).jpeg", title: "Consortium Partnership Dialogue", caption: "Multi-institutional scientific partnership meeting with regional healthcare stakeholders." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.30 PM.jpeg", title: "Research Infrastructure Assessment", caption: "Assessing laboratory facilities and technological requirements for climate health projects." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.32 PM.jpeg", title: "Capacity Building Workshop", caption: "Training and scientific capacity development engagement with early-career researchers." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.34 PM.jpeg", title: "One Health Working Group", caption: "One Health working group reviewing environmental, human, and animal health data integration." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.34 PM (1).jpeg", title: "Genomic Epidemiology Discussion", caption: "In-depth review of genomic epidemiology protocols for outbreak preparedness." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.35 PM.jpeg", title: "Stakeholder Alignment Session", caption: "Aligning research goals with public health policy and government health agencies." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.35 PM (1).jpeg", title: "Institutional Governance Forum", caption: "Governing council and scientific board strategic direction dialogue." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM.jpeg", title: "Interdisciplinary Exchange", caption: "Collaborative session bringing together climatologists, epidemiologists, and clinicians." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM (1).jpeg", title: "Field Data Collection Briefing", caption: "Operational briefing for field teams conducting climate-pathogen sample gathering." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM (2).jpeg", title: "AI & Machine Learning Presentation", caption: "Presentation on machine learning models for disease surge prediction." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.37 PM.jpeg", title: "Regional Health Systems Alignment", caption: "Strengthening health systems resilience across West African partner networks." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.37 PM (1).jpeg", title: "Laboratory Quality & Standards", caption: "Discussion on biosafety standards and laboratory accreditation pathways." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM.jpeg", title: "Translational Science Strategy", caption: "Strategies for translating climate health research into actionable clinical interventions." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM (1).jpeg", title: "Public Health Preparedness Panel", caption: "Panel session on rapid outbreak response protocols and diagnostic deployment." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM (2).jpeg", title: "Youth & Fellowship Mentorship", caption: "Prof. Omololu-Aso engaging with postgraduate fellows and junior researchers." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM.jpeg", title: "International Engagement Briefing", caption: "Briefing on global partnerships with European and North American institutions." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM (1).jpeg", title: "Data Integration Architecture", caption: "Technical roadmap for cloud data pipelines and environmental satellite data." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM (2).jpeg", title: "Community Health Outreach", caption: "Engaging community stakeholders on climate health literacy and vector control." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.40 PM.jpeg", title: "Scientific Advisory Review", caption: "Scientific advisory board evaluating ongoing research project milestones." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.40 PM (1).jpeg", title: "Publication & Impact Strategy", caption: "Planning high-impact peer-reviewed publications and policy whitepapers." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM.jpeg", title: "Executive Commemoration", caption: "Commemorative group portrait of CPM Int'l Research Institute delegation." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM (1).jpeg", title: "Consortium Leadership Dialogue", caption: "High-level dialogue on expanding regional research centers and field hubs." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM (2).jpeg", title: "Grant & Development Strategy", caption: "Strategic framework for research grants and international donor alignment." },
+  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.42 PM.jpeg", title: "CPM Institute Delegation Group Photo", caption: "Final group photo of CPM Int'l Research Institute leadership, staff, and partners." },
 ];
 
 function EventsPage() {
-  const [activeEvent, setActiveEvent] = useState<"acegid" | "olubadan" | "hpa-bmz">("acegid");
+  const [activeEvent, setActiveEvent] = useState<"cpm" | "acegid" | "olubadan" | "hpa-bmz">("cpm");
+  const [activeGalleryTab, setActiveGalleryTab] = useState<"cpm" | "acegid" | "all">("cpm");
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false); // DEFAULT TO FALSE to prevent auto-slide scroll issues!
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -71,6 +112,13 @@ function EventsPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
+
+  const currentPhotos =
+    activeGalleryTab === "cpm"
+      ? cpmPhotos
+      : activeGalleryTab === "acegid"
+      ? acegidPhotos
+      : [...cpmPhotos, ...acegidPhotos];
 
   // Touch swipe handling for mobile
   const touchStartX = useRef<number | null>(null);
@@ -103,10 +151,10 @@ function EventsPage() {
   useEffect(() => {
     if (!isPlaying || isLightboxOpen) return;
     const interval = setInterval(() => {
-      setActivePhotoIndex((prev) => (prev + 1) % acegidPhotos.length);
+      setActivePhotoIndex((prev) => (prev + 1) % currentPhotos.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [isPlaying, isLightboxOpen]);
+  }, [isPlaying, isLightboxOpen, currentPhotos.length]);
 
   // Scroll active thumbnail smoothly into view
   useEffect(() => {
@@ -126,58 +174,13 @@ function EventsPage() {
     }, 290);
   };
 
-  const nextPhoto = () => setActivePhotoIndex((prev) => (prev + 1) % acegidPhotos.length);
-  const prevPhoto = () => setActivePhotoIndex((prev) => (prev - 1 + acegidPhotos.length) % acegidPhotos.length);
+  const nextPhoto = () => setActivePhotoIndex((prev) => (prev + 1) % currentPhotos.length);
+  const prevPhoto = () => setActivePhotoIndex((prev) => (prev - 1 + currentPhotos.length) % currentPhotos.length);
 
   return (
     <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary/20">
 
-      {/* ── Sticky Header ────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-10">
-          <Link to="/" className="flex min-w-0 items-center gap-3">
-            <img src="/logo_8-removebg-preview.png" alt="CPM Logo" className="h-9 sm:h-11 w-auto object-contain mix-blend-multiply" />
-          </Link>
-          <nav aria-label="Primary" className="hidden items-center gap-6 text-sm font-medium text-foreground/80 lg:flex">
-            {navItems.map((n) =>
-              n.href.startsWith("/") && !n.href.includes("#") ? (
-                <Link key={n.label} to={n.href} activeProps={{ className: "text-primary font-semibold" }} className="transition-colors hover:text-primary">
-                  {n.label}
-                </Link>
-              ) : (
-                <a key={n.label} href={n.href} className="transition-colors hover:text-primary">
-                  {n.label}
-                </a>
-              )
-            )}
-          </nav>
-
-          <button
-            onClick={() => (menuOpen ? closeMenu() : setMenuOpen(true))}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-foreground lg:hidden hover:bg-muted focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile Drawer Menu */}
-      {menuOpen && (
-        <div className={`fixed inset-0 z-50 flex flex-col bg-background/98 px-6 py-6 backdrop-blur-md transition-opacity duration-300 lg:hidden ${menuClosing ? "opacity-0" : "opacity-100"}`}>
-          <div className="flex items-center justify-between border-b border-border pb-4">
-            <img src="/logo 9.jpeg" alt="CPM Logo" className="h-9 w-auto object-contain mix-blend-multiply" />
-            <button onClick={closeMenu} className="p-2 text-foreground"><X className="h-6 w-6" /></button>
-          </div>
-          <nav className="mt-6 flex flex-col gap-4 text-base font-medium">
-            {navItems.map((n) => (
-              <Link key={n.label} to={n.href} onClick={closeMenu} className="py-2 border-b border-border/40 text-foreground hover:text-primary">
-                {n.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
+      <Header />
 
       {/* ══════════════════════════════════════════════════════════════
           HERO SECTION — Editorial Style
@@ -205,7 +208,25 @@ function EventsPage() {
             <div className="mt-10 flex flex-wrap gap-2.5 sm:gap-3 border-t border-primary-foreground/20 pt-8">
               <button
                 onClick={() => {
+                  setActiveEvent("cpm");
+                  setActiveGalleryTab("cpm");
+                  setActivePhotoIndex(0);
+                  document.getElementById("event-cpm")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs sm:text-sm font-medium transition-all ${
+                  activeEvent === "cpm"
+                    ? "bg-white text-primary shadow-md font-semibold"
+                    : "bg-white/10 text-primary-foreground hover:bg-white/20"
+                }`}
+              >
+                <Users className="h-4 w-4" /> CPM Strategic Sessions (33 Photos)
+              </button>
+
+              <button
+                onClick={() => {
                   setActiveEvent("acegid");
+                  setActiveGalleryTab("acegid");
+                  setActivePhotoIndex(0);
                   document.getElementById("event-acegid")?.scrollIntoView({ behavior: "smooth" });
                 }}
                 className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs sm:text-sm font-medium transition-all ${
@@ -214,7 +235,7 @@ function EventsPage() {
                     : "bg-white/10 text-primary-foreground hover:bg-white/20"
                 }`}
               >
-                <Microscope className="h-4 w-4" /> ACEGID Facility Tour (Ede)
+                <Microscope className="h-4 w-4" /> ACEGID Facility Tour (26 Photos)
               </button>
 
               <button
@@ -250,7 +271,65 @@ function EventsPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          EVENT 1: ACEGID SCIENTIFIC DELEGATION & PHOTO GALLERY
+          EVENT 1: CPM STRATEGIC SESSIONS & CONSORTIUM WORKSHOPS
+      ══════════════════════════════════════════════════════════════ */}
+      <article id="event-cpm" className="border-b border-border/60 py-12 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+
+          {/* Article Header & Metadata Card */}
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
+            <div className="lg:col-span-8">
+              <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Executive Strategic Sessions &amp; Field Operations
+                </span>
+                <span className="text-muted-foreground">•</span>
+                <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> CPM Research Hubs &amp; Field Sites, Nigeria</span>
+              </div>
+
+              <h2 className="font-serif text-2xl sm:text-4xl leading-tight font-normal text-foreground tracking-tight">
+                CPM INTERNATIONAL RESEARCH INSTITUTE EXECUTIVE STRATEGIC SESSIONS, FIELD SURVEILLANCE &amp; MULTIDISCIPLINARY CONSORTIUM WORKSHOPS
+              </h2>
+
+              <p className="mt-3 font-serif text-base sm:text-lg text-muted-foreground leading-relaxed">
+                Comprehensive Photographic Record of Institutional Planning, One Health Field Preparedness, Genomics Integration &amp; Regional Stakeholder Engagements
+              </p>
+            </div>
+
+            {/* Metadata Card */}
+            <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 lg:col-span-4 shadow-sm">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Consortium Metadata</h3>
+              <dl className="mt-4 space-y-3.5 text-sm">
+                <div>
+                  <dt className="text-xs text-muted-foreground">Executive Leadership</dt>
+                  <dd className="font-semibold text-foreground">Prof. Joseph Omololu-Aso</dd>
+                  <dd className="text-xs text-muted-foreground">Founding Director-General &amp; CEO, CPM Int'l Institute</dd>
+                </div>
+                <div className="border-t border-border/50 pt-2.5">
+                  <dt className="text-xs text-muted-foreground">Key Focus Areas</dt>
+                  <dd className="font-medium text-foreground">Climate–Pathogen Nexus · CHIP™ AI · One Health · AMR</dd>
+                </div>
+                <div className="border-t border-border/50 pt-2.5">
+                  <dt className="text-xs text-muted-foreground">Photo Archive</dt>
+                  <dd className="text-xs font-semibold text-primary">33 High-Resolution Strategic Session Images</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <div className="mt-8 text-base sm:text-lg leading-relaxed text-foreground/85 space-y-4">
+            <p>
+              The <strong>CPM International Research Institute for Climate Health</strong> brings together multidisciplinary experts across clinical microbiology, infectious disease epidemiology, pathogenomics, artificial intelligence, and environmental health.
+            </p>
+            <p>
+              The 33 photographic highlights below document executive council meetings, strategic planning sessions, field vector surveillance briefings, and collaborative workshops designed to advance the Institute’s flagship innovation—the <strong>Climate Health Intelligence Platform (CHIP™)</strong>—and regional public health resilience.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      {/* ══════════════════════════════════════════════════════════════
+          EVENT 2: ACEGID SCIENTIFIC DELEGATION & PHOTO GALLERY
       ══════════════════════════════════════════════════════════════ */}
       <article id="event-acegid" className="border-b border-border/60 py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
@@ -307,14 +386,49 @@ function EventsPage() {
           ══════════════════════════════════════════════════════════════ */}
           <div className="mt-12 rounded-2xl border border-border bg-card p-4 sm:p-6 lg:p-8 shadow-lg">
             
+            {/* Gallery Collection Selector Tabs */}
+            <div className="flex flex-wrap items-center gap-2 mb-4 border-b border-border/40 pb-4">
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mr-1">Gallery Collection:</span>
+              <button
+                onClick={() => { setActiveGalleryTab("cpm"); setActivePhotoIndex(0); }}
+                className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
+                  activeGalleryTab === "cpm"
+                    ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                }`}
+              >
+                CPM Strategic &amp; Field Sessions (33)
+              </button>
+              <button
+                onClick={() => { setActiveGalleryTab("acegid"); setActivePhotoIndex(0); }}
+                className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
+                  activeGalleryTab === "acegid"
+                    ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                }`}
+              >
+                ACEGID Facility Tour (26)
+              </button>
+              <button
+                onClick={() => { setActiveGalleryTab("all"); setActivePhotoIndex(0); }}
+                className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
+                  activeGalleryTab === "all"
+                    ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                }`}
+              >
+                All Collections (59)
+              </button>
+            </div>
+
             {/* Gallery Header Controls */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center justify-between border-b border-border pb-4">
               <div>
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
-                  <ImageIcon className="h-4 w-4" /> Photographic Highlights ({acegidPhotos.length} Images)
+                  <ImageIcon className="h-4 w-4" /> Photographic Highlights ({currentPhotos.length} Images)
                 </div>
                 <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
-                  Swipe or click thumbnails below to view high-resolution facility tour photos.
+                  Swipe or click thumbnails below to view high-resolution event and strategic session photos.
                 </p>
               </div>
 
@@ -364,8 +478,8 @@ function EventsPage() {
                   className="relative overflow-hidden rounded-xl bg-slate-950 aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] w-full flex items-center justify-center select-none shadow-inner"
                 >
                   <img
-                    src={acegidPhotos[activePhotoIndex].url}
-                    alt={acegidPhotos[activePhotoIndex].caption}
+                    src={currentPhotos[activePhotoIndex]?.url}
+                    alt={currentPhotos[activePhotoIndex]?.caption}
                     className="h-full w-full object-contain transition-opacity duration-300"
                   />
 
@@ -373,17 +487,17 @@ function EventsPage() {
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-transparent p-4 sm:p-6 text-white">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
                       <div>
-                        {acegidPhotos[activePhotoIndex].title && (
+                        {currentPhotos[activePhotoIndex]?.title && (
                           <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1">
-                            {acegidPhotos[activePhotoIndex].title}
+                            {currentPhotos[activePhotoIndex]?.title}
                           </p>
                         )}
                         <p className="text-xs sm:text-base font-medium text-white/95 leading-snug max-w-3xl">
-                          {acegidPhotos[activePhotoIndex].caption}
+                          {currentPhotos[activePhotoIndex]?.caption}
                         </p>
                       </div>
                       <span className="shrink-0 self-start sm:self-auto rounded-md bg-white/20 px-2.5 py-1 text-xs font-mono text-white backdrop-blur-md">
-                        {activePhotoIndex + 1} / {acegidPhotos.length}
+                        {activePhotoIndex + 1} / {currentPhotos.length}
                       </span>
                     </div>
                   </div>
@@ -409,13 +523,13 @@ function EventsPage() {
                 {/* Horizontal Thumbnail Strip */}
                 <div>
                   <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                    Thumbnail Selector ({acegidPhotos.length} Photos):
+                    Thumbnail Selector ({currentPhotos.length} Photos):
                   </p>
                   <div
                     ref={thumbnailContainerRef}
                     className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-border"
                   >
-                    {acegidPhotos.map((photo, index) => (
+                    {currentPhotos.map((photo, index) => (
                       <button
                         key={index}
                         onClick={() => {
@@ -440,7 +554,7 @@ function EventsPage() {
             ) : (
               /* GRID VIEW MODE */
               <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 max-h-[600px] overflow-y-auto pr-1">
-                {acegidPhotos.map((photo, index) => (
+                {currentPhotos.map((photo, index) => (
                   <div
                     key={index}
                     onClick={() => {
@@ -803,7 +917,7 @@ function EventsPage() {
           {/* Lightbox Controls Header */}
           <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between z-10">
             <div className="text-white text-xs font-mono">
-              {activePhotoIndex + 1} / {acegidPhotos.length}
+              {activePhotoIndex + 1} / {currentPhotos.length}
             </div>
 
             <div className="flex items-center gap-3">
@@ -835,12 +949,12 @@ function EventsPage() {
 
               <div className="max-h-[85vh] max-w-[92vw] flex flex-col items-center">
                 <img
-                  src={acegidPhotos[activePhotoIndex].url}
-                  alt={acegidPhotos[activePhotoIndex].caption}
+                  src={currentPhotos[activePhotoIndex]?.url}
+                  alt={currentPhotos[activePhotoIndex]?.caption}
                   className="max-h-[72vh] sm:max-h-[78vh] w-auto object-contain rounded-xl shadow-2xl"
                 />
                 <p className="mt-3 text-center text-xs sm:text-sm font-medium text-white/90 max-w-2xl leading-relaxed">
-                  {acegidPhotos[activePhotoIndex].caption}
+                  {currentPhotos[activePhotoIndex]?.caption}
                 </p>
               </div>
 
@@ -854,7 +968,7 @@ function EventsPage() {
           ) : (
             <div className="w-full max-w-6xl max-h-[80vh] overflow-y-auto pt-14 pb-6 px-2">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                {acegidPhotos.map((photo, index) => (
+                {currentPhotos.map((photo, index) => (
                   <div
                     key={index}
                     onClick={() => {
@@ -878,15 +992,7 @@ function EventsPage() {
       )}
 
       {/* ── Footer ─────────────────────────────────────────────────── */}
-      <footer className="border-t border-border bg-background">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <img src="/logo 3.jpeg" alt="CPM Int'l Logo" className="h-7 sm:h-9 w-auto object-contain mix-blend-screen" />
-            <p>© {new Date().getFullYear()} CPM Int'l Research Institute for Climate Health.</p>
-          </div>
-          <p className="text-xs uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

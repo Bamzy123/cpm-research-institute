@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+
+
 import { ArrowLeft, Download, FileText, Filter, Search as SearchIcon } from "lucide-react";
 
 export const Route = createFileRoute("/resources")({
@@ -134,17 +138,7 @@ function ResourcesPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* ── Header preferred one ─────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-5 lg:px-10">
-          <Link to="/" className="flex min-w-0 items-center">
-            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
-          </Link>
-          <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary">
-            <ArrowLeft className="h-4 w-4" aria-hidden /> Back to Home
-          </Link>
-        </div>
-      </header>
+      <Header />
 
       {/* ── Hero Section ────────────────────────────────────────────── */}
       <section className="bg-primary text-primary-foreground">
@@ -326,51 +320,7 @@ function ResourcesPage() {
 
 
       {/* ── Footer ─────────────────────────────────────────────────── */}
-      <footer className="bg-background border-t border-border/40">
-        <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
-          <div className="grid gap-10 md:grid-cols-4 lg:gap-16">
-            <div>
-              <p className="font-serif text-lg font-medium text-foreground">CPM Int'l Institute</p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria.
-              </p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-foreground">Navigation</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li><Link to="/" className="text-muted-foreground hover:text-primary transition">Home</Link></li>
-                <li><Link to="/chip" className="text-muted-foreground hover:text-primary transition">CHIP™</Link></li>
-                <li><Link to="/news" className="text-muted-foreground hover:text-primary transition">News</Link></li>
-                <li><Link to="/resources" className="text-muted-foreground hover:text-primary transition">Resources</Link></li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-foreground">Contact</p>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                <li>info@cpm-institute.org</li>
-                <li>+234 803 377 0933</li>
-                <li className="text-xs">7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria</li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-foreground">Legal</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li><a href="/privacy" className="text-muted-foreground hover:text-primary transition">Privacy Policy</a></li>
-                <li><a href="/terms" className="text-muted-foreground hover:text-primary transition">Terms of Use</a></li>
-                <li><a href="/accessibility" className="text-muted-foreground hover:text-primary transition">Accessibility</a></li>
-                <li><a href="/sitemap" className="text-muted-foreground hover:text-primary transition">Sitemap</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-10 border-t border-border/40 pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <img src="/logo 3.jpeg" alt="CPM Int'l Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-screen" />
-              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
-            </div>
-            <p className="uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

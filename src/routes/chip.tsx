@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+
+
 import {
   ArrowLeft, Activity, Cpu, AlertCircle, Globe2, Dna, Monitor, Leaf,
   HeartPulse, Target, Sparkles, CheckCircle2, Maximize2, X, Shield, Menu,
@@ -100,52 +104,7 @@ function ChipPage() {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary/20">
 
-      {/* ── Sticky Header ────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-4 py-3.5 sm:px-6 lg:px-10">
-          <Link to="/" className="flex min-w-0 items-center gap-3">
-            <img src="/logo_8-removebg-preview.png" alt="CPM Logo" className="h-9 sm:h-11 w-auto object-contain mix-blend-multiply" />
-          </Link>
-          <nav aria-label="Primary" className="hidden items-center gap-6 text-sm font-medium text-foreground/80 lg:flex">
-            {navItems.map((n) =>
-              n.href.startsWith("/") && !n.href.includes("#") ? (
-                <Link key={n.label} to={n.href} activeProps={{ className: "text-primary font-semibold" }} className="transition-colors hover:text-primary">
-                  {n.label}
-                </Link>
-              ) : (
-                <a key={n.label} href={n.href} className="transition-colors hover:text-primary">
-                  {n.label}
-                </a>
-              )
-            )}
-          </nav>
-
-          <button
-            onClick={() => (menuOpen ? closeMenu() : setMenuOpen(true))}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-foreground lg:hidden hover:bg-muted focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile Drawer Menu */}
-      {menuOpen && (
-        <div className={`fixed inset-0 z-50 flex flex-col bg-background/98 px-6 py-6 backdrop-blur-md transition-opacity duration-300 lg:hidden ${menuClosing ? "opacity-0" : "opacity-100"}`}>
-          <div className="flex items-center justify-between border-b border-border pb-4">
-            <img src="/logo 9.jpeg" alt="CPM Logo" className="h-9 w-auto object-contain mix-blend-multiply" />
-            <button onClick={closeMenu} className="p-2 text-foreground"><X className="h-6 w-6" /></button>
-          </div>
-          <nav className="mt-6 flex flex-col gap-4 text-base font-medium">
-            {navItems.map((n) => (
-              <Link key={n.label} to={n.href} onClick={closeMenu} className="py-2 border-b border-border/40 text-foreground hover:text-primary">
-                {n.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
+      <Header />
 
       {/* ══════════════════════════════════════════════════════════════
           1. HERO BAND — Full Green Band & Stat Chips
@@ -494,15 +453,7 @@ function ChipPage() {
       )}
 
       {/* ── Footer ─────────────────────────────────────────────────── */}
-      <footer className="border-t border-border bg-background">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-4 py-8 text-sm text-muted-foreground sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <img src="/logo_1-removebg-preview.png" alt="CPM Int'l Logo" className="h-7 sm:h-9 w-auto object-contain" />
-            <p>© {new Date().getFullYear()} CPM Int'l Research Institute for Climate Health.</p>
-          </div>
-          <p className="text-xs uppercase tracking-[0.2em]">Research · Innovation · Education · Policy · Impact</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
