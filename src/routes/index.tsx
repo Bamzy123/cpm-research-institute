@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
 
 const navItems = [
   { href: "#top", label: "Home" },
-  { href: "/about", label: "About CPM Int'l Int'l" },
+  { href: "/about", label: "About CPM Int'l" },
   { href: "#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
   { href: "/events", label: "Events" },
@@ -235,7 +235,7 @@ function Index() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-4 lg:px-10">
           <a href="#top" className="flex min-w-0 items-center">
-            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain" />
+            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain" />
           </a>
           <nav aria-label="Primary" className="hidden items-center gap-6 text-xs font-medium text-foreground/80 lg:flex">
             {navItems.map((n) =>
@@ -269,7 +269,7 @@ function Index() {
           <div className={`fixed inset-0 z-40 bg-foreground/40 lg:hidden ${menuClosing ? "nav-backdrop-out" : "nav-backdrop-in"}`} onClick={closeMenu} aria-hidden />
           <nav aria-label="Mobile" className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl lg:hidden ${menuClosing ? "nav-slide-out" : "nav-slide-in"}`}>
             <div className="flex items-center justify-between border-b border-border px-6 py-5">
-              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM Int'l Int'l</span>
+              <span className="font-serif text-xl font-medium tracking-tight text-primary">CPM Int'l</span>
               <button type="button" onClick={closeMenu} aria-label="Close menu" className="inline-flex h-9 w-9 items-center justify-center border border-border transition-colors hover:border-primary/60">
                 <X className="h-4 w-4" aria-hidden />
               </button>
@@ -317,7 +317,7 @@ function Index() {
             Transforming Climate Intelligence into Health Security
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed" style={{ color: "oklch(0.87 0.04 220)" }}>
-            CPM Int'l Int'l Research Institute for Climate Health advances scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, artificial intelligence, and One Health.
+            CPM Int'l Research Institute for Climate Health advances scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, artificial intelligence, and One Health.
           </p>
           <p className="mt-2 text-sm" style={{ color: "oklch(0.72 0.14 75)" }}>
             Advancing Climate Health Intelligence for a Resilient World
@@ -787,7 +787,7 @@ function Index() {
                   <Mail className="h-5 w-5 shrink-0 text-primary" aria-hidden />
                   <div>
                     <dt className="font-medium text-foreground">Email</dt>
-                    <dd className="mt-1 text-muted-foreground">info@cpm Int'l-institute.org</dd>
+                    <dd className="mt-1 text-muted-foreground">info@cpm-institute.org</dd>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -927,7 +927,7 @@ function Index() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-3.5 w-3.5 shrink-0" style={{ color: "oklch(0.72 0.14 75)" }} />
-                  <span className="text-xs">info@cpm Int'l-institute.org</span>
+                  <span className="text-xs">info@cpm-institute.org</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="h-3.5 w-3.5 shrink-0" style={{ color: "oklch(0.72 0.14 75)" }} />
@@ -949,7 +949,7 @@ function Index() {
               {/* Institutional statement */}
               <div className="mt-8 border-t pt-5" style={{ borderColor: "oklch(1 0 0 / 0.1)" }}>
                 <p className="text-xs leading-relaxed italic" style={{ color: "oklch(0.50 0.02 220)" }}>
-                  CPM Int'l Int'l is more than a research institute. It is a platform for scientific discovery, technological innovation, and global collaboration.
+                  CPM Int'l is more than a research institute. It is a platform for scientific discovery, technological innovation, and global collaboration.
                 </p>
               </div>
             </div>
@@ -959,7 +959,7 @@ function Index() {
           <div className="mt-10 border-t pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs" style={{ borderColor: "oklch(1 0 0 / 0.1)", color: "oklch(0.45 0.02 220)" }}>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <div className="px-2.5 py-1.5 rounded-md shadow-sm"><img src="/logo 3.jpeg" alt="CPM Int'l Int'l Logo" className="h-10 md:h-12 w-auto object-contain mix-blend-screen" /></div>
-              <p>© {new Date().getFullYear()} CPM Int'l Int'l Research Institute.</p>
+              <p>© {new Date().getFullYear()} CPM Int'l Research Institute.</p>
             </div>
             <p className="uppercase tracking-[0.2em]">Science · Innovation · Intelligence · Impact</p>
           </div>

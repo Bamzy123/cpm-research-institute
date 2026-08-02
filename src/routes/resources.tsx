@@ -138,7 +138,7 @@ function ResourcesPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-6 py-5 lg:px-10">
           <Link to="/" className="flex min-w-0 items-center">
-            <img src="/logo 9.jpeg" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
+            <img src="/logo_8-removebg-preview.png" alt="CPM Int'l Research Institute for Climate Health" className="h-10 md:h-12 w-auto object-contain mix-blend-multiply" />
           </Link>
           <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary">
             <ArrowLeft className="h-4 w-4" aria-hidden /> Back to Home
