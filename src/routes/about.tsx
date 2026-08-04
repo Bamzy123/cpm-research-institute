@@ -10,7 +10,8 @@ import {
   Mail, Phone, MapPin, Shield, Sparkles, Cpu, Users, 
   CheckCircle2, GraduationCap, Compass, BookOpen, HeartPulse
 } from "lucide-react";
-import teamPhoto from "../assets/team.jpeg?url";
+import about from "../assets/about.jpeg"
+import prof from "../assets/prof.jpg"
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -157,7 +158,11 @@ function AboutPage() {
               
               <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-muted-foreground">
                 <p className="font-medium text-foreground">
-                  The CPM International Research Institute for Climate Health (CPM Int’l) is an independent, multidisciplinary research and innovation institute hosted at <strong>Obafemi Awolowo University (OAU), Ile-Ife, Nigeria</strong> — committed to advancing scientific excellence at the intersection of climate change, infectious diseases, artificial intelligence, pathogen genomics, One Health, and health systems innovation.
+                  The CPM International Research Institute for Climate Health (CPM Int’l) is an independent, 
+                  multidisciplinary research and innovation institute hosted at <strong>Obafemi Awolowo University (OAU), 
+                    Ile-Ife, Nigeria</strong> — committed to advancing scientific excellence at the intersection of climate
+                     change, infectious diseases, artificial intelligence, pathogen genomics, One Health, and health 
+                     systems innovation.
                 </p>
                 <p>
                   We were established on a simple but powerful conviction: the future of global health depends on our ability to anticipate health threats rather than merely respond to them.
@@ -174,7 +179,7 @@ function AboutPage() {
             <div className="lg:col-span-5 flex flex-col gap-6">
               <div className="relative">
                 <img
-                  src={teamPhoto}
+                  src={about}
                   alt="CPM research team"
                   className="w-full border border-border object-cover shadow-md"
                   style={{ aspectRatio: "4/3" }}
@@ -250,22 +255,44 @@ function AboutPage() {
 
       {/* ── Section 2: Our Story ───────────────────────────────────────── */}
       <section id="story" className="bg-sky/30 hairline-b">
-        <div className="mx-auto max-w-[900px] px-6 py-20 lg:py-24">
-          <div className="text-center">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Foundational Journey</p>
-            <h2 className="mt-4 font-serif text-3xl tracking-tight text-foreground lg:text-4xl">Our Story</h2>
-            <div className="mx-auto mt-3 h-0.5 w-12" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
-          </div>
-          <div className="mt-10 space-y-6 text-[15px] leading-relaxed text-muted-foreground">
-            <p>
-              CPM International Research Institute was founded with a vision to build a globally connected research ecosystem capable of addressing one of the twenty-first century’s greatest challenges—the complex relationship between climate change and human health.
-            </p>
-            <p>
-              Recognizing that conventional disease surveillance systems often operate independently of environmental intelligence, the Institute set out to create a new generation of scientific frameworks that integrate climate science, public health, artificial intelligence, laboratory medicine, genomics, and digital technologies into unified decision-support systems.
-            </p>
-            <p className="font-serif text-lg text-foreground italic border-y py-6 my-8 px-4 text-center" style={{ borderColor: "oklch(0.34 0.06 160 / 0.15)" }}>
-              Today, CPM is evolving into a platform where multidisciplinary science drives innovation, partnerships inspire discovery, and research translates into meaningful public health impact.
-            </p>
+        <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-24">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+            {/* Left Column: Prof Picture */}
+            <div className="lg:col-span-5 flex flex-col items-center">
+              <div className="relative w-full max-w-md">
+                <img
+                  src={prof}
+                  alt="Professor Joseph Omololu-Aso"
+                  className="w-full border border-border object-cover shadow-xl rounded-sm"
+                  style={{ aspectRatio: "4/5" }}
+                />
+                <div className="absolute -bottom-3 -left-3 h-16 w-16 border-b-2 border-l-2" style={{ borderColor: "oklch(0.72 0.14 75)" }} aria-hidden />
+              </div>
+              <div className="mt-5 text-center">
+                <p className="font-serif text-lg font-semibold text-foreground">Prof. Joseph Omololu-Aso</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Founding Director-General &amp; CEO</p>
+              </div>
+            </div>
+
+            {/* Right Column: Our Story Content */}
+            <div className="lg:col-span-7">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Foundational Journey</p>
+                <h2 className="mt-3 font-serif text-3xl tracking-tight text-foreground lg:text-4xl">Our Story</h2>
+                <div className="mt-3 h-0.5 w-12" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
+              </div>
+              <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-muted-foreground">
+                <p>
+                  CPM International Research Institute was founded with a vision to build a globally connected research ecosystem capable of addressing one of the twenty-first century’s greatest challenges—the complex relationship between climate change and human health.
+                </p>
+                <p>
+                  Recognizing that conventional disease surveillance systems often operate independently of environmental intelligence, the Institute set out to create a new generation of scientific frameworks that integrate climate science, public health, artificial intelligence, laboratory medicine, genomics, and digital technologies into unified decision-support systems.
+                </p>
+                <p className="font-serif text-base text-foreground italic border-l-2 pl-4 py-3 my-6" style={{ borderColor: "oklch(0.72 0.14 75)" }}>
+                  Today, CPM Int'l is evolving into a platform where multidisciplinary science drives innovation, partnerships inspire discovery, and research translates into meaningful public health impact.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -276,10 +303,10 @@ function AboutPage() {
           <div className="border border-primary/20 bg-card p-8 lg:p-12 relative overflow-hidden text-center rounded-lg shadow-sm">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1 w-32 bg-primary" />
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Integrated Framework</p>
-            <h2 className="mt-4 font-serif text-2xl tracking-tight text-foreground lg:text-3xl">What Makes CPM Different?</h2>
+            <h2 className="mt-4 font-serif text-2xl tracking-tight text-foreground lg:text-3xl">What Makes CPM Int'l Different?</h2>
             
             <p className="mt-8 font-serif text-xl leading-relaxed text-primary max-w-2xl mx-auto">
-              "At CPM, we do not see climate, pathogens, health systems, artificial intelligence, or environmental change as separate disciplines. We see them as interconnected components of a single ecosystem."
+              "At CPM Int'l, we do not see climate, pathogens, health systems, artificial intelligence, or environmental change as separate disciplines. We see them as interconnected components of a single ecosystem."
             </p>
             
             <div className="mt-8 space-y-4 text-sm leading-relaxed text-muted-foreground max-w-3xl mx-auto">
@@ -340,7 +367,7 @@ function AboutPage() {
               Our Scientific Identity
             </h2>
             <p className="mt-4 text-sm text-muted-foreground">
-              CPM is built upon six interconnected pillars:
+              CPM Int'l is built upon six interconnected pillars:
             </p>
           </div>
           
@@ -379,7 +406,7 @@ function AboutPage() {
               </h2>
               <div className="mt-8 space-y-5 text-sm leading-relaxed text-white/80">
                 <p>
-                  At the heart of CPM is CHIP™ (Climate Health Intelligence Platform)—our flagship scientific framework.
+                  At the heart of CPM Int'l is CHIP™ (Climate Health Intelligence Platform)—our flagship scientific framework.
                 </p>
                 <p>
                   CHIP™ is an AI-enabled Climate Health Digital Twin that continuously integrates climate observations, environmental intelligence, disease surveillance, laboratory diagnostics, pathogen genomics, satellite information, and predictive analytics into a unified decision-support ecosystem.
@@ -453,7 +480,7 @@ function AboutPage() {
               <div className="h-0.5 w-12" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
               <div className="text-sm leading-relaxed text-muted-foreground space-y-3">
                 <p>
-                  Innovation at CPM extends beyond scientific discovery. We develop intelligent digital platforms, predictive models, data integration systems, and decision-support technologies that enable partners to make informed decisions based on robust scientific evidence.
+                  Innovation at CPM Int'l extends beyond scientific discovery. We develop intelligent digital platforms, predictive models, data integration systems, and decision-support technologies that enable partners to make informed decisions based on robust scientific evidence.
                 </p>
                 <p>
                   Our ambition is not simply to publish research, but to create innovations that improve health outcomes and strengthen resilience across Africa and the wider global community.
@@ -468,7 +495,7 @@ function AboutPage() {
               <div className="h-0.5 w-12" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
               <div className="text-sm leading-relaxed text-muted-foreground space-y-3">
                 <p>
-                  The challenges of climate change and health transcend national boundaries. For this reason, CPM actively promotes multidisciplinary and international collaboration with universities, teaching hospitals, research institutes, public health agencies, and development organizations.
+                  The challenges of climate change and health transcend national boundaries. For this reason, CPM Int'l actively promotes multidisciplinary and international collaboration with universities, teaching hospitals, research institutes, public health agencies, and development organizations.
                 </p>
                 <p>
                   We believe that meaningful scientific progress is achieved through partnerships built on shared knowledge, mutual respect, and a commitment to improving lives.
@@ -482,7 +509,7 @@ function AboutPage() {
               <h3 className="font-serif text-2xl text-foreground font-semibold">Building the Future</h3>
               <div className="h-0.5 w-12" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
               <p className="text-sm leading-relaxed text-muted-foreground">
-                CPM is more than a research institute. It is a growing scientific ecosystem dedicated to:
+                CPM Int'l is more than a research institute. It is a growing scientific ecosystem dedicated to:
               </p>
               <ul className="mt-4 space-y-2 text-xs text-foreground">
                 {buildingFuturePoints.map(({ label }) => (
@@ -556,7 +583,7 @@ function AboutPage() {
             <div className="lg:col-span-5 bg-card border border-border p-8 rounded-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
               <div className="absolute top-0 right-0 h-1 w-full bg-primary" />
               <div>
-                <h3 className="font-serif text-xl font-semibold text-foreground">CPM Int’l</h3>
+                <h3 className="font-serif text-xl font-semibold text-foreground">CPM Int'l</h3>
                 <p className="text-xs text-primary font-medium tracking-wide uppercase mt-1">Research Institute for Climate Health</p>
                 
                 <hr className="my-6 border-border" />
