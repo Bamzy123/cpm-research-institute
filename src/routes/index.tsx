@@ -16,6 +16,7 @@ import {
 import officeHeader from "../assets/header.jpeg?url";
 import directorPhoto from "../assets/director.jpeg?url";
 import teamPhoto from "../assets/team.jpeg?url";
+import citadelPhoto from "../assets/citadel.jpeg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -505,6 +506,67 @@ function Index() {
             <Link to="/chip" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
               Learn more about the Digital Twin <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          SPOTLIGHT SECTION — CLIMATE SURVEILLANCE PILOT
+      ══════════════════════════════════════════════════════════════════ */}
+      <section id="surveillance-pilot" className="bg-sky/20 hairline-b py-16 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+            {/* Left: Image container with stylized frame & gold corner accent */}
+            <div className="lg:col-span-6 relative">
+              <div className="relative overflow-hidden rounded-md border border-border bg-card shadow-2xl">
+                <img
+                  src={citadelPhoto}
+                  alt="Professor Joseph Omololu-Aso (DG) with Ms. Oladimeji Abigail Eniola (Unit Head) During Climate Surveillance Pilot"
+                  className="w-full object-cover shadow-lg transition-transform duration-500 hover:scale-[1.02]"
+                  style={{ maxHeight: "520px" }}
+                />
+                <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider text-amber-300 uppercase border border-amber-300/30">
+                  Field Operations
+                </div>
+              </div>
+              <div className="absolute -bottom-4 -right-4 h-24 w-24 border-b-2 border-r-2" style={{ borderColor: "oklch(0.72 0.14 75)" }} aria-hidden />
+            </div>
+
+            {/* Right: Title & Description */}
+            <div className="lg:col-span-6">
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+                Institutional Milestones &amp; Field Operations
+              </span>
+              <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight text-foreground lg:text-4xl">
+                Climate Surveillance Pilot
+              </h2>
+              <div className="mt-3 h-0.5 w-16" style={{ background: "oklch(0.72 0.14 75)" }} aria-hidden />
+
+              <div className="mt-6 border-l-4 pl-4 py-2 bg-primary/5 rounded-r" style={{ borderColor: "oklch(0.72 0.14 75)" }}>
+                <p className="text-base font-serif font-semibold text-foreground leading-snug">
+                  Professor Joseph Omololu-Aso (DG) with Ms. Oladimeji Abigail Eniola (Unit Head) During Climate Surveillance Pilot
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground">
+                <p>
+                  As part of our commitment to proactive disease surveillance, CPM Int'l Research Institute conducts comprehensive field epidemiological pilot studies integrating climate intelligence, laboratory diagnostics, and environmental monitoring across regional hubs.
+                </p>
+                <p>
+                  These pilot initiatives strengthen local research capacity, operationalize the One Health framework, and pave the way for predictive public health interventions.
+                </p>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link
+                  to="/events"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider transition-all hover:opacity-90 rounded-sm shadow-md"
+                  style={{ background: "oklch(0.72 0.14 75)", color: "oklch(0.15 0.04 230)" }}
+                >
+                  View Events &amp; Photo Gallery <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
