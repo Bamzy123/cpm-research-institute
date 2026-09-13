@@ -18,6 +18,7 @@ import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ChipRouteImport } from './routes/chip'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -65,6 +66,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsEventIdRoute = EventsEventIdRouteImport.update({
+  id: '/$eventId',
+  path: '/$eventId',
+  getParentRoute: () => EventsRoute,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -76,24 +82,26 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
   '/donate': typeof DonateRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
   '/fellowships': typeof FellowshipsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
   '/api/chat': typeof ApiChatRoute
+  '/events/$eventId': typeof EventsEventIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
   '/donate': typeof DonateRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
   '/fellowships': typeof FellowshipsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
   '/api/chat': typeof ApiChatRoute
+  '/events/$eventId': typeof EventsEventIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -101,12 +109,13 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/chip': typeof ChipRoute
   '/donate': typeof DonateRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
   '/fellowships': typeof FellowshipsRoute
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
   '/api/chat': typeof ApiChatRoute
+  '/events/$eventId': typeof EventsEventIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/resources'
     | '/api/chat'
+    | '/events/$eventId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/resources'
     | '/api/chat'
+    | '/events/$eventId'
   id:
     | '__root__'
     | '/'
@@ -145,6 +156,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/resources'
     | '/api/chat'
+    | '/events/$eventId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -152,7 +164,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ChipRoute: typeof ChipRoute
   DonateRoute: typeof DonateRoute
-  EventsRoute: typeof EventsRoute
+  EventsRoute: typeof EventsRouteWithChildren
   FellowshipsRoute: typeof FellowshipsRoute
   LeadershipRoute: typeof LeadershipRoute
   NewsRoute: typeof NewsRoute
@@ -225,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events/$eventId': {
+      id: '/events/$eventId'
+      path: '/$eventId'
+      fullPath: '/events/$eventId'
+      preLoaderRoute: typeof EventsEventIdRouteImport
+      parentRoute: typeof EventsRoute
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -235,12 +254,23 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface EventsRouteChildren {
+  EventsEventIdRoute: typeof EventsEventIdRoute
+}
+
+const EventsRouteChildren: EventsRouteChildren = {
+  EventsEventIdRoute: EventsEventIdRoute,
+}
+
+const EventsRouteWithChildren =
+  EventsRoute._addFileChildren(EventsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ChipRoute: ChipRoute,
   DonateRoute: DonateRoute,
-  EventsRoute: EventsRoute,
+  EventsRoute: EventsRouteWithChildren,
   FellowshipsRoute: FellowshipsRoute,
   LeadershipRoute: LeadershipRoute,
   NewsRoute: NewsRoute,

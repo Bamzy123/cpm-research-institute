@@ -1,14 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef, TouchEvent } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { eventRecords, type EventId } from "../lib/event-data";
 
 
 import {
   Calendar, MapPin, Building2, Globe, Shield, Sparkles,
   ChevronLeft, ChevronRight, Play, Pause, Maximize2, X, Microscope,
-  CheckCircle2, Award, Menu, Image as ImageIcon, Users,
-  Grid
+  CheckCircle2, Award, Image as ImageIcon, Users,
+  Grid, ArrowRight, Copy, Check
 } from "lucide-react";
 
 export const Route = createFileRoute("/events")({
@@ -24,18 +25,6 @@ export const Route = createFileRoute("/events")({
     ],
   }),
 });
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About CPM Int'l" },
-  { href: "/#research", label: "Research" },
-  { href: "/chip", label: "CHIP™" },
-  { href: "/events", label: "Events" },
-  { href: "/news", label: "News" },
-  { href: "/resources", label: "Resources" },
-  { href: "/leadership", label: "Leadership" },
-  { href: "/#contact", label: "Contact" },
-];
 
 const acegidPhotos = [
   { url: "/WhatsApp Image 2026-07-25 at 5.11.26 AM.jpeg", title: "Delegation Arrival at ACEGID", caption: "Scientific delegation from CPM Int'l Research Institute, OAUTHC, and OAU arriving at ACEGID, Redeemer's University, Ede." },
@@ -135,15 +124,15 @@ const okaLandPhotos = [
 const whatsappPhotos = [...acegidPhotos, ...cpmPhotos].filter((photo) => photo.url.includes("WhatsApp Image"));
 
 function EventsPage() {
-  const [activeEvent, setActiveEvent] = useState<"cpm" | "acegid" | "olubadan" | "oka-land" | "hpa-bmz">("cpm");
+  const [activeEvent, setActiveEvent] = useState<EventId>("cpm");
   const [activeGalleryTab, setActiveGalleryTab] = useState<"cpm" | "acegid" | "oka-land" | "whatsapp" | "all">("cpm");
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false); // DEFAULT TO FALSE to prevent auto-slide scroll issues!
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isGridMode, setIsGridMode] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuClosing, setMenuClosing] = useState(false);
+  const [hasCopiedLink, setHasCopiedLink] = useState(false);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
+  const lightboxCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   const currentPhotos =
     activeGalleryTab === "cpm"
@@ -202,12 +191,66 @@ function EventsPage() {
     }
   }, [activePhotoIndex]);
 
-  const closeMenu = () => {
-    setMenuClosing(true);
-    setTimeout(() => {
-      setMenuOpen(false);
-      setMenuClosing(false);
-    }, 290);
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash.slice(1);
+      if (!hash) return;
+      const event = eventRecords.find((record) => record.anchor === hash);
+      const target = document.getElementById(hash);
+      if (!target) return;
+      if (event) setActiveEvent(event.id);
+      window.setTimeout(() => {
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 88, behavior: "smooth" });
+      }, 0);
+    };
+
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEvent = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+        if (!visibleEvent) return;
+        const event = eventRecords.find((record) => record.anchor === visibleEvent.target.id);
+        if (event) setActiveEvent(event.id);
+      },
+      { rootMargin: "-96px 0px -55% 0px", threshold: [0.1, 0.4, 0.75] },
+    );
+
+    eventRecords.forEach((event) => {
+      const target = document.getElementById(event.anchor);
+      if (target) observer.observe(target);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsLightboxOpen(false);
+      if (event.key === "ArrowLeft") prevPhoto();
+      if (event.key === "ArrowRight") nextPhoto();
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    lightboxCloseButtonRef.current?.focus();
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isLightboxOpen]);
+
+  const copyPageLink = async () => {
+    if (!navigator.clipboard) return;
+    await navigator.clipboard.writeText(window.location.href);
+    setHasCopiedLink(true);
+    window.setTimeout(() => setHasCopiedLink(false), 1800);
   };
 
   const nextPhoto = () => setActivePhotoIndex((prev) => (prev + 1) % currentPhotos.length);
@@ -240,6 +283,15 @@ function EventsPage() {
               Documenting strategic scientific engagements, institutional collaborations, and international dialogues in pathogenomics, climate-health surveillance, AMR, and One Health innovation.
             </p>
 
+            <button
+              type="button"
+              onClick={copyPageLink}
+              className="mt-6 inline-flex items-center gap-2 border border-white/25 bg-white/10 px-3.5 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/20"
+            >
+              {hasCopiedLink ? <Check className="h-3.5 w-3.5" aria-hidden /> : <Copy className="h-3.5 w-3.5" aria-hidden />}
+              {hasCopiedLink ? "Link copied" : "Copy archive link"}
+            </button>
+
             {/* Event Navigation Tabs */}
             <div className="mt-10 flex flex-wrap gap-2.5 sm:gap-3 border-t border-primary-foreground/20 pt-8">
               <button
@@ -255,7 +307,7 @@ function EventsPage() {
                     : "bg-white/10 text-primary-foreground hover:bg-white/20"
                 }`}
               >
-                <Users className="h-4 w-4" /> CPM Strategic Sessions (33 Photos)
+                <Users className="h-4 w-4" /> CPM Strategic Sessions ({cpmPhotos.length} Photos)
               </button>
 
               <button
@@ -271,7 +323,7 @@ function EventsPage() {
                     : "bg-white/10 text-primary-foreground hover:bg-white/20"
                 }`}
               >
-                <Microscope className="h-4 w-4" /> ACEGID Facility Tour (26 Photos)
+                <Microscope className="h-4 w-4" /> ACEGID Facility Tour ({acegidPhotos.length} Photos)
               </button>
 
               <button
@@ -318,6 +370,44 @@ function EventsPage() {
                 <Globe className="h-4 w-4" /> Global Dialogue (HPA-BMZ Germany)
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border/60 bg-secondary/20" aria-labelledby="event-index-title">
+        <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Engagement index</p>
+              <h2 id="event-index-title" className="mt-2 font-serif text-2xl font-normal text-foreground sm:text-3xl">
+                Explore the archive
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+              Browse scientific visits, institutional conversations and global partnerships by engagement.
+            </p>
+          </div>
+
+          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {eventRecords.map((event) => (
+              <a
+                key={event.id}
+                href={`#${event.anchor}`}
+                onClick={() => setActiveEvent(event.id)}
+                className="group border border-border bg-background p-4 transition-colors hover:border-primary/50 hover:bg-primary/5"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">{event.category}</span>
+                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" aria-hidden />
+                </div>
+                <h3 className="mt-3 font-serif text-lg leading-snug text-foreground">{event.label}</h3>
+                <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{event.summary}</p>
+                <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                  {event.date && <span>{event.date}</span>}
+                  <span>{event.location}</span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -449,7 +539,7 @@ function EventsPage() {
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                CPM Strategic &amp; Field Sessions (33)
+                CPM Strategic &amp; Field Sessions ({cpmPhotos.length})
               </button>
               <button
                 onClick={() => { setActiveGalleryTab("acegid"); setActivePhotoIndex(0); }}
@@ -459,7 +549,7 @@ function EventsPage() {
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                ACEGID Facility Tour (26)
+                ACEGID Facility Tour ({acegidPhotos.length})
               </button>
               <button
                 onClick={() => { setActiveGalleryTab("oka-land"); setActivePhotoIndex(0); }}
@@ -489,7 +579,7 @@ function EventsPage() {
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                All Collections (60)
+                All Collections ({cpmPhotos.length + acegidPhotos.length + okaLandPhotos.length})
               </button>
             </div>
 
@@ -614,7 +704,7 @@ function EventsPage() {
                             : "border-transparent opacity-50 hover:opacity-100"
                         }`}
                       >
-                        <img src={photo.url} alt={photo.caption} className="h-full w-full object-cover" />
+                        <img src={photo.url} alt={photo.caption} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                         <span className="absolute bottom-0.5 right-0.5 rounded bg-black/80 px-1 text-[9px] font-mono text-white">
                           {index + 1}
                         </span>
@@ -627,16 +717,18 @@ function EventsPage() {
               /* GRID VIEW MODE */
               <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 max-h-[600px] overflow-y-auto pr-1">
                 {currentPhotos.map((photo, index) => (
-                  <div
+                  <button
+                    type="button"
                     key={index}
                     onClick={() => {
                       setActivePhotoIndex(index);
                       setIsGridMode(false);
                       setIsPlaying(false);
                     }}
+                    aria-label={`View photo ${index + 1}`}
                     className="group relative cursor-pointer overflow-hidden rounded-xl border border-border bg-slate-950 aspect-[4/3] shadow-sm hover:border-primary transition-all duration-200 hover:-translate-y-1"
                   >
-                    <img src={photo.url} alt={photo.caption} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                    <img src={photo.url} alt={photo.caption} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-2.5 flex flex-col justify-end">
                       <p className="text-[11px] font-medium text-white line-clamp-2 leading-tight">
                         {photo.caption}
@@ -645,7 +737,7 @@ function EventsPage() {
                     <span className="absolute top-2 left-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-mono text-white">
                       #{index + 1}
                     </span>
-                  </div>
+                  </button>
                 ))}
               </div>
             )}
@@ -1077,6 +1169,9 @@ function EventsPage() {
       ══════════════════════════════════════════════════════════════ */}
       {isLightboxOpen && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Photo viewer"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -1098,6 +1193,7 @@ function EventsPage() {
 
               <button
                 onClick={() => setIsLightboxOpen(false)}
+                ref={lightboxCloseButtonRef}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition"
                 aria-label="Close Lightbox"
               >
@@ -1111,6 +1207,7 @@ function EventsPage() {
               <button
                 onClick={prevPhoto}
                 className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/25 transition z-10"
+                aria-label="Previous photo"
               >
                 <ChevronLeft className="h-7 w-7" />
               </button>
@@ -1129,6 +1226,7 @@ function EventsPage() {
               <button
                 onClick={nextPhoto}
                 className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/25 transition z-10"
+                aria-label="Next photo"
               >
                 <ChevronRight className="h-7 w-7" />
               </button>
@@ -1137,21 +1235,23 @@ function EventsPage() {
             <div className="w-full max-w-6xl max-h-[80vh] overflow-y-auto pt-14 pb-6 px-2">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 {currentPhotos.map((photo, index) => (
-                  <div
+                  <button
+                    type="button"
                     key={index}
                     onClick={() => {
                       setActivePhotoIndex(index);
                       setIsGridMode(false);
                     }}
+                    aria-label={`View photo ${index + 1}`}
                     className={`relative cursor-pointer overflow-hidden rounded-lg aspect-[4/3] border-2 transition ${
                       index === activePhotoIndex ? "border-emerald-400 ring-2 ring-emerald-400/50" : "border-transparent opacity-75 hover:opacity-100"
                     }`}
                   >
-                    <img src={photo.url} alt={photo.caption} className="h-full w-full object-cover" />
+                    <img src={photo.url} alt={photo.caption} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                     <span className="absolute bottom-1 right-1 rounded bg-black/70 px-1 text-[9px] font-mono text-white">
                       #{index + 1}
                     </span>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
