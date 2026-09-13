@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef, TouchEvent } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -390,10 +390,10 @@ function EventsPage() {
 
           <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {eventRecords.map((event) => (
-              <a
+              <Link
                 key={event.id}
-                href={`#${event.anchor}`}
-                onClick={() => setActiveEvent(event.id)}
+                to="/events/$eventId"
+                params={{ eventId: event.id }}
                 className="group border border-border bg-background p-4 transition-colors hover:border-primary/50 hover:bg-primary/5"
               >
                 <div className="flex items-center justify-between gap-3">
@@ -406,7 +406,8 @@ function EventsPage() {
                   {event.date && <span>{event.date}</span>}
                   <span>{event.location}</span>
                 </div>
-              </a>
+                <p className="mt-4 text-xs font-semibold text-primary">Open shareable event page</p>
+              </Link>
             ))}
           </div>
         </div>
