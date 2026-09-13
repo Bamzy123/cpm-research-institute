@@ -124,9 +124,19 @@ const cpmPhotos = [
   { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.42 PM.jpeg", title: "CPM Institute Delegation Group Photo", caption: "Final group photo of CPM Int'l Research Institute leadership, staff, and partners." },
 ];
 
+const okaLandPhotos = [
+  {
+    url: "/oka-land-courtesy-visit.jpeg",
+    title: "Climate-Health Courtesy Visit",
+    caption: "Professor J. Omololu-Aso with His Royal Highness Oba Dr. Yusuf Adebori Adeleye, the Olubaka of Oka Land, and Olori during the climate-health courtesy visit on 15 August 2026.",
+  },
+];
+
+const whatsappPhotos = [...acegidPhotos, ...cpmPhotos].filter((photo) => photo.url.includes("WhatsApp Image"));
+
 function EventsPage() {
-  const [activeEvent, setActiveEvent] = useState<"cpm" | "acegid" | "olubadan" | "hpa-bmz">("cpm");
-  const [activeGalleryTab, setActiveGalleryTab] = useState<"cpm" | "acegid" | "all">("cpm");
+  const [activeEvent, setActiveEvent] = useState<"cpm" | "acegid" | "olubadan" | "oka-land" | "hpa-bmz">("cpm");
+  const [activeGalleryTab, setActiveGalleryTab] = useState<"cpm" | "acegid" | "oka-land" | "whatsapp" | "all">("cpm");
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false); // DEFAULT TO FALSE to prevent auto-slide scroll issues!
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -140,7 +150,11 @@ function EventsPage() {
       ? cpmPhotos
       : activeGalleryTab === "acegid"
       ? acegidPhotos
-      : [...cpmPhotos, ...acegidPhotos];
+      : activeGalleryTab === "oka-land"
+      ? okaLandPhotos
+      : activeGalleryTab === "whatsapp"
+      ? whatsappPhotos
+      : [...cpmPhotos, ...acegidPhotos, ...okaLandPhotos];
 
   // Touch swipe handling for mobile
   const touchStartX = useRef<number | null>(null);
@@ -272,6 +286,22 @@ function EventsPage() {
                 }`}
               >
                 <Building2 className="h-4 w-4" /> Olubadan Audience (Ibadan)
+              </button>
+
+              <button
+                onClick={() => {
+                  setActiveEvent("oka-land");
+                  setActiveGalleryTab("oka-land");
+                  setActivePhotoIndex(0);
+                  document.getElementById("event-oka-land")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs sm:text-sm font-medium transition-all ${
+                  activeEvent === "oka-land"
+                    ? "bg-white text-primary shadow-md font-semibold"
+                    : "bg-white/10 text-primary-foreground hover:bg-white/20"
+                }`}
+              >
+                <Building2 className="h-4 w-4" /> Oka Land Courtesy Visit
               </button>
 
               <button
@@ -432,6 +462,26 @@ function EventsPage() {
                 ACEGID Facility Tour (26)
               </button>
               <button
+                onClick={() => { setActiveGalleryTab("oka-land"); setActivePhotoIndex(0); }}
+                className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
+                  activeGalleryTab === "oka-land"
+                    ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                }`}
+              >
+                Oka Land Courtesy Visit (1)
+              </button>
+              <button
+                onClick={() => { setActiveGalleryTab("whatsapp"); setActivePhotoIndex(0); }}
+                className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
+                  activeGalleryTab === "whatsapp"
+                    ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                }`}
+              >
+                Institutional Photo Archive ({whatsappPhotos.length})
+              </button>
+              <button
                 onClick={() => { setActiveGalleryTab("all"); setActivePhotoIndex(0); }}
                 className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
                   activeGalleryTab === "all"
@@ -439,7 +489,7 @@ function EventsPage() {
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                All Collections (59)
+                All Collections (60)
               </button>
             </div>
 
@@ -828,7 +878,103 @@ function EventsPage() {
       </article>
 
       {/* ══════════════════════════════════════════════════════════════
-          EVENT 3: GLOBAL KICK-OFF DIALOGUE (HPA-BMZ GERMANY)
+          EVENT 3: OKA LAND CLIMATE-HEALTH COURTESY VISIT
+      ══════════════════════════════════════════════════════════════ */}
+      <article id="event-oka-land" className="border-b border-border/60 bg-secondary/30 py-12 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
+            <div className="lg:col-span-8">
+              <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Climate-Health Courtesy Visit
+                </span>
+                <span className="text-muted-foreground">•</span>
+                <span className="flex items-center gap-1 text-muted-foreground"><Calendar className="h-3.5 w-3.5" /> 15 August 2026</span>
+                <span className="text-muted-foreground">•</span>
+                <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Oka Land</span>
+              </div>
+
+              <h2 className="font-serif text-2xl sm:text-4xl leading-tight font-normal text-foreground tracking-tight">
+                CPM INTERNATIONAL RESEARCH INSTITUTE FOR CLIMATE HEALTH PAYS COURTESY VISIT TO THE OLUBAKA OF OKA LAND
+              </h2>
+
+              <p className="mt-3 font-serif text-base sm:text-lg text-muted-foreground leading-relaxed">
+                Traditional Leadership Engagement Advances Dialogue on Climate Change, Community Health Resilience and Climate-Health Action
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 lg:col-span-4 shadow-sm">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Engagement Metadata</h3>
+              <dl className="mt-4 space-y-3.5 text-sm">
+                <div>
+                  <dt className="text-xs text-muted-foreground">CPM Institute Representative</dt>
+                  <dd className="font-semibold text-foreground">Professor J. Omololu-Aso</dd>
+                  <dd className="text-xs text-muted-foreground">Director-General/CEO, CPM International Research Institute for Climate Health</dd>
+                </div>
+                <div className="border-t border-border/50 pt-2.5">
+                  <dt className="text-xs text-muted-foreground">Royal Host</dt>
+                  <dd className="font-semibold text-foreground">His Royal Highness Oba Dr. Yusuf Adebori Adeleye</dd>
+                  <dd className="text-xs text-muted-foreground">Olubaka of Oka Land</dd>
+                </div>
+                <div className="border-t border-border/50 pt-2.5">
+                  <dt className="text-xs text-muted-foreground">Engagement Focus</dt>
+                  <dd className="font-medium text-foreground">Climate change · Community health resilience · Traditional institutions</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <figure className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
+            <div className="flex justify-center bg-slate-950">
+              <img
+                src="/oka-land-courtesy-visit.jpeg"
+                alt="Professor J. Omololu-Aso with the Olubaka of Oka Land and Olori during a climate-health courtesy visit"
+                className="max-h-[680px] w-full object-contain"
+              />
+            </div>
+            <figcaption className="border-t border-border px-5 py-4 text-sm leading-relaxed text-muted-foreground sm:px-6">
+              Professor J. Omololu-Aso with His Royal Highness Oba Dr. Yusuf Adebori Adeleye, the Olubaka of Oka Land, and Olori during the climate-health courtesy visit on 15 August 2026.
+            </figcaption>
+          </figure>
+
+          <div className="mt-12 grid gap-10 lg:grid-cols-12">
+            <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/85 lg:col-span-8">
+              <p className="first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-5xl first-letter:font-bold first-letter:text-primary">
+                Professor <strong>J. Omololu-Aso</strong>, Director-General/CEO of the CPM International Research Institute for Climate Health, paid a warm climate-health courtesy visit to <strong>His Royal Highness Oba Dr. Yusuf Adebori Adeleye</strong>, the Olubaka of Oka Land, on 15 August 2026.
+              </p>
+
+              <p>
+                The engagement provided an important opportunity to exchange perspectives on the relationship between climate change, community health resilience, and locally grounded public health action. It also highlighted the constructive role traditional institutions can play in building awareness, strengthening trust, and supporting climate-health initiatives within communities.
+              </p>
+
+              <blockquote className="rounded-r-xl border-l-4 border-primary bg-primary/5 p-5 sm:p-6 font-serif text-lg sm:text-xl italic text-foreground shadow-sm">
+                “A meaningful traditional leadership engagement advancing dialogue on climate change, community health resilience, and the role of traditional institutions in strengthening climate-health action in Oka Land and beyond.”
+              </blockquote>
+
+              <div className="pt-4 border-t border-border/40">
+                <h3 className="font-serif text-2xl font-normal text-foreground">Strengthening Community-Centred Climate-Health Action</h3>
+                <p className="mt-3">
+                  The visit reflects CPM International Research Institute’s commitment to engaging leaders and communities as partners in the development of practical, inclusive, and resilient responses to climate-sensitive health challenges.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-6 lg:col-span-4">
+              <div className="sticky top-24 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
+                <h4 className="font-serif text-lg font-normal text-foreground border-b border-border pb-3">Courtesy Visit Focus</h4>
+                <div className="mt-4 space-y-3.5 text-sm text-muted-foreground">
+                  <div className="flex gap-3"><CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /><p>Climate change awareness and action</p></div>
+                  <div className="flex gap-3"><CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /><p>Community health resilience</p></div>
+                  <div className="flex gap-3"><CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /><p>Traditional leadership partnerships</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* ══════════════════════════════════════════════════════════════
+          EVENT 4: GLOBAL KICK-OFF DIALOGUE (HPA-BMZ GERMANY)
       ══════════════════════════════════════════════════════════════ */}
       <article id="event-hpa-bmz" className="py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
