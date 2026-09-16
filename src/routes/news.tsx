@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import type { EventId } from "../lib/event-data";
 
 
 import { ArrowLeft, Calendar, User, Tag, ArrowRight } from "lucide-react";
@@ -24,6 +25,7 @@ type NewsItem = {
   date: string;
   author: string;
   category: string;
+  eventId?: EventId;
   featured?: boolean;
 };
 
@@ -36,6 +38,7 @@ const newsItems: NewsItem[] = [
     date: "2026-07-22",
     author: "CPM Int'l Scientific Delegation",
     category: "Events",
+    eventId: "acegid",
     featured: true,
   },
   {
@@ -46,6 +49,7 @@ const newsItems: NewsItem[] = [
     date: "2026-07-07",
     author: "Global Engagement Team",
     category: "Events",
+    eventId: "hpa-bmz",
     featured: true,
   },
   {
@@ -56,6 +60,18 @@ const newsItems: NewsItem[] = [
     date: "2026-04-13",
     author: "Director-General Office",
     category: "Events",
+    eventId: "olubadan",
+    featured: false,
+  },
+  {
+    id: "oka-land-courtesy-visit",
+    title: "CPM International Research Institute Pays Climate-Health Courtesy Visit to the Olubaka of Oka Land",
+    excerpt: "Traditional leadership engagement advances dialogue on climate change, community health resilience, and climate-health action in Oka Land and beyond.",
+    content: "Professor J. Omololu-Aso, Director-General/CEO of CPM International Research Institute for Climate Health, paid a courtesy visit to His Royal Highness Oba Dr. Yusuf Adebori Adeleye, the Olubaka of Oka Land, on 15 August 2026.",
+    date: "2026-08-15",
+    author: "Director-General Office",
+    category: "Events",
+    eventId: "oka-land",
     featured: false,
   },
   {
@@ -199,7 +215,8 @@ function NewsPage() {
                       {item.author}
                     </span>
                     <Link
-                      to={item.category === "Events" ? "/events" : "/news"}
+                      to={item.eventId ? "/events/$eventId" : "/news"}
+                      params={item.eventId ? { eventId: item.eventId } : undefined}
                       className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:gap-2 transition-all"
                     >
                       Read full article <ArrowRight className="h-4 w-4" aria-hidden />
@@ -255,7 +272,8 @@ function NewsPage() {
                             {item.author}
                           </span>
                           <Link
-                            to={item.category === "Events" ? "/events" : "/news"}
+                            to={item.eventId ? "/events/$eventId" : "/news"}
+                            params={item.eventId ? { eventId: item.eventId } : undefined}
                             className="inline-flex items-center gap-1 text-primary hover:gap-2 transition-all font-medium"
                           >
                             Read full article <ArrowRight className="h-3 w-3" aria-hidden />

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef, TouchEvent } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { eventRecords, type EventId } from "../lib/event-data";
 
 import {
   Calendar,
@@ -19,10 +20,12 @@ import {
   Microscope,
   CheckCircle2,
   Award,
-  Menu,
   Image as ImageIcon,
   Users,
   Grid,
+  ArrowRight,
+  Copy,
+  Check,
 } from "lucide-react";
 
 export const Route = createFileRoute("/events")({
@@ -38,18 +41,6 @@ export const Route = createFileRoute("/events")({
     ],
   }),
 });
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About CPM Int'l" },
-  { href: "/#research", label: "Research" },
-  { href: "/chip", label: "CHIP™" },
-  { href: "/events", label: "Events" },
-  { href: "/news", label: "News" },
-  { href: "/resources", label: "Resources" },
-  { href: "/leadership", label: "Leadership" },
-  { href: "/#contact", label: "Contact" },
-];
 
 const acegidPhotos = [
   {
@@ -501,26 +492,42 @@ const cpmPhotos = [
   },
 ];
 
+const okaLandPhotos = [
+  {
+    url: "/oka-land-courtesy-visit.jpeg",
+    title: "Climate-Health Courtesy Visit",
+    caption: "Professor J. Omololu-Aso with His Royal Highness Oba Dr. Yusuf Adebori Adeleye, the Olubaka of Oka Land, and Olori during the climate-health courtesy visit on 15 August 2026.",
+  },
+];
+
+const whatsappPhotos = [...acegidPhotos, ...cpmPhotos].filter((photo) => photo.url.includes("WhatsApp Image"));
+
 function EventsPage() {
-  const [activeEvent, setActiveEvent] = useState<"cpm" | "acegid" | "olubadan" | "hpa-bmz">("cpm");
-  const [activeGalleryTab, setActiveGalleryTab] = useState<"cpm" | "acegid" | "all">("cpm");
+  const [activeEvent, setActiveEvent] = useState<EventId>("cpm");
+  const [activeGalleryTab, setActiveGalleryTab] = useState<"cpm" | "acegid" | "oka-land" | "whatsapp" | "all">("cpm");
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false); // DEFAULT TO FALSE to prevent auto-slide scroll issues!
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isGridMode, setIsGridMode] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuClosing, setMenuClosing] = useState(false);
+  const [hasCopiedLink, setHasCopiedLink] = useState(false);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
+  const lightboxCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   const currentPhotos =
     activeGalleryTab === "cpm"
       ? cpmPhotos
       : activeGalleryTab === "acegid"
-        ? acegidPhotos
-        : [...cpmPhotos, ...acegidPhotos];
+      ? acegidPhotos
+      : activeGalleryTab === "oka-land"
+      ? okaLandPhotos
+      : activeGalleryTab === "whatsapp"
+      ? whatsappPhotos
+      : [...cpmPhotos, ...acegidPhotos, ...okaLandPhotos];
   const cpmPhotoCount = cpmPhotos.length;
   const acegidPhotoCount = acegidPhotos.length;
-  const totalPhotoCount = cpmPhotoCount + acegidPhotoCount;
+  const okaLandPhotoCount = okaLandPhotos.length;
+  const whatsappPhotoCount = whatsappPhotos.length;
+  const totalPhotoCount = cpmPhotoCount + acegidPhotoCount + okaLandPhotoCount;
 
   // Touch swipe handling for mobile
   const touchStartX = useRef<number | null>(null);
@@ -568,12 +575,66 @@ function EventsPage() {
     }
   }, [activePhotoIndex]);
 
-  const closeMenu = () => {
-    setMenuClosing(true);
-    setTimeout(() => {
-      setMenuOpen(false);
-      setMenuClosing(false);
-    }, 290);
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash.slice(1);
+      if (!hash) return;
+      const event = eventRecords.find((record) => record.anchor === hash);
+      const target = document.getElementById(hash);
+      if (!target) return;
+      if (event) setActiveEvent(event.id);
+      window.setTimeout(() => {
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 88, behavior: "smooth" });
+      }, 0);
+    };
+
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEvent = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+        if (!visibleEvent) return;
+        const event = eventRecords.find((record) => record.anchor === visibleEvent.target.id);
+        if (event) setActiveEvent(event.id);
+      },
+      { rootMargin: "-96px 0px -55% 0px", threshold: [0.1, 0.4, 0.75] },
+    );
+
+    eventRecords.forEach((event) => {
+      const target = document.getElementById(event.anchor);
+      if (target) observer.observe(target);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsLightboxOpen(false);
+      if (event.key === "ArrowLeft") prevPhoto();
+      if (event.key === "ArrowRight") nextPhoto();
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    lightboxCloseButtonRef.current?.focus();
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isLightboxOpen]);
+
+  const copyPageLink = async () => {
+    if (!navigator.clipboard) return;
+    await navigator.clipboard.writeText(window.location.href);
+    setHasCopiedLink(true);
+    window.setTimeout(() => setHasCopiedLink(false), 1800);
   };
 
   const nextPhoto = () => setActivePhotoIndex((prev) => (prev + 1) % currentPhotos.length);
@@ -607,6 +668,15 @@ function EventsPage() {
               international dialogues in pathogenomics, climate-health surveillance, AMR, and One
               Health innovation.
             </p>
+
+            <button
+              type="button"
+              onClick={copyPageLink}
+              className="mt-6 inline-flex items-center gap-2 border border-white/25 bg-white/10 px-3.5 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/20"
+            >
+              {hasCopiedLink ? <Check className="h-3.5 w-3.5" aria-hidden /> : <Copy className="h-3.5 w-3.5" aria-hidden />}
+              {hasCopiedLink ? "Link copied" : "Copy archive link"}
+            </button>
 
             {/* Event Navigation Tabs */}
             <div className="mt-10 flex flex-wrap gap-2.5 sm:gap-3 border-t border-primary-foreground/20 pt-8">
@@ -658,6 +728,22 @@ function EventsPage() {
 
               <button
                 onClick={() => {
+                  setActiveEvent("oka-land");
+                  setActiveGalleryTab("oka-land");
+                  setActivePhotoIndex(0);
+                  document.getElementById("event-oka-land")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs sm:text-sm font-medium transition-all ${
+                  activeEvent === "oka-land"
+                    ? "bg-white text-primary shadow-md font-semibold"
+                    : "bg-white/10 text-primary-foreground hover:bg-white/20"
+                }`}
+              >
+                <Building2 className="h-4 w-4" /> Oka Land Courtesy Visit
+              </button>
+
+              <button
+                onClick={() => {
                   setActiveEvent("hpa-bmz");
                   document.getElementById("event-hpa-bmz")?.scrollIntoView({ behavior: "smooth" });
                 }}
@@ -670,6 +756,45 @@ function EventsPage() {
                 <Globe className="h-4 w-4" /> Global Dialogue (HPA-BMZ Germany)
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border/60 bg-secondary/20" aria-labelledby="event-index-title">
+        <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Engagement index</p>
+              <h2 id="event-index-title" className="mt-2 font-serif text-2xl font-normal text-foreground sm:text-3xl">
+                Explore the archive
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+              Browse scientific visits, institutional conversations and global partnerships by engagement.
+            </p>
+          </div>
+
+          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {eventRecords.map((event) => (
+              <Link
+                key={event.id}
+                to="/events/$eventId"
+                params={{ eventId: event.id }}
+                className="group border border-border bg-background p-4 transition-colors hover:border-primary/50 hover:bg-primary/5"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">{event.category}</span>
+                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" aria-hidden />
+                </div>
+                <h3 className="mt-3 font-serif text-lg leading-snug text-foreground">{event.label}</h3>
+                <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{event.summary}</p>
+                <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                  {event.date && <span>{event.date}</span>}
+                  <span>{event.location}</span>
+                </div>
+                <p className="mt-4 text-xs font-semibold text-primary">Open shareable event page</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -854,6 +979,26 @@ function EventsPage() {
                 ACEGID Facility Tour ({acegidPhotoCount})
               </button>
               <button
+                onClick={() => { setActiveGalleryTab("oka-land"); setActivePhotoIndex(0); }}
+                className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
+                  activeGalleryTab === "oka-land"
+                    ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                }`}
+              >
+                Oka Land Courtesy Visit ({okaLandPhotoCount})
+              </button>
+              <button
+                onClick={() => { setActiveGalleryTab("whatsapp"); setActivePhotoIndex(0); }}
+                className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
+                  activeGalleryTab === "whatsapp"
+                    ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                }`}
+              >
+                Institutional Photo Archive ({whatsappPhotoCount})
+              </button>
+              <button
                 onClick={() => {
                   setActiveGalleryTab("all");
                   setActivePhotoIndex(0);
@@ -999,11 +1144,7 @@ function EventsPage() {
                             : "border-transparent opacity-50 hover:opacity-100"
                         }`}
                       >
-                        <img
-                          src={photo.url}
-                          alt={photo.caption}
-                          className="h-full w-full object-cover"
-                        />
+                        <img src={photo.url} alt={photo.caption} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                         <span className="absolute bottom-0.5 right-0.5 rounded bg-black/80 px-1 text-[9px] font-mono text-white">
                           {index + 1}
                         </span>
@@ -1016,20 +1157,18 @@ function EventsPage() {
               /* GRID VIEW MODE */
               <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 max-h-[600px] overflow-y-auto pr-1">
                 {currentPhotos.map((photo, index) => (
-                  <div
+                  <button
+                    type="button"
                     key={index}
                     onClick={() => {
                       setActivePhotoIndex(index);
                       setIsGridMode(false);
                       setIsPlaying(false);
                     }}
+                    aria-label={`View photo ${index + 1}`}
                     className="group relative cursor-pointer overflow-hidden rounded-xl border border-border bg-slate-950 aspect-[4/3] shadow-sm hover:border-primary transition-all duration-200 hover:-translate-y-1"
                   >
-                    <img
-                      src={photo.url}
-                      alt={photo.caption}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                    <img src={photo.url} alt={photo.caption} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-2.5 flex flex-col justify-end">
                       <p className="text-[11px] font-medium text-white line-clamp-2 leading-tight">
                         {photo.caption}
@@ -1038,7 +1177,7 @@ function EventsPage() {
                     <span className="absolute top-2 left-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-mono text-white">
                       #{index + 1}
                     </span>
-                  </div>
+                  </button>
                 ))}
               </div>
             )}
@@ -1371,7 +1510,103 @@ function EventsPage() {
       </article>
 
       {/* ══════════════════════════════════════════════════════════════
-          EVENT 3: GLOBAL KICK-OFF DIALOGUE (HPA-BMZ GERMANY)
+          EVENT 3: OKA LAND CLIMATE-HEALTH COURTESY VISIT
+      ══════════════════════════════════════════════════════════════ */}
+      <article id="event-oka-land" className="border-b border-border/60 bg-secondary/30 py-12 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
+            <div className="lg:col-span-8">
+              <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Climate-Health Courtesy Visit
+                </span>
+                <span className="text-muted-foreground">•</span>
+                <span className="flex items-center gap-1 text-muted-foreground"><Calendar className="h-3.5 w-3.5" /> 15 August 2026</span>
+                <span className="text-muted-foreground">•</span>
+                <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Oka Land</span>
+              </div>
+
+              <h2 className="font-serif text-2xl sm:text-4xl leading-tight font-normal text-foreground tracking-tight">
+                CPM INTERNATIONAL RESEARCH INSTITUTE FOR CLIMATE HEALTH PAYS COURTESY VISIT TO THE OLUBAKA OF OKA LAND
+              </h2>
+
+              <p className="mt-3 font-serif text-base sm:text-lg text-muted-foreground leading-relaxed">
+                Traditional Leadership Engagement Advances Dialogue on Climate Change, Community Health Resilience and Climate-Health Action
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 lg:col-span-4 shadow-sm">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Engagement Metadata</h3>
+              <dl className="mt-4 space-y-3.5 text-sm">
+                <div>
+                  <dt className="text-xs text-muted-foreground">CPM Institute Representative</dt>
+                  <dd className="font-semibold text-foreground">Professor J. Omololu-Aso</dd>
+                  <dd className="text-xs text-muted-foreground">Director-General/CEO, CPM International Research Institute for Climate Health</dd>
+                </div>
+                <div className="border-t border-border/50 pt-2.5">
+                  <dt className="text-xs text-muted-foreground">Royal Host</dt>
+                  <dd className="font-semibold text-foreground">His Royal Highness Oba Dr. Yusuf Adebori Adeleye</dd>
+                  <dd className="text-xs text-muted-foreground">Olubaka of Oka Land</dd>
+                </div>
+                <div className="border-t border-border/50 pt-2.5">
+                  <dt className="text-xs text-muted-foreground">Engagement Focus</dt>
+                  <dd className="font-medium text-foreground">Climate change · Community health resilience · Traditional institutions</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <figure className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
+            <div className="flex justify-center bg-slate-950">
+              <img
+                src="/oka-land-courtesy-visit.jpeg"
+                alt="Professor J. Omololu-Aso with the Olubaka of Oka Land and Olori during a climate-health courtesy visit"
+                className="max-h-[680px] w-full object-contain"
+              />
+            </div>
+            <figcaption className="border-t border-border px-5 py-4 text-sm leading-relaxed text-muted-foreground sm:px-6">
+              Professor J. Omololu-Aso with His Royal Highness Oba Dr. Yusuf Adebori Adeleye, the Olubaka of Oka Land, and Olori during the climate-health courtesy visit on 15 August 2026.
+            </figcaption>
+          </figure>
+
+          <div className="mt-12 grid gap-10 lg:grid-cols-12">
+            <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/85 lg:col-span-8">
+              <p className="first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-5xl first-letter:font-bold first-letter:text-primary">
+                Professor <strong>J. Omololu-Aso</strong>, Director-General/CEO of the CPM International Research Institute for Climate Health, paid a warm climate-health courtesy visit to <strong>His Royal Highness Oba Dr. Yusuf Adebori Adeleye</strong>, the Olubaka of Oka Land, on 15 August 2026.
+              </p>
+
+              <p>
+                The engagement provided an important opportunity to exchange perspectives on the relationship between climate change, community health resilience, and locally grounded public health action. It also highlighted the constructive role traditional institutions can play in building awareness, strengthening trust, and supporting climate-health initiatives within communities.
+              </p>
+
+              <blockquote className="rounded-r-xl border-l-4 border-primary bg-primary/5 p-5 sm:p-6 font-serif text-lg sm:text-xl italic text-foreground shadow-sm">
+                “A meaningful traditional leadership engagement advancing dialogue on climate change, community health resilience, and the role of traditional institutions in strengthening climate-health action in Oka Land and beyond.”
+              </blockquote>
+
+              <div className="pt-4 border-t border-border/40">
+                <h3 className="font-serif text-2xl font-normal text-foreground">Strengthening Community-Centred Climate-Health Action</h3>
+                <p className="mt-3">
+                  The visit reflects CPM International Research Institute’s commitment to engaging leaders and communities as partners in the development of practical, inclusive, and resilient responses to climate-sensitive health challenges.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-6 lg:col-span-4">
+              <div className="sticky top-24 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
+                <h4 className="font-serif text-lg font-normal text-foreground border-b border-border pb-3">Courtesy Visit Focus</h4>
+                <div className="mt-4 space-y-3.5 text-sm text-muted-foreground">
+                  <div className="flex gap-3"><CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /><p>Climate change awareness and action</p></div>
+                  <div className="flex gap-3"><CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /><p>Community health resilience</p></div>
+                  <div className="flex gap-3"><CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" /><p>Traditional leadership partnerships</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* ══════════════════════════════════════════════════════════════
+          EVENT 4: GLOBAL KICK-OFF DIALOGUE (HPA-BMZ GERMANY)
       ══════════════════════════════════════════════════════════════ */}
       <article id="event-hpa-bmz" className="py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
@@ -1510,6 +1745,9 @@ function EventsPage() {
       ══════════════════════════════════════════════════════════════ */}
       {isLightboxOpen && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Photo viewer"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -1531,6 +1769,7 @@ function EventsPage() {
 
               <button
                 onClick={() => setIsLightboxOpen(false)}
+                ref={lightboxCloseButtonRef}
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition"
                 aria-label="Close Lightbox"
               >
@@ -1544,6 +1783,7 @@ function EventsPage() {
               <button
                 onClick={prevPhoto}
                 className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/25 transition z-10"
+                aria-label="Previous photo"
               >
                 <ChevronLeft className="h-7 w-7" />
               </button>
@@ -1562,6 +1802,7 @@ function EventsPage() {
               <button
                 onClick={nextPhoto}
                 className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/25 transition z-10"
+                aria-label="Next photo"
               >
                 <ChevronRight className="h-7 w-7" />
               </button>
@@ -1570,27 +1811,25 @@ function EventsPage() {
             <div className="w-full max-w-6xl max-h-[80vh] overflow-y-auto pt-14 pb-6 px-2">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 {currentPhotos.map((photo, index) => (
-                  <div
+                  <button
+                    type="button"
                     key={index}
                     onClick={() => {
                       setActivePhotoIndex(index);
                       setIsGridMode(false);
                     }}
+                    aria-label={`View photo ${index + 1}`}
                     className={`relative cursor-pointer overflow-hidden rounded-lg aspect-[4/3] border-2 transition ${
                       index === activePhotoIndex
                         ? "border-emerald-400 ring-2 ring-emerald-400/50"
                         : "border-transparent opacity-75 hover:opacity-100"
                     }`}
                   >
-                    <img
-                      src={photo.url}
-                      alt={photo.caption}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={photo.url} alt={photo.caption} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                     <span className="absolute bottom-1 right-1 rounded bg-black/70 px-1 text-[9px] font-mono text-white">
                       #{index + 1}
                     </span>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
