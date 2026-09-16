@@ -623,7 +623,7 @@ function EventsPage() {
                     : "bg-white/10 text-primary-foreground hover:bg-white/20"
                 }`}
               >
-                <Users className="h-4 w-4" /> CPM Strategic Sessions (33 Photos)
+                <Users className="h-4 w-4" /> CPM Strategic Sessions ({cpmPhotoCount} Photos)
               </button>
 
               <button
@@ -639,7 +639,7 @@ function EventsPage() {
                     : "bg-white/10 text-primary-foreground hover:bg-white/20"
                 }`}
               >
-                <Microscope className="h-4 w-4" /> ACEGID Facility Tour (26 Photos)
+                <Microscope className="h-4 w-4" /> ACEGID Facility Tour ({acegidPhotoCount} Photos)
               </button>
 
               <button
