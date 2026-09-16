@@ -4,12 +4,28 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { eventRecords, type EventId } from "../lib/event-data";
 
-
 import {
-  Calendar, MapPin, Building2, Globe, Shield, Sparkles,
-  ChevronLeft, ChevronRight, Play, Pause, Maximize2, X, Microscope,
-  CheckCircle2, Award, Image as ImageIcon, Users,
-  Grid, ArrowRight, Copy, Check
+  Calendar,
+  MapPin,
+  Building2,
+  Globe,
+  Shield,
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Maximize2,
+  X,
+  Microscope,
+  CheckCircle2,
+  Award,
+  Image as ImageIcon,
+  Users,
+  Grid,
+  ArrowRight,
+  Copy,
+  Check,
 } from "lucide-react";
 
 export const Route = createFileRoute("/events")({
@@ -27,90 +43,453 @@ export const Route = createFileRoute("/events")({
 });
 
 const acegidPhotos = [
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.26 AM.jpeg", title: "Delegation Arrival at ACEGID", caption: "Scientific delegation from CPM Int'l Research Institute, OAUTHC, and OAU arriving at ACEGID, Redeemer's University, Ede." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM.jpeg", title: "Genomics Infrastructure Inspection", caption: "Delegation members observing high-throughput pathogen genomics sequencing platforms." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM (1).jpeg", title: "Molecular Diagnostics Suite", caption: "Guided facility tour showcasing advanced molecular diagnostics and PCR platforms." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM (2).jpeg", title: "Surveillance Workflows", caption: "ACEGID scientific team demonstrating cutting-edge genomic surveillance workflows." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM (3).jpeg", title: "One Health Strategic Session", caption: "Delegation leaders engaging in discussions on One Health and pathogenomics." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM.jpeg", title: "Bioinformatics Workstations", caption: "Prof. Joseph Omololu-Aso and delegates examining high-performance bioinformatics setups." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (1).jpeg", title: "Multidisciplinary Exchange", caption: "Multidisciplinary research discussion during the ACEGID facility walk-through." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (2).jpeg", caption: "ACEGID laboratory personnel presenting diagnostic automation systems." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (3).jpeg", title: "Sequencing Instrument Review", caption: "Visiting delegates from OAU and OAUTHC evaluating genomic sequencing instruments." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (4).jpeg", title: "Infectious Disease Surveillance", caption: "Group interaction on climate-sensitive infectious disease surveillance systems." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM.jpeg", title: "Advanced PCR & Genotyping", caption: "Delegation observing advanced PCR and HPV genotyping instrumentation." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (1).jpeg", title: "Outbreak Response Briefing", caption: "Scientific briefing on outbreak response and computational biology pipelines." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (2).jpeg", title: "Genomic Data Interpretation", caption: "CPM Int'l Research Institute delegates reviewing pathogen genome sequencing output data." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (3).jpeg", title: "Cleanroom Biology Suites", caption: "Facility tour of cleanroom molecular biology suites at ACEGID." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (4).jpeg", title: "Institutional Leadership Dialogue", caption: "Prof. Joseph Omololu-Aso exchanging insights with Redeemer's University hosts." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM.jpeg", title: "AMR Monitoring Systems", caption: "Demonstration of antimicrobial resistance (AMR) detection technologies." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (1).jpeg", title: "Computational Science Hub", caption: "Delegation exploring computational biology and data science workstations." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (2).jpeg", title: "Consortium Partnership", caption: "Scientific collaboration exchange between ACEGID, CPM Int'l Institute, OAU, and OAUTHC." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (3).jpeg", title: "Osun State Surveillance Pilot", caption: "Delegates discussing Osun State Climate-Health Surveillance Pilot synergies." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM.jpeg", title: "ACEGID Group Commemoration", caption: "Group photo highlight of visiting scientific consortium delegates inside ACEGID." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM (1).jpeg", title: "Biosafety & Preparedness", caption: "Guided tour highlighting public health preparedness and biosafety standards." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM (2).jpeg", title: "Data Visualization Platform", caption: "Delegation viewing high-throughput genomic data visualization platforms." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM.jpeg", title: "Consortium Gathering", caption: "Institutional group gathering commemorating the scientific visit to Ede." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (1).jpeg", title: "Leadership Conclusion", caption: "Delegation leadership concluding facility tour with Redeemer's University hosts." },
-  { url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (2).jpeg", title: "Final Delegation Group Photo", caption: "Final commemorative group photo of CPM Int'l Institute, OAUTHC, and OAU delegation at ACEGID." },
-  { url: "/cpm google meeting.jpeg", title: "Google Meet with ACEGID", caption: "Google Meet with ACEGID, OAUTHC, and OAU delegation at ACEGID." },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.26 AM.jpeg",
+    title: "Delegation Arrival at ACEGID",
+    caption:
+      "Scientific delegation from CPM Int'l Research Institute, OAUTHC, and OAU arriving at ACEGID, Redeemer's University, Ede.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM.jpeg",
+    title: "Genomics Infrastructure Inspection",
+    caption: "Delegation members observing high-throughput pathogen genomics sequencing platforms.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM (1).jpeg",
+    title: "Molecular Diagnostics Suite",
+    caption: "Guided facility tour showcasing advanced molecular diagnostics and PCR platforms.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM (2).jpeg",
+    title: "Surveillance Workflows",
+    caption: "ACEGID scientific team demonstrating cutting-edge genomic surveillance workflows.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.27 AM (3).jpeg",
+    title: "One Health Strategic Session",
+    caption: "Delegation leaders engaging in discussions on One Health and pathogenomics.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM.jpeg",
+    title: "Bioinformatics Workstations",
+    caption:
+      "Prof. Joseph Omololu-Aso and delegates examining high-performance bioinformatics setups.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (1).jpeg",
+    title: "Multidisciplinary Exchange",
+    caption: "Multidisciplinary research discussion during the ACEGID facility walk-through.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (2).jpeg",
+    caption: "ACEGID laboratory personnel presenting diagnostic automation systems.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (3).jpeg",
+    title: "Sequencing Instrument Review",
+    caption: "Visiting delegates from OAU and OAUTHC evaluating genomic sequencing instruments.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.28 AM (4).jpeg",
+    title: "Infectious Disease Surveillance",
+    caption: "Group interaction on climate-sensitive infectious disease surveillance systems.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM.jpeg",
+    title: "Advanced PCR & Genotyping",
+    caption: "Delegation observing advanced PCR and HPV genotyping instrumentation.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (1).jpeg",
+    title: "Outbreak Response Briefing",
+    caption: "Scientific briefing on outbreak response and computational biology pipelines.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (2).jpeg",
+    title: "Genomic Data Interpretation",
+    caption:
+      "CPM Int'l Research Institute delegates reviewing pathogen genome sequencing output data.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (3).jpeg",
+    title: "Cleanroom Biology Suites",
+    caption: "Facility tour of cleanroom molecular biology suites at ACEGID.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.29 AM (4).jpeg",
+    title: "Institutional Leadership Dialogue",
+    caption: "Prof. Joseph Omololu-Aso exchanging insights with Redeemer's University hosts.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM.jpeg",
+    title: "AMR Monitoring Systems",
+    caption: "Demonstration of antimicrobial resistance (AMR) detection technologies.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (1).jpeg",
+    title: "Computational Science Hub",
+    caption: "Delegation exploring computational biology and data science workstations.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (2).jpeg",
+    title: "Consortium Partnership",
+    caption:
+      "Scientific collaboration exchange between ACEGID, CPM Int'l Institute, OAU, and OAUTHC.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.30 AM (3).jpeg",
+    title: "Osun State Surveillance Pilot",
+    caption: "Delegates discussing Osun State Climate-Health Surveillance Pilot synergies.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM.jpeg",
+    title: "ACEGID Group Commemoration",
+    caption: "Group photo highlight of visiting scientific consortium delegates inside ACEGID.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM (1).jpeg",
+    title: "Biosafety & Preparedness",
+    caption: "Guided tour highlighting public health preparedness and biosafety standards.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.31 AM (2).jpeg",
+    title: "Data Visualization Platform",
+    caption: "Delegation viewing high-throughput genomic data visualization platforms.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM.jpeg",
+    title: "Consortium Gathering",
+    caption: "Institutional group gathering commemorating the scientific visit to Ede.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (1).jpeg",
+    title: "Leadership Conclusion",
+    caption: "Delegation leadership concluding facility tour with Redeemer's University hosts.",
+  },
+  {
+    url: "/WhatsApp Image 2026-07-25 at 5.11.32 AM (2).jpeg",
+    title: "Final Delegation Group Photo",
+    caption:
+      "Final commemorative group photo of CPM Int'l Institute, OAUTHC, and OAU delegation at ACEGID.",
+  },
+  {
+    url: "/cpm google meeting.jpeg",
+    title: "Google Meet with ACEGID",
+    caption: "Google Meet with ACEGID, OAUTHC, and OAU delegation at ACEGID.",
+  },
 ];
 
 const cpmPhotos = [
-  { url: "/citadel.jpeg", title: "Climate Surveillance Pilot Initiative", caption: "Professor Joseph Omololu-Aso (DG) with Ms. Oladimeji Abigail Eniola (Unit Head) During Climate Surveillance Pilot." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.52 PM.jpeg", title: "CPM Field Intelligence & Sampling", caption: "CPM Int'l field research team during climate health surveillance data gathering." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.52 PM (1).jpeg", title: "Environmental Health Monitoring", caption: "Monitoring environmental variables and pathogen vectors during regional field study." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.53 PM.jpeg", title: "Laboratory Diagnostic Operations", caption: "Laboratory medicine specialists performing pathogen diagnostic assessments." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.53 PM (1).jpeg", title: "Climate-Pathogen Research Consultation", caption: "Scientific investigators reviewing climate-pathogen nexus metrics and field notes." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.53 PM (2).jpeg", title: "Community Surveillance Engagement", caption: "Engaging local healthcare units and community leaders during surveillance pilot." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.54 PM.jpeg", title: "Field Team Briefing & Protocol Review", caption: "Field research coordinators reviewing biosafety and data collection protocols." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.54 PM (1).jpeg", title: "Pathogen Genomics Sample Processing", caption: "Collecting and storing biological specimens for downstream genomic sequencing." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.54 PM (2).jpeg", title: "One Health Ecosystem Mapping", caption: "Mapping vector breeding habitats and environmental risk parameters." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.54 PM (3).jpeg", title: "Interdisciplinary Research Dialogue", caption: "Cross-disciplinary dialogue between clinicians, epidemiologists, and data analysts." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.55 PM.jpeg", title: "CHIP™ Data Validation Session", caption: "Validating real-time field observations against CHIP™ predictive algorithms." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.55 PM (1).jpeg", title: "Clinical Microbiology Diagnostics", caption: "Diagnostic evaluation of microbial isolate samples from surveillance sites." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.55 PM (2).jpeg", title: "Regional Health Network Collaboration", caption: "Strengthening joint surveillance efforts with regional healthcare facilities." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.55 PM (3).jpeg", title: "Scientific Leadership Field Inspection", caption: "Prof. Joseph Omololu-Aso inspecting field surveillance workflows and equipment." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.56 PM.jpeg", title: "Epidemiological Surveillance Briefing", caption: "Briefing on spatial epidemiology data and localized climate anomaly patterns." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.56 PM (1).jpeg", title: "Public Health Intervention Planning", caption: "Formulating early intervention strategies for climate-sensitive health threats." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.56 PM (2).jpeg", title: "Capacity Building & Training Session", caption: "Hands-on training session for junior researchers and laboratory technicians." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.56 PM (3).jpeg", title: "Digital Health Data Pipeline Review", caption: "Reviewing cloud upload protocols for remote field data entry devices." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.57 PM.jpeg", title: "Stakeholder Alignment & Policy Dialogue", caption: "Presenting preliminary surveillance insights to healthcare administration leads." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.57 PM (1).jpeg", title: "Research Delegation Commemoration", caption: "Commemorative session marking successful completion of field surveillance pilot." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.57 PM (2).jpeg", title: "Consortium Field Research Team", caption: "CPM Int'l Research Institute investigators and unit leaders during field operations." },
-  { url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.57 PM (3).jpeg", title: "Climate Health Research Group Photo", caption: "Group photo of CPM research team members, laboratory heads, and field staff." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.23.59 PM.jpeg", title: "Strategic Planning Session", caption: "CPM Int'l Research Institute leadership and core scientific team during strategic planning sessions." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.04 PM.jpeg", title: "Research Consortium Dialogue", caption: "Interdisciplinary research discussion on climate-sensitive disease surveillance and One Health." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.07 PM.jpeg", title: "Pathogenomics & Digital Health Forum", caption: "Delegates reviewing computational biology and pathogen genomics frameworks." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.24 PM.jpeg", title: "Institutional Executive Session", caption: "Prof. Joseph Omololu-Aso addressing consortium partners on institutional development." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.26 PM.jpeg", title: "Climate Health Science Briefing", caption: "Scientific briefing on vector-borne disease dynamics and climate modeling." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM.jpeg", title: "AMR & Surveillance Strategy", caption: "Antimicrobial resistance monitoring and surveillance strategy exchange." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM (1).jpeg", title: "Clinical Microbiology Consultation", caption: "Consultation between hospital leaders and CPM research investigators." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM (2).jpeg", title: "Field Operations Planning", caption: "Planning field operations for regional environmental health and vector surveillance." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.29 PM.jpeg", title: "CHIP Platform Technical Review", caption: "Technical discussion on AI-driven Climate Health Intelligence Platform (CHIP™) deployment." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.29 PM (1).jpeg", title: "Consortium Partnership Dialogue", caption: "Multi-institutional scientific partnership meeting with regional healthcare stakeholders." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.30 PM.jpeg", title: "Research Infrastructure Assessment", caption: "Assessing laboratory facilities and technological requirements for climate health projects." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.32 PM.jpeg", title: "Capacity Building Workshop", caption: "Training and scientific capacity development engagement with early-career researchers." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.34 PM.jpeg", title: "One Health Working Group", caption: "One Health working group reviewing environmental, human, and animal health data integration." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.34 PM (1).jpeg", title: "Genomic Epidemiology Discussion", caption: "In-depth review of genomic epidemiology protocols for outbreak preparedness." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.35 PM.jpeg", title: "Stakeholder Alignment Session", caption: "Aligning research goals with public health policy and government health agencies." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.35 PM (1).jpeg", title: "Institutional Governance Forum", caption: "Governing council and scientific board strategic direction dialogue." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM.jpeg", title: "Interdisciplinary Exchange", caption: "Collaborative session bringing together climatologists, epidemiologists, and clinicians." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM (1).jpeg", title: "Field Data Collection Briefing", caption: "Operational briefing for field teams conducting climate-pathogen sample gathering." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM (2).jpeg", title: "AI & Machine Learning Presentation", caption: "Presentation on machine learning models for disease surge prediction." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.37 PM.jpeg", title: "Regional Health Systems Alignment", caption: "Strengthening health systems resilience across West African partner networks." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.37 PM (1).jpeg", title: "Laboratory Quality & Standards", caption: "Discussion on biosafety standards and laboratory accreditation pathways." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM.jpeg", title: "Translational Science Strategy", caption: "Strategies for translating climate health research into actionable clinical interventions." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM (1).jpeg", title: "Public Health Preparedness Panel", caption: "Panel session on rapid outbreak response protocols and diagnostic deployment." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM (2).jpeg", title: "Youth & Fellowship Mentorship", caption: "Prof. Omololu-Aso engaging with postgraduate fellows and junior researchers." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM.jpeg", title: "International Engagement Briefing", caption: "Briefing on global partnerships with European and North American institutions." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM (1).jpeg", title: "Data Integration Architecture", caption: "Technical roadmap for cloud data pipelines and environmental satellite data." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM (2).jpeg", title: "Community Health Outreach", caption: "Engaging community stakeholders on climate health literacy and vector control." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.40 PM.jpeg", title: "Scientific Advisory Review", caption: "Scientific advisory board evaluating ongoing research project milestones." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.40 PM (1).jpeg", title: "Publication & Impact Strategy", caption: "Planning high-impact peer-reviewed publications and policy whitepapers." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM.jpeg", title: "Executive Commemoration", caption: "Commemorative group portrait of CPM Int'l Research Institute delegation." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM (1).jpeg", title: "Consortium Leadership Dialogue", caption: "High-level dialogue on expanding regional research centers and field hubs." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM (2).jpeg", title: "Grant & Development Strategy", caption: "Strategic framework for research grants and international donor alignment." },
-  { url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.42 PM.jpeg", title: "CPM Institute Delegation Group Photo", caption: "Final group photo of CPM Int'l Research Institute leadership, staff, and partners." },
+  {
+    url: "/citadel.jpeg",
+    title: "Climate Surveillance Pilot Initiative",
+    caption:
+      "Professor Joseph Omololu-Aso (DG) with Ms. Oladimeji Abigail Eniola (Unit Head) During Climate Surveillance Pilot.",
+  },
+  {
+    url: "https://github.com/user-attachments/assets/feef1d73-c4c6-4fa8-987a-012120ee7192",
+    title: "Osun State Climate-Health Surveillance Pilot Dashboard",
+    caption:
+      "Summary dashboard highlighting records, trends, and next steps for the Osun State Climate-Health Surveillance Pilot.",
+  },
+  {
+    url: "https://github.com/user-attachments/assets/b2e62789-5e05-44e2-ba09-3f188703ab9a",
+    title: "Climate-Health Surveillance Pilot Highlight",
+    caption:
+      "Additional visual highlight from the Osun State climate-health surveillance engagement.",
+  },
+  {
+    url: "https://github.com/user-attachments/assets/94afbb4e-1f71-4d15-8763-50c585c2ee67",
+    title: "Climate-Health Surveillance Pilot Insight",
+    caption:
+      "Project communication visual from the Osun State climate-health surveillance collaboration.",
+  },
+  {
+    url: "https://github.com/user-attachments/assets/a3f1e118-61ce-4d2f-b45f-ac9003b26c94",
+    title: "Climate-Health Surveillance Pilot Snapshot",
+    caption:
+      "Program snapshot supporting CPM Int'l surveillance reporting and stakeholder updates.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.52 PM.jpeg",
+    title: "CPM Field Intelligence & Sampling",
+    caption: "CPM Int'l field research team during climate health surveillance data gathering.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.52 PM (1).jpeg",
+    title: "Environmental Health Monitoring",
+    caption: "Monitoring environmental variables and pathogen vectors during regional field study.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.53 PM.jpeg",
+    title: "Laboratory Diagnostic Operations",
+    caption: "Laboratory medicine specialists performing pathogen diagnostic assessments.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.53 PM (1).jpeg",
+    title: "Climate-Pathogen Research Consultation",
+    caption: "Scientific investigators reviewing climate-pathogen nexus metrics and field notes.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.53 PM (2).jpeg",
+    title: "Community Surveillance Engagement",
+    caption: "Engaging local healthcare units and community leaders during surveillance pilot.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.54 PM.jpeg",
+    title: "Field Team Briefing & Protocol Review",
+    caption: "Field research coordinators reviewing biosafety and data collection protocols.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.54 PM (1).jpeg",
+    title: "Pathogen Genomics Sample Processing",
+    caption: "Collecting and storing biological specimens for downstream genomic sequencing.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.54 PM (2).jpeg",
+    title: "One Health Ecosystem Mapping",
+    caption: "Mapping vector breeding habitats and environmental risk parameters.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.54 PM (3).jpeg",
+    title: "Interdisciplinary Research Dialogue",
+    caption: "Cross-disciplinary dialogue between clinicians, epidemiologists, and data analysts.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.55 PM.jpeg",
+    title: "CHIP™ Data Validation Session",
+    caption: "Validating real-time field observations against CHIP™ predictive algorithms.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.55 PM (1).jpeg",
+    title: "Clinical Microbiology Diagnostics",
+    caption: "Diagnostic evaluation of microbial isolate samples from surveillance sites.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.55 PM (2).jpeg",
+    title: "Regional Health Network Collaboration",
+    caption: "Strengthening joint surveillance efforts with regional healthcare facilities.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.55 PM (3).jpeg",
+    title: "Scientific Leadership Field Inspection",
+    caption: "Prof. Joseph Omololu-Aso inspecting field surveillance workflows and equipment.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.56 PM.jpeg",
+    title: "Epidemiological Surveillance Briefing",
+    caption: "Briefing on spatial epidemiology data and localized climate anomaly patterns.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.56 PM (1).jpeg",
+    title: "Public Health Intervention Planning",
+    caption: "Formulating early intervention strategies for climate-sensitive health threats.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.56 PM (2).jpeg",
+    title: "Capacity Building & Training Session",
+    caption: "Hands-on training session for junior researchers and laboratory technicians.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.56 PM (3).jpeg",
+    title: "Digital Health Data Pipeline Review",
+    caption: "Reviewing cloud upload protocols for remote field data entry devices.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.57 PM.jpeg",
+    title: "Stakeholder Alignment & Policy Dialogue",
+    caption: "Presenting preliminary surveillance insights to healthcare administration leads.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.57 PM (1).jpeg",
+    title: "Research Delegation Commemoration",
+    caption: "Commemorative session marking successful completion of field surveillance pilot.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.57 PM (2).jpeg",
+    title: "Consortium Field Research Team",
+    caption: "CPM Int'l Research Institute investigators and unit leaders during field operations.",
+  },
+  {
+    url: "/cpm research/WhatsApp Image 2026-08-04 at 1.20.57 PM (3).jpeg",
+    title: "Climate Health Research Group Photo",
+    caption: "Group photo of CPM research team members, laboratory heads, and field staff.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.23.59 PM.jpeg",
+    title: "Strategic Planning Session",
+    caption:
+      "CPM Int'l Research Institute leadership and core scientific team during strategic planning sessions.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.04 PM.jpeg",
+    title: "Research Consortium Dialogue",
+    caption:
+      "Interdisciplinary research discussion on climate-sensitive disease surveillance and One Health.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.07 PM.jpeg",
+    title: "Pathogenomics & Digital Health Forum",
+    caption: "Delegates reviewing computational biology and pathogen genomics frameworks.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.24 PM.jpeg",
+    title: "Institutional Executive Session",
+    caption:
+      "Prof. Joseph Omololu-Aso addressing consortium partners on institutional development.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.26 PM.jpeg",
+    title: "Climate Health Science Briefing",
+    caption: "Scientific briefing on vector-borne disease dynamics and climate modeling.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM.jpeg",
+    title: "AMR & Surveillance Strategy",
+    caption: "Antimicrobial resistance monitoring and surveillance strategy exchange.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM (1).jpeg",
+    title: "Clinical Microbiology Consultation",
+    caption: "Consultation between hospital leaders and CPM research investigators.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.28 PM (2).jpeg",
+    title: "Field Operations Planning",
+    caption: "Planning field operations for regional environmental health and vector surveillance.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.29 PM.jpeg",
+    title: "CHIP Platform Technical Review",
+    caption:
+      "Technical discussion on AI-driven Climate Health Intelligence Platform (CHIP™) deployment.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.29 PM (1).jpeg",
+    title: "Consortium Partnership Dialogue",
+    caption:
+      "Multi-institutional scientific partnership meeting with regional healthcare stakeholders.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.30 PM.jpeg",
+    title: "Research Infrastructure Assessment",
+    caption:
+      "Assessing laboratory facilities and technological requirements for climate health projects.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.32 PM.jpeg",
+    title: "Capacity Building Workshop",
+    caption:
+      "Training and scientific capacity development engagement with early-career researchers.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.34 PM.jpeg",
+    title: "One Health Working Group",
+    caption:
+      "One Health working group reviewing environmental, human, and animal health data integration.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.34 PM (1).jpeg",
+    title: "Genomic Epidemiology Discussion",
+    caption: "In-depth review of genomic epidemiology protocols for outbreak preparedness.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.35 PM.jpeg",
+    title: "Stakeholder Alignment Session",
+    caption: "Aligning research goals with public health policy and government health agencies.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.35 PM (1).jpeg",
+    title: "Institutional Governance Forum",
+    caption: "Governing council and scientific board strategic direction dialogue.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM.jpeg",
+    title: "Interdisciplinary Exchange",
+    caption:
+      "Collaborative session bringing together climatologists, epidemiologists, and clinicians.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM (1).jpeg",
+    title: "Field Data Collection Briefing",
+    caption: "Operational briefing for field teams conducting climate-pathogen sample gathering.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.36 PM (2).jpeg",
+    title: "AI & Machine Learning Presentation",
+    caption: "Presentation on machine learning models for disease surge prediction.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.37 PM.jpeg",
+    title: "Regional Health Systems Alignment",
+    caption: "Strengthening health systems resilience across West African partner networks.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.37 PM (1).jpeg",
+    title: "Laboratory Quality & Standards",
+    caption: "Discussion on biosafety standards and laboratory accreditation pathways.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM.jpeg",
+    title: "Translational Science Strategy",
+    caption:
+      "Strategies for translating climate health research into actionable clinical interventions.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM (1).jpeg",
+    title: "Public Health Preparedness Panel",
+    caption: "Panel session on rapid outbreak response protocols and diagnostic deployment.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.38 PM (2).jpeg",
+    title: "Youth & Fellowship Mentorship",
+    caption: "Prof. Omololu-Aso engaging with postgraduate fellows and junior researchers.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM.jpeg",
+    title: "International Engagement Briefing",
+    caption: "Briefing on global partnerships with European and North American institutions.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM (1).jpeg",
+    title: "Data Integration Architecture",
+    caption: "Technical roadmap for cloud data pipelines and environmental satellite data.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.39 PM (2).jpeg",
+    title: "Community Health Outreach",
+    caption: "Engaging community stakeholders on climate health literacy and vector control.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.40 PM.jpeg",
+    title: "Scientific Advisory Review",
+    caption: "Scientific advisory board evaluating ongoing research project milestones.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.40 PM (1).jpeg",
+    title: "Publication & Impact Strategy",
+    caption: "Planning high-impact peer-reviewed publications and policy whitepapers.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM.jpeg",
+    title: "Executive Commemoration",
+    caption: "Commemorative group portrait of CPM Int'l Research Institute delegation.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM (1).jpeg",
+    title: "Consortium Leadership Dialogue",
+    caption: "High-level dialogue on expanding regional research centers and field hubs.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.41 PM (2).jpeg",
+    title: "Grant & Development Strategy",
+    caption: "Strategic framework for research grants and international donor alignment.",
+  },
+  {
+    url: "/cpm/WhatsApp Image 2026-08-02 at 12.24.42 PM.jpeg",
+    title: "CPM Institute Delegation Group Photo",
+    caption: "Final group photo of CPM Int'l Research Institute leadership, staff, and partners.",
+  },
 ];
 
 const okaLandPhotos = [
@@ -144,6 +523,11 @@ function EventsPage() {
       : activeGalleryTab === "whatsapp"
       ? whatsappPhotos
       : [...cpmPhotos, ...acegidPhotos, ...okaLandPhotos];
+  const cpmPhotoCount = cpmPhotos.length;
+  const acegidPhotoCount = acegidPhotos.length;
+  const okaLandPhotoCount = okaLandPhotos.length;
+  const whatsappPhotoCount = whatsappPhotos.length;
+  const totalPhotoCount = cpmPhotoCount + acegidPhotoCount + okaLandPhotoCount;
 
   // Touch swipe handling for mobile
   const touchStartX = useRef<number | null>(null);
@@ -254,11 +638,11 @@ function EventsPage() {
   };
 
   const nextPhoto = () => setActivePhotoIndex((prev) => (prev + 1) % currentPhotos.length);
-  const prevPhoto = () => setActivePhotoIndex((prev) => (prev - 1 + currentPhotos.length) % currentPhotos.length);
+  const prevPhoto = () =>
+    setActivePhotoIndex((prev) => (prev - 1 + currentPhotos.length) % currentPhotos.length);
 
   return (
     <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary/20">
-
       <Header />
 
       {/* ══════════════════════════════════════════════════════════════
@@ -274,13 +658,15 @@ function EventsPage() {
               <Sparkles className="h-4 w-4 text-emerald-300 shrink-0" />
               <span>EVENTS & SCIENTIFIC ENGAGEMENTS</span>
             </div>
-            
+
             <h1 className="mt-4 font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.12] tracking-tight">
               Landmark Scientific Delegations, Palace Audiences & Global Dialogues
             </h1>
-            
+
             <p className="mt-5 text-base sm:text-lg leading-relaxed text-primary-foreground/85 max-w-3xl">
-              Documenting strategic scientific engagements, institutional collaborations, and international dialogues in pathogenomics, climate-health surveillance, AMR, and One Health innovation.
+              Documenting strategic scientific engagements, institutional collaborations, and
+              international dialogues in pathogenomics, climate-health surveillance, AMR, and One
+              Health innovation.
             </p>
 
             <button
@@ -307,7 +693,7 @@ function EventsPage() {
                     : "bg-white/10 text-primary-foreground hover:bg-white/20"
                 }`}
               >
-                <Users className="h-4 w-4" /> CPM Strategic Sessions ({cpmPhotos.length} Photos)
+                <Users className="h-4 w-4" /> CPM Strategic Sessions ({cpmPhotoCount} Photos)
               </button>
 
               <button
@@ -323,7 +709,7 @@ function EventsPage() {
                     : "bg-white/10 text-primary-foreground hover:bg-white/20"
                 }`}
               >
-                <Microscope className="h-4 w-4" /> ACEGID Facility Tour ({acegidPhotos.length} Photos)
+                <Microscope className="h-4 w-4" /> ACEGID Facility Tour ({acegidPhotoCount} Photos)
               </button>
 
               <button
@@ -418,43 +804,55 @@ function EventsPage() {
       ══════════════════════════════════════════════════════════════ */}
       <article id="event-cpm" className="border-b border-border/60 py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-
           {/* Article Header & Metadata Card */}
           <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
-                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Executive Strategic Sessions &amp; Field Operations
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Executive Strategic
+                  Sessions &amp; Field Operations
                 </span>
                 <span className="text-muted-foreground">•</span>
-                <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> CPM Research Hubs &amp; Field Sites, Nigeria</span>
+                <span className="flex items-center gap-1 text-muted-foreground">
+                  <MapPin className="h-3.5 w-3.5" /> CPM Research Hubs &amp; Field Sites, Nigeria
+                </span>
               </div>
 
               <h2 className="font-serif text-2xl sm:text-4xl leading-tight font-normal text-foreground tracking-tight">
-                CPM INTERNATIONAL RESEARCH INSTITUTE EXECUTIVE STRATEGIC SESSIONS, FIELD SURVEILLANCE &amp; MULTIDISCIPLINARY CONSORTIUM WORKSHOPS
+                CPM INTERNATIONAL RESEARCH INSTITUTE EXECUTIVE STRATEGIC SESSIONS, FIELD
+                SURVEILLANCE &amp; MULTIDISCIPLINARY CONSORTIUM WORKSHOPS
               </h2>
 
               <p className="mt-3 font-serif text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Comprehensive Photographic Record of Institutional Planning, One Health Field Preparedness, Genomics Integration &amp; Regional Stakeholder Engagements
+                Comprehensive Photographic Record of Institutional Planning, One Health Field
+                Preparedness, Genomics Integration &amp; Regional Stakeholder Engagements
               </p>
             </div>
 
             {/* Metadata Card */}
             <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 lg:col-span-4 shadow-sm">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Consortium Metadata</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                Consortium Metadata
+              </h3>
               <dl className="mt-4 space-y-3.5 text-sm">
                 <div>
                   <dt className="text-xs text-muted-foreground">Executive Leadership</dt>
                   <dd className="font-semibold text-foreground">Prof. Joseph Omololu-Aso</dd>
-                  <dd className="text-xs text-muted-foreground">Founding Director-General &amp; CEO, CPM Int'l Institute</dd>
+                  <dd className="text-xs text-muted-foreground">
+                    Founding Director-General &amp; CEO, CPM Int'l Institute
+                  </dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">Key Focus Areas</dt>
-                  <dd className="font-medium text-foreground">Climate–Pathogen Nexus · CHIP™ AI · One Health · AMR</dd>
+                  <dd className="font-medium text-foreground">
+                    Climate–Pathogen Nexus · CHIP™ AI · One Health · AMR
+                  </dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">Photo Archive</dt>
-                  <dd className="text-xs font-semibold text-primary">33 High-Resolution Strategic Session Images</dd>
+                  <dd className="text-xs font-semibold text-primary">
+                    33 High-Resolution Strategic Session Images
+                  </dd>
                 </div>
               </dl>
             </div>
@@ -462,10 +860,16 @@ function EventsPage() {
 
           <div className="mt-8 text-base sm:text-lg leading-relaxed text-foreground/85 space-y-4">
             <p>
-              The <strong>CPM International Research Institute for Climate Health</strong> brings together multidisciplinary experts across clinical microbiology, infectious disease epidemiology, pathogenomics, artificial intelligence, and environmental health.
+              The <strong>CPM International Research Institute for Climate Health</strong> brings
+              together multidisciplinary experts across clinical microbiology, infectious disease
+              epidemiology, pathogenomics, artificial intelligence, and environmental health.
             </p>
             <p>
-              The 33 photographic highlights below document executive council meetings, strategic planning sessions, field vector surveillance briefings, and collaborative workshops designed to advance the Institute’s flagship innovation—the <strong>Climate Health Intelligence Platform (CHIP™)</strong>—and regional public health resilience.
+              The 33 photographic highlights below document executive council meetings, strategic
+              planning sessions, field vector surveillance briefings, and collaborative workshops
+              designed to advance the Institute’s flagship innovation—the{" "}
+              <strong>Climate Health Intelligence Platform (CHIP™)</strong>—and regional public
+              health resilience.
             </p>
           </div>
         </div>
@@ -476,48 +880,63 @@ function EventsPage() {
       ══════════════════════════════════════════════════════════════ */}
       <article id="event-acegid" className="border-b border-border/60 py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-
           {/* Article Header & Metadata Card */}
           <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
-                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Facility Tour & Scientific Engagement
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Facility Tour &
+                  Scientific Engagement
                 </span>
                 <span className="text-muted-foreground">•</span>
-                <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Redeemer's University, Ede, Nigeria</span>
+                <span className="flex items-center gap-1 text-muted-foreground">
+                  <MapPin className="h-3.5 w-3.5" /> Redeemer's University, Ede, Nigeria
+                </span>
               </div>
 
               <h2 className="font-serif text-2xl sm:text-4xl leading-tight font-normal text-foreground tracking-tight">
-                ACEGID HOSTS DELEGATION FROM CPM INTERNATIONAL RESEARCH INSTITUTE, OAUTHC AND OAU FOR SCIENTIFIC ENGAGEMENT ON PATHOGENOMICS AND CLIMATE-HEALTH INNOVATION
+                ACEGID HOSTS DELEGATION FROM CPM INTERNATIONAL RESEARCH INSTITUTE, OAUTHC AND OAU
+                FOR SCIENTIFIC ENGAGEMENT ON PATHOGENOMICS AND CLIMATE-HEALTH INNOVATION
               </h2>
 
               <p className="mt-3 font-serif text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Redeemer's University Showcases World-Class Genomics Infrastructure to Emerging National Climate-Health and Infectious Disease Consortium
+                Redeemer's University Showcases World-Class Genomics Infrastructure to Emerging
+                National Climate-Health and Infectious Disease Consortium
               </p>
             </div>
 
             {/* Metadata Card */}
             <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 lg:col-span-4 shadow-sm">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Engagement Metadata</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                Engagement Metadata
+              </h3>
               <dl className="mt-4 space-y-3.5 text-sm">
                 <div>
                   <dt className="text-xs text-muted-foreground">Delegation Leader</dt>
                   <dd className="font-semibold text-foreground">Prof. Joseph Omololu-Aso</dd>
-                  <dd className="text-xs text-muted-foreground">DG/CEO CPM Institute & Prof. Infectious Disease, OAU</dd>
+                  <dd className="text-xs text-muted-foreground">
+                    DG/CEO CPM Institute & Prof. Infectious Disease, OAU
+                  </dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">Collaborating CMD Leadership</dt>
-                  <dd className="font-semibold text-foreground">Prof. John Akíntúndé Ọládọ̀tun Òkèníyì</dd>
+                  <dd className="font-semibold text-foreground">
+                    Prof. John Akíntúndé Ọládọ̀tun Òkèníyì
+                  </dd>
                   <dd className="text-xs text-muted-foreground">Chief Medical Director, OAUTHC</dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">Key Partners</dt>
-                  <dd className="font-medium text-foreground">CPM Research Institute · OAU · OAUTHC · ACEGID</dd>
+                  <dd className="font-medium text-foreground">
+                    CPM Research Institute · OAU · OAUTHC · ACEGID
+                  </dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">Programme Context</dt>
-                  <dd className="text-xs italic text-foreground">"Transforming Clinical Diagnostics with PCR: From Microbiome Analysis to HPV Genotyping"</dd>
+                  <dd className="text-xs italic text-foreground">
+                    "Transforming Clinical Diagnostics with PCR: From Microbiome Analysis to HPV
+                    Genotyping"
+                  </dd>
                 </div>
               </dl>
             </div>
@@ -528,29 +947,36 @@ function EventsPage() {
               (Engineered for 100% Mobile & Desktop Responsiveness, No Scroll Shift!)
           ══════════════════════════════════════════════════════════════ */}
           <div className="mt-12 rounded-2xl border border-border bg-card p-4 sm:p-6 lg:p-8 shadow-lg">
-            
             {/* Gallery Collection Selector Tabs */}
             <div className="flex flex-wrap items-center gap-2 mb-4 border-b border-border/40 pb-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mr-1">Gallery Collection:</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mr-1">
+                Gallery Collection:
+              </span>
               <button
-                onClick={() => { setActiveGalleryTab("cpm"); setActivePhotoIndex(0); }}
+                onClick={() => {
+                  setActiveGalleryTab("cpm");
+                  setActivePhotoIndex(0);
+                }}
                 className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
                   activeGalleryTab === "cpm"
                     ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                CPM Strategic &amp; Field Sessions ({cpmPhotos.length})
+                CPM Strategic &amp; Field Sessions ({cpmPhotoCount})
               </button>
               <button
-                onClick={() => { setActiveGalleryTab("acegid"); setActivePhotoIndex(0); }}
+                onClick={() => {
+                  setActiveGalleryTab("acegid");
+                  setActivePhotoIndex(0);
+                }}
                 className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
                   activeGalleryTab === "acegid"
                     ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                ACEGID Facility Tour ({acegidPhotos.length})
+                ACEGID Facility Tour ({acegidPhotoCount})
               </button>
               <button
                 onClick={() => { setActiveGalleryTab("oka-land"); setActivePhotoIndex(0); }}
@@ -560,7 +986,7 @@ function EventsPage() {
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                Oka Land Courtesy Visit (1)
+                Oka Land Courtesy Visit ({okaLandPhotoCount})
               </button>
               <button
                 onClick={() => { setActiveGalleryTab("whatsapp"); setActivePhotoIndex(0); }}
@@ -570,17 +996,20 @@ function EventsPage() {
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                Institutional Photo Archive ({whatsappPhotos.length})
+                Institutional Photo Archive ({whatsappPhotoCount})
               </button>
               <button
-                onClick={() => { setActiveGalleryTab("all"); setActivePhotoIndex(0); }}
+                onClick={() => {
+                  setActiveGalleryTab("all");
+                  setActivePhotoIndex(0);
+                }}
                 className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
                   activeGalleryTab === "all"
                     ? "bg-primary text-primary-foreground border-primary font-semibold shadow-xs"
                     : "bg-background text-foreground border-border hover:bg-muted"
                 }`}
               >
-                All Collections ({cpmPhotos.length + acegidPhotos.length + okaLandPhotos.length})
+                All Collections ({totalPhotoCount})
               </button>
             </div>
 
@@ -588,10 +1017,12 @@ function EventsPage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center justify-between border-b border-border pb-4">
               <div>
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
-                  <ImageIcon className="h-4 w-4" /> Photographic Highlights ({currentPhotos.length} Images)
+                  <ImageIcon className="h-4 w-4" /> Photographic Highlights ({currentPhotos.length}{" "}
+                  Images)
                 </div>
                 <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
-                  Swipe or click thumbnails below to view high-resolution event and strategic session photos.
+                  Swipe or click thumbnails below to view high-resolution event and strategic
+                  session photos.
                 </p>
               </div>
 
@@ -600,11 +1031,17 @@ function EventsPage() {
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
                   className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
-                    isPlaying ? "border-emerald-500 bg-emerald-50 text-emerald-700" : "border-border bg-background text-foreground hover:bg-muted"
+                    isPlaying
+                      ? "border-emerald-500 bg-emerald-50 text-emerald-700"
+                      : "border-border bg-background text-foreground hover:bg-muted"
                   }`}
                   title={isPlaying ? "Click to Pause Autoplay" : "Click to Enable Autoplay"}
                 >
-                  {isPlaying ? <Pause className="h-3.5 w-3.5 text-emerald-600" /> : <Play className="h-3.5 w-3.5 text-primary" />}
+                  {isPlaying ? (
+                    <Pause className="h-3.5 w-3.5 text-emerald-600" />
+                  ) : (
+                    <Play className="h-3.5 w-3.5 text-primary" />
+                  )}
                   <span>{isPlaying ? "Autoplay ON" : "Autoplay OFF"}</span>
                 </button>
 
@@ -612,7 +1049,9 @@ function EventsPage() {
                 <button
                   onClick={() => setIsGridMode(!isGridMode)}
                   className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium border transition ${
-                    isGridMode ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background text-foreground hover:bg-muted"
+                    isGridMode
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-background text-foreground hover:bg-muted"
                   }`}
                 >
                   <Grid className="h-3.5 w-3.5" />
@@ -748,33 +1187,52 @@ function EventsPage() {
           <div className="mt-12 grid gap-10 lg:grid-cols-12">
             <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/85 lg:col-span-8">
               <p className="first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-5xl first-letter:font-bold first-letter:text-primary">
-                The African Centre of Excellence for Genomics of Infectious Diseases (ACEGID), Redeemer’s University, Ede, recently hosted a scientific delegation from CPM International Research Institute for Climate Health as part of activities associated with the programme titled:
+                The African Centre of Excellence for Genomics of Infectious Diseases (ACEGID),
+                Redeemer’s University, Ede, recently hosted a scientific delegation from CPM
+                International Research Institute for Climate Health as part of activities associated
+                with the programme titled:
               </p>
 
               <blockquote className="rounded-r-xl border-l-4 border-primary bg-primary/5 p-5 sm:p-6 font-serif text-lg sm:text-xl italic text-foreground shadow-sm">
-                “Transforming Clinical Diagnostics with PCR: From Microbiome Analysis to HPV Genotyping.”
+                “Transforming Clinical Diagnostics with PCR: From Microbiome Analysis to HPV
+                Genotyping.”
               </blockquote>
 
               <p>
-                The visit formed part of ongoing efforts to strengthen scientific capacity, institutional collaboration, and knowledge exchange in the areas of molecular diagnostics, pathogen genomics, infectious disease surveillance, antimicrobial resistance (AMR), and One Health innovation.
+                The visit formed part of ongoing efforts to strengthen scientific capacity,
+                institutional collaboration, and knowledge exchange in the areas of molecular
+                diagnostics, pathogen genomics, infectious disease surveillance, antimicrobial
+                resistance (AMR), and One Health innovation.
               </p>
 
               <p>
-                The delegation was led by <strong>Professor Joseph Omololu-Aso</strong>, Professor of Infectious Disease and Climate Change Intervention at Obafemi Awolowo University and Director-General/CEO of CPM International Research Institute for Climate Health.
+                The delegation was led by <strong>Professor Joseph Omololu-Aso</strong>, Professor
+                of Infectious Disease and Climate Change Intervention at Obafemi Awolowo University
+                and Director-General/CEO of CPM International Research Institute for Climate Health.
               </p>
 
               <p>
-                The visit was undertaken with the support and encouragement of <strong>Professor John Akíntúndé Ọládọ̀tun Òkèníyì</strong>, Chief Medical Director of Obafemi Awolowo University Teaching Hospitals Complex (OAUTHC), under the growing collaboration framework involving CPM International Research Institute, Obafemi Awolowo University (OAU), and OAUTHC.
+                The visit was undertaken with the support and encouragement of{" "}
+                <strong>Professor John Akíntúndé Ọládọ̀tun Òkèníyì</strong>, Chief Medical Director
+                of Obafemi Awolowo University Teaching Hospitals Complex (OAUTHC), under the growing
+                collaboration framework involving CPM International Research Institute, Obafemi
+                Awolowo University (OAU), and OAUTHC.
               </p>
 
               {/* Sub-section 1 */}
               <div className="pt-4 border-t border-border/40">
-                <h3 className="font-serif text-2xl font-normal text-foreground">Scientific Engagement and Facility Tour</h3>
+                <h3 className="font-serif text-2xl font-normal text-foreground">
+                  Scientific Engagement and Facility Tour
+                </h3>
                 <p className="mt-3">
-                  Although the scheduled onsite workshop sessions did not proceed as originally planned, the visiting team was warmly received by representatives of Redeemer’s University and ACEGID and was provided an extensive guided tour of the Centre’s facilities.
+                  Although the scheduled onsite workshop sessions did not proceed as originally
+                  planned, the visiting team was warmly received by representatives of Redeemer’s
+                  University and ACEGID and was provided an extensive guided tour of the Centre’s
+                  facilities.
                 </p>
                 <p className="mt-3">
-                  The delegation had the opportunity to observe cutting-edge infrastructure supporting:
+                  The delegation had the opportunity to observe cutting-edge infrastructure
+                  supporting:
                 </p>
 
                 <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
@@ -785,9 +1243,12 @@ function EventsPage() {
                     "Bioinformatics & computational biology",
                     "Advanced PCR technologies",
                     "Infectious disease research",
-                    "Public health preparedness & outbreak systems"
+                    "Public health preparedness & outbreak systems",
                   ].map((item) => (
-                    <div key={item} className="flex items-center gap-2.5 rounded-lg border border-border bg-card p-3 shadow-xs">
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5 rounded-lg border border-border bg-card p-3 shadow-xs"
+                    >
                       <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
                       <span className="text-xs sm:text-sm font-medium text-foreground">{item}</span>
                     </div>
@@ -797,9 +1258,13 @@ function EventsPage() {
 
               {/* Sub-section 2 */}
               <div className="pt-4 border-t border-border/40">
-                <h3 className="font-serif text-2xl font-normal text-foreground">Advancing Climate-Health, Pathogenomics & One Health</h3>
+                <h3 className="font-serif text-2xl font-normal text-foreground">
+                  Advancing Climate-Health, Pathogenomics & One Health
+                </h3>
                 <p className="mt-3">
-                  The engagement is particularly relevant to ongoing efforts by CPM International Research Institute, OAU, and OAUTHC to strengthen climate-sensitive infectious disease surveillance and implementation science in Nigeria.
+                  The engagement is particularly relevant to ongoing efforts by CPM International
+                  Research Institute, OAU, and OAUTHC to strengthen climate-sensitive infectious
+                  disease surveillance and implementation science in Nigeria.
                 </p>
 
                 <div className="mt-5 rounded-2xl border border-primary/20 bg-primary/5 p-5 sm:p-6">
@@ -807,19 +1272,30 @@ function EventsPage() {
                     <Sparkles className="h-4 w-4" /> Osun State Climate-Health Surveillance Pilot
                   </div>
                   <p className="mt-2 text-sm leading-relaxed text-foreground/90">
-                    CPM International Research Institute, working in collaboration with OAUTHC and Obafemi Awolowo University, has commenced implementation activities under the <strong>Osun State Climate-Health Surveillance Pilot</strong>, serving as an emerging clinical demonstration platform for evidence generation and public health innovation.
+                    CPM International Research Institute, working in collaboration with OAUTHC and
+                    Obafemi Awolowo University, has commenced implementation activities under the{" "}
+                    <strong>Osun State Climate-Health Surveillance Pilot</strong>, serving as an
+                    emerging clinical demonstration platform for evidence generation and public
+                    health innovation.
                   </p>
                 </div>
               </div>
 
               {/* Sub-section 3 */}
               <div className="pt-4 border-t border-border/40">
-                <h3 className="font-serif text-2xl font-normal text-foreground">Institutional Collaboration & Appreciation</h3>
+                <h3 className="font-serif text-2xl font-normal text-foreground">
+                  Institutional Collaboration & Appreciation
+                </h3>
                 <p className="mt-3">
-                  Professor Joseph Omololu-Aso noted that exposure to world-class pathogenomics infrastructure remains essential for the development of sustainable national platforms capable of supporting disease surveillance, outbreak preparedness, precision public health, and translational research.
+                  Professor Joseph Omololu-Aso noted that exposure to world-class pathogenomics
+                  infrastructure remains essential for the development of sustainable national
+                  platforms capable of supporting disease surveillance, outbreak preparedness,
+                  precision public health, and translational research.
                 </p>
                 <p className="mt-3">
-                  The visiting delegation expressed profound appreciation to the management and staff of Redeemer’s University and ACEGID for their hospitality, professionalism, and commitment to scientific leadership across Africa.
+                  The visiting delegation expressed profound appreciation to the management and
+                  staff of Redeemer’s University and ACEGID for their hospitality, professionalism,
+                  and commitment to scientific leadership across Africa.
                 </p>
               </div>
             </div>
@@ -827,19 +1303,36 @@ function EventsPage() {
             {/* Sidebar Summary */}
             <div className="space-y-6 lg:col-span-4">
               <div className="sticky top-24 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-                <h4 className="font-serif text-lg font-normal text-foreground border-b border-border pb-3">Strategic Highlights</h4>
+                <h4 className="font-serif text-lg font-normal text-foreground border-b border-border pb-3">
+                  Strategic Highlights
+                </h4>
                 <div className="mt-4 space-y-3.5 text-sm text-muted-foreground">
                   <div className="flex gap-3">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">1</span>
-                    <p><strong className="text-foreground">Genomics Synergy:</strong> Bridging clinical diagnostics with high-throughput sequencing.</p>
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                      1
+                    </span>
+                    <p>
+                      <strong className="text-foreground">Genomics Synergy:</strong> Bridging
+                      clinical diagnostics with high-throughput sequencing.
+                    </p>
                   </div>
                   <div className="flex gap-3">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">2</span>
-                    <p><strong className="text-foreground">Osun State Pilot:</strong> Real-time climate-pathogen field data collection.</p>
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                      2
+                    </span>
+                    <p>
+                      <strong className="text-foreground">Osun State Pilot:</strong> Real-time
+                      climate-pathogen field data collection.
+                    </p>
                   </div>
                   <div className="flex gap-3">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">3</span>
-                    <p><strong className="text-foreground">One Health Framework:</strong> Unifying clinical medicine, climate science, and public health.</p>
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                      3
+                    </span>
+                    <p>
+                      <strong className="text-foreground">One Health Framework:</strong> Unifying
+                      clinical medicine, climate science, and public health.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -851,48 +1344,65 @@ function EventsPage() {
       {/* ══════════════════════════════════════════════════════════════
           EVENT 2: OLUBADAN OF IBADANLAND ROYAL AUDIENCE
       ══════════════════════════════════════════════════════════════ */}
-      <article id="event-olubadan" className="border-b border-border/60 bg-secondary/30 py-12 sm:py-20 lg:py-24">
+      <article
+        id="event-olubadan"
+        className="border-b border-border/60 bg-secondary/30 py-12 sm:py-20 lg:py-24"
+      >
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-
           {/* Article Header & Metadata Card */}
           <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
-                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Royal Audience & Stakeholder Engagement
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Royal Audience &
+                  Stakeholder Engagement
                 </span>
                 <span className="text-muted-foreground">•</span>
-                <span className="flex items-center gap-1 text-muted-foreground"><Calendar className="h-3.5 w-3.5" /> 13 April 2026</span>
+                <span className="flex items-center gap-1 text-muted-foreground">
+                  <Calendar className="h-3.5 w-3.5" /> 13 April 2026
+                </span>
                 <span className="text-muted-foreground">•</span>
-                <span className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Palace of the Olubadan of Ibadanland</span>
+                <span className="flex items-center gap-1 text-muted-foreground">
+                  <MapPin className="h-3.5 w-3.5" /> Palace of the Olubadan of Ibadanland
+                </span>
               </div>
 
               <h2 className="font-serif text-2xl sm:text-4xl leading-tight font-normal text-foreground tracking-tight">
-                OLUBADAN OF IBADANLAND RECEIVES CPM INTERNATIONAL RESEARCH INSTITUTE DELEGATION, EXPRESSES SUPPORT FOR CLIMATE-HEALTH AND ONE HEALTH INNOVATION INITIATIVE
+                OLUBADAN OF IBADANLAND RECEIVES CPM INTERNATIONAL RESEARCH INSTITUTE DELEGATION,
+                EXPRESSES SUPPORT FOR CLIMATE-HEALTH AND ONE HEALTH INNOVATION INITIATIVE
               </h2>
 
               <p className="mt-3 font-serif text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Historic Palace Engagement Strengthens Vision for Climate-Sensitive Infectious Disease Research, Pathogenomics, AMR and One Health Innovation in Ibadanland
+                Historic Palace Engagement Strengthens Vision for Climate-Sensitive Infectious
+                Disease Research, Pathogenomics, AMR and One Health Innovation in Ibadanland
               </p>
             </div>
 
             {/* Metadata Card */}
             <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 lg:col-span-4 shadow-sm">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Engagement Metadata</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                Engagement Metadata
+              </h3>
               <dl className="mt-4 space-y-3.5 text-sm">
                 <div>
                   <dt className="text-xs text-muted-foreground">Royal Audience Host</dt>
-                  <dd className="font-semibold text-foreground">His Imperial Majesty, Oba Rashidi Adewolu Akanmu Ladoja</dd>
+                  <dd className="font-semibold text-foreground">
+                    His Imperial Majesty, Oba Rashidi Adewolu Akanmu Ladoja
+                  </dd>
                   <dd className="text-xs text-muted-foreground">Olubadan of Ibadanland</dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">Institute Leadership</dt>
                   <dd className="font-semibold text-foreground">Prof. Joseph Omololu-Aso</dd>
-                  <dd className="text-xs text-muted-foreground">Director-General/CEO, CPM Research Institute</dd>
+                  <dd className="text-xs text-muted-foreground">
+                    Director-General/CEO, CPM Research Institute
+                  </dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">Audience Facilitation</dt>
-                  <dd className="font-semibold text-foreground">Rear Admiral Ibikunle Akintola (Rtd.)</dd>
+                  <dd className="font-semibold text-foreground">
+                    Rear Admiral Ibikunle Akintola (Rtd.)
+                  </dd>
                   <dd className="text-xs text-muted-foreground">Are Aago of Ibadanland</dd>
                 </div>
               </dl>
@@ -903,32 +1413,55 @@ function EventsPage() {
           <div className="mt-12 grid gap-10 lg:grid-cols-12">
             <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/85 lg:col-span-8">
               <p className="first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-5xl first-letter:font-bold first-letter:text-primary">
-                The Director-General and Chief Executive Officer of CPM International Research Institute for Climate Health, <strong>Professor Joseph Omololu-Aso</strong>, on 13th April 2026 paid an official visit to the Palace of His Imperial Majesty, <strong>Oba Rashidi Adewolu Akanmu Ladoja</strong>, Olubadan of Ibadanland, as part of ongoing stakeholder engagement and strategic consultations on advancing climate-health innovation, infectious disease preparedness, pathogenomics, antimicrobial resistance (AMR), and One Health research in Nigeria.
+                The Director-General and Chief Executive Officer of CPM International Research
+                Institute for Climate Health, <strong>Professor Joseph Omololu-Aso</strong>, on 13th
+                April 2026 paid an official visit to the Palace of His Imperial Majesty,{" "}
+                <strong>Oba Rashidi Adewolu Akanmu Ladoja</strong>, Olubadan of Ibadanland, as part
+                of ongoing stakeholder engagement and strategic consultations on advancing
+                climate-health innovation, infectious disease preparedness, pathogenomics,
+                antimicrobial resistance (AMR), and One Health research in Nigeria.
               </p>
 
               <p>
-                The visit was facilitated through the distinguished support of the Are Aago of Ibadanland, <strong>Rear Admiral Ibikunle Akintola (Rtd.)</strong>, who graciously arranged the audience and accompanied the engagement.
+                The visit was facilitated through the distinguished support of the Are Aago of
+                Ibadanland, <strong>Rear Admiral Ibikunle Akintola (Rtd.)</strong>, who graciously
+                arranged the audience and accompanied the engagement.
               </p>
 
               {/* Sub-section 1 */}
               <div className="pt-4 border-t border-border/40">
-                <h3 className="font-serif text-2xl font-normal text-foreground">Royal Audience and Strategic Discussions</h3>
+                <h3 className="font-serif text-2xl font-normal text-foreground">
+                  Royal Audience and Strategic Discussions
+                </h3>
                 <p className="mt-3">
-                  During the meeting, Professor Omololu-Aso presented the vision of CPM International Research Institute for Climate Health, including ongoing initiatives in climate-sensitive infectious disease surveillance, pathogenomics, antimicrobial resistance research, One Health innovation, and public health preparedness.
+                  During the meeting, Professor Omololu-Aso presented the vision of CPM
+                  International Research Institute for Climate Health, including ongoing initiatives
+                  in climate-sensitive infectious disease surveillance, pathogenomics, antimicrobial
+                  resistance research, One Health innovation, and public health preparedness.
                 </p>
                 <p className="mt-3">
-                  Particular attention was given to the emerging concept of establishing an <strong>innovation and research hub</strong> that would contribute to scientific advancement, workforce development, disease surveillance, research capacity strengthening, and community impact within Ibadanland and beyond.
+                  Particular attention was given to the emerging concept of establishing an{" "}
+                  <strong>innovation and research hub</strong> that would contribute to scientific
+                  advancement, workforce development, disease surveillance, research capacity
+                  strengthening, and community impact within Ibadanland and beyond.
                 </p>
               </div>
 
               {/* Sub-section 2 */}
               <div className="pt-4 border-t border-border/40">
-                <h3 className="font-serif text-2xl font-normal text-foreground">Royal Encouragement & Traditional Partnership</h3>
+                <h3 className="font-serif text-2xl font-normal text-foreground">
+                  Royal Encouragement & Traditional Partnership
+                </h3>
                 <blockquote className="rounded-r-xl border-l-4 border-primary bg-card p-5 sm:p-6 font-serif text-lg sm:text-xl leading-relaxed text-foreground shadow-sm">
-                  "His Imperial Majesty warmly received the delegation and expressed appreciation for initiatives aimed at advancing health, research, innovation, and human capacity development. The Olubadan encouraged the pursuit of impactful scientific and public health initiatives capable of benefiting Ibadanland, Oyo State, Nigeria, and the wider African region."
+                  "His Imperial Majesty warmly received the delegation and expressed appreciation
+                  for initiatives aimed at advancing health, research, innovation, and human
+                  capacity development. The Olubadan encouraged the pursuit of impactful scientific
+                  and public health initiatives capable of benefiting Ibadanland, Oyo State,
+                  Nigeria, and the wider African region."
                 </blockquote>
                 <p className="mt-3">
-                  His Imperial Majesty assured the delegation of his goodwill, fatherly support, prayers, and openness to future engagements as the vision continues to develop.
+                  His Imperial Majesty assured the delegation of his goodwill, fatherly support,
+                  prayers, and openness to future engagements as the vision continues to develop.
                 </p>
               </div>
 
@@ -938,10 +1471,14 @@ function EventsPage() {
                   <Shield className="h-4 w-4" /> Official Palace Audience Report Note
                 </h4>
                 <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  This report documents the official audience granted to Professor Joseph Omololu-Aso, Director-General/CEO of CPM International Research Institute for Climate Health, by His Imperial Majesty, Oba Rashidi Adewolu Akanmu Ladoja, Olubadan of Ibadanland, on 13 April 2026.
+                  This report documents the official audience granted to Professor Joseph
+                  Omololu-Aso, Director-General/CEO of CPM International Research Institute for
+                  Climate Health, by His Imperial Majesty, Oba Rashidi Adewolu Akanmu Ladoja,
+                  Olubadan of Ibadanland, on 13 April 2026.
                 </p>
                 <p className="mt-2 text-xs italic text-muted-foreground">
-                  *Photographs were not taken during this initial courtesy and strategic engagement. Future meetings and project activities will be documented as appropriate.*
+                  *Photographs were not taken during this initial courtesy and strategic engagement.
+                  Future meetings and project activities will be documented as appropriate.*
                 </p>
               </div>
             </div>
@@ -949,7 +1486,9 @@ function EventsPage() {
             {/* Sidebar Summary */}
             <div className="space-y-6 lg:col-span-4">
               <div className="sticky top-24 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-                <h4 className="font-serif text-lg font-normal text-foreground border-b border-border pb-3">Palace Engagement Focus</h4>
+                <h4 className="font-serif text-lg font-normal text-foreground border-b border-border pb-3">
+                  Palace Engagement Focus
+                </h4>
                 <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
@@ -1071,46 +1610,64 @@ function EventsPage() {
       ══════════════════════════════════════════════════════════════ */}
       <article id="event-hpa-bmz" className="py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-
           {/* Article Header & Metadata Card */}
           <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-primary mb-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 uppercase tracking-wider text-primary">
-                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Global International Dialogue
+                  <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Global International
+                  Dialogue
                 </span>
                 <span className="text-muted-foreground">•</span>
-                <span className="flex items-center gap-1 text-muted-foreground"><Calendar className="h-3.5 w-3.5" /> 7 July 2026</span>
+                <span className="flex items-center gap-1 text-muted-foreground">
+                  <Calendar className="h-3.5 w-3.5" /> 7 July 2026
+                </span>
                 <span className="text-muted-foreground">•</span>
-                <span className="flex items-center gap-1 text-muted-foreground"><Globe className="h-3.5 w-3.5" /> Virtual Forum (Germany)</span>
+                <span className="flex items-center gap-1 text-muted-foreground">
+                  <Globe className="h-3.5 w-3.5" /> Virtual Forum (Germany)
+                </span>
               </div>
 
               <h2 className="font-serif text-2xl sm:text-4xl leading-tight font-normal text-foreground tracking-tight">
-                Global Kick-off Dialogue on Climate Change and Health: Engaging with the Hospital Partnerships Alliance (HPA–BMZ), Germany
+                Global Kick-off Dialogue on Climate Change and Health: Engaging with the Hospital
+                Partnerships Alliance (HPA–BMZ), Germany
               </h2>
 
               <p className="mt-3 font-serif text-base sm:text-lg text-muted-foreground leading-relaxed">
-                CPM International Research Institute Presents AI-Enabled CP-Nexus Framework for Climate-Sensitive Disease Early Warning at High-Level International Forum
+                CPM International Research Institute Presents AI-Enabled CP-Nexus Framework for
+                Climate-Sensitive Disease Early Warning at High-Level International Forum
               </p>
             </div>
 
             {/* Metadata Card */}
             <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 lg:col-span-4 shadow-sm">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Partnership Details</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                Partnership Details
+              </h3>
               <dl className="mt-4 space-y-3.5 text-sm">
                 <div>
                   <dt className="text-xs text-muted-foreground">Organizers</dt>
-                  <dd className="font-semibold text-foreground">Hospital Partnerships Alliance (HPA)</dd>
-                  <dd className="text-xs text-muted-foreground">German Federal Ministry for Economic Cooperation and Development (BMZ) & GIZ</dd>
+                  <dd className="font-semibold text-foreground">
+                    Hospital Partnerships Alliance (HPA)
+                  </dd>
+                  <dd className="text-xs text-muted-foreground">
+                    German Federal Ministry for Economic Cooperation and Development (BMZ) & GIZ
+                  </dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">CPM Delegation</dt>
-                  <dd className="font-semibold text-foreground">Prof. Joseph Omololu-Aso & Delegates</dd>
-                  <dd className="text-xs text-muted-foreground">Multidisciplinary Team & Postgraduate Researchers</dd>
+                  <dd className="font-semibold text-foreground">
+                    Prof. Joseph Omololu-Aso & Delegates
+                  </dd>
+                  <dd className="text-xs text-muted-foreground">
+                    Multidisciplinary Team & Postgraduate Researchers
+                  </dd>
                 </div>
                 <div className="border-t border-border/50 pt-2.5">
                   <dt className="text-xs text-muted-foreground">Featured Framework</dt>
-                  <dd className="font-medium text-foreground">Climate–Pathogen Nexus (CP-Nexus) AI Engine</dd>
+                  <dd className="font-medium text-foreground">
+                    Climate–Pathogen Nexus (CP-Nexus) AI Engine
+                  </dd>
                 </div>
               </dl>
             </div>
@@ -1120,11 +1677,20 @@ function EventsPage() {
           <div className="mt-12 grid gap-10 lg:grid-cols-12">
             <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/85 lg:col-span-8">
               <p className="first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-5xl first-letter:font-bold first-letter:text-primary">
-                The <strong>CPM International Research Institute for Climate Health</strong>, Nigeria, proudly participated in the <strong>Global Kick-off Dialogue on Climate Change and Health</strong>, organized by the Hospital Partnerships Alliance (HPA) in collaboration with the German Federal Ministry for Economic Cooperation and Development (BMZ) and implemented through GIZ, Germany.
+                The <strong>CPM International Research Institute for Climate Health</strong>,
+                Nigeria, proudly participated in the{" "}
+                <strong>Global Kick-off Dialogue on Climate Change and Health</strong>, organized by
+                the Hospital Partnerships Alliance (HPA) in collaboration with the German Federal
+                Ministry for Economic Cooperation and Development (BMZ) and implemented through GIZ,
+                Germany.
               </p>
 
               <p>
-                The virtual high-level engagement brought together healthcare leaders, researchers, clinicians, public health experts, and institutions from across the world to initiate collaborative discussions on developing innovative <strong>Flagship Initiatives</strong> aimed at strengthening climate-resilient health systems in low- and middle-income countries (LMICs).
+                The virtual high-level engagement brought together healthcare leaders, researchers,
+                clinicians, public health experts, and institutions from across the world to
+                initiate collaborative discussions on developing innovative{" "}
+                <strong>Flagship Initiatives</strong> aimed at strengthening climate-resilient
+                health systems in low- and middle-income countries (LMICs).
               </p>
 
               <div className="my-6 rounded-2xl border border-primary/20 bg-primary/5 p-5 sm:p-6">
@@ -1132,19 +1698,28 @@ function EventsPage() {
                   <Award className="h-5 w-5 text-primary" /> Presenting the CP-Nexus AI Framework
                 </h4>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/90">
-                  The Institute shared its vision for advancing AI-enabled climate-health intelligence, particularly through the <strong>Climate–Pathogen Nexus (CP-Nexus)</strong> framework for the early detection and prediction of climate-sensitive infectious disease threats.
+                  The Institute shared its vision for advancing AI-enabled climate-health
+                  intelligence, particularly through the{" "}
+                  <strong>Climate–Pathogen Nexus (CP-Nexus)</strong> framework for the early
+                  detection and prediction of climate-sensitive infectious disease threats.
                 </p>
               </div>
 
               <p>
-                The participation marks another important milestone in CPM International Research Institute for Climate Health’s growing global engagement and reinforces its commitment to building strategic international partnerships that address the complex intersection of climate change, infectious diseases, artificial intelligence, and global health.
+                The participation marks another important milestone in CPM International Research
+                Institute for Climate Health’s growing global engagement and reinforces its
+                commitment to building strategic international partnerships that address the complex
+                intersection of climate change, infectious diseases, artificial intelligence, and
+                global health.
               </p>
             </div>
 
             {/* Sidebar Summary */}
             <div className="space-y-6 lg:col-span-4">
               <div className="sticky top-24 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-                <h4 className="font-serif text-lg font-normal text-foreground border-b border-border pb-3">Global Engagement Focus</h4>
+                <h4 className="font-serif text-lg font-normal text-foreground border-b border-border pb-3">
+                  Global Engagement Focus
+                </h4>
                 <div className="mt-4 space-y-3 text-sm text-muted-foreground">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
@@ -1245,7 +1820,9 @@ function EventsPage() {
                     }}
                     aria-label={`View photo ${index + 1}`}
                     className={`relative cursor-pointer overflow-hidden rounded-lg aspect-[4/3] border-2 transition ${
-                      index === activePhotoIndex ? "border-emerald-400 ring-2 ring-emerald-400/50" : "border-transparent opacity-75 hover:opacity-100"
+                      index === activePhotoIndex
+                        ? "border-emerald-400 ring-2 ring-emerald-400/50"
+                        : "border-transparent opacity-75 hover:opacity-100"
                     }`}
                   >
                     <img src={photo.url} alt={photo.caption} loading="lazy" decoding="async" className="h-full w-full object-cover" />
