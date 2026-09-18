@@ -20,6 +20,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AdminPostsRouteImport } from './routes/admin.posts'
 
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
@@ -76,6 +77,11 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminPostsRoute = AdminPostsRouteImport.update({
+  id: '/admin/posts',
+  path: '/admin/posts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
+  '/admin/posts': typeof AdminPostsRoute
   '/api/chat': typeof ApiChatRoute
   '/events/$eventId': typeof EventsEventIdRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
+  '/admin/posts': typeof AdminPostsRoute
   '/api/chat': typeof ApiChatRoute
   '/events/$eventId': typeof EventsEventIdRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/leadership': typeof LeadershipRoute
   '/news': typeof NewsRoute
   '/resources': typeof ResourcesRoute
+  '/admin/posts': typeof AdminPostsRoute
   '/api/chat': typeof ApiChatRoute
   '/events/$eventId': typeof EventsEventIdRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/leadership'
     | '/news'
     | '/resources'
+    | '/admin/posts'
     | '/api/chat'
     | '/events/$eventId'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/leadership'
     | '/news'
     | '/resources'
+    | '/admin/posts'
     | '/api/chat'
     | '/events/$eventId'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/leadership'
     | '/news'
     | '/resources'
+    | '/admin/posts'
     | '/api/chat'
     | '/events/$eventId'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   LeadershipRoute: typeof LeadershipRoute
   NewsRoute: typeof NewsRoute
   ResourcesRoute: typeof ResourcesRoute
+  AdminPostsRoute: typeof AdminPostsRoute
   ApiChatRoute: typeof ApiChatRoute
 }
 
@@ -251,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/posts': {
+      id: '/admin/posts'
+      path: '/admin/posts'
+      fullPath: '/admin/posts'
+      preLoaderRoute: typeof AdminPostsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -275,6 +295,7 @@ const rootRouteChildren: RootRouteChildren = {
   LeadershipRoute: LeadershipRoute,
   NewsRoute: NewsRoute,
   ResourcesRoute: ResourcesRoute,
+  AdminPostsRoute: AdminPostsRoute,
   ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport

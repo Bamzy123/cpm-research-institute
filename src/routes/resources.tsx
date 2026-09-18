@@ -297,9 +297,9 @@ function ResourcesPage() {
               <p className="text-sm leading-relaxed text-muted-foreground mb-6">
                 If you can't find what you're looking for, contact our research team. We're happy to provide additional materials or discuss collaboration opportunities.
               </p>
-              <Link to="/#contact" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all">
+              <a href="/#contact" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all">
                 Get in Touch →
-              </Link>
+              </a>
             </div>
 
             <div>

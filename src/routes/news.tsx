@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import type { EventId } from "../lib/event-data";
+import { getPublishedManagedNewsPosts } from "../lib/news-store";
 
 
 import { ArrowLeft, Calendar, User, Tag, ArrowRight } from "lucide-react";
@@ -111,8 +112,13 @@ const categories = ["All", "Events", "Research", "Partnership", "Publication", "
 function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [managedNews, setManagedNews] = useState<NewsItem[]>([]);
 
-  const filteredNews = newsItems.filter((item) => {
+  useEffect(() => {
+    setManagedNews(getPublishedManagedNewsPosts());
+  }, []);
+
+  const filteredNews = [...managedNews, ...newsItems].filter((item) => {
     const categoryMatch = selectedCategory === "All" || item.category === selectedCategory;
     const searchMatch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
@@ -297,9 +303,9 @@ function NewsPage() {
             Have questions about our research or want to collaborate? Contact us or visit our resources page for more information.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/#contact" className="inline-flex items-center gap-2 bg-primary-foreground px-6 py-3 text-sm font-medium text-primary hover:bg-primary-foreground/90 transition">
+            <a href="/#contact" className="inline-flex items-center gap-2 bg-primary-foreground px-6 py-3 text-sm font-medium text-primary hover:bg-primary-foreground/90 transition">
               Get in Touch <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
+            </a>
             <Link to="/resources" className="inline-flex items-center gap-2 border border-primary-foreground/40 px-6 py-3 text-sm font-medium text-primary-foreground hover:border-primary-foreground/60 transition">
               View Resources
             </Link>
