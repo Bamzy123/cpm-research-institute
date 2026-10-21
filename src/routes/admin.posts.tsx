@@ -1,16 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowLeft, Check, Eye, FileText, Pencil, Plus, Save, Send, Trash2, X } from "lucide-react";
+import { ArrowLeft, Check, Download, Eye, FileText, Pencil, Plus, Save, Send, Trash2, X } from "lucide-react";
 import { getManagedNewsPosts, saveManagedNewsPosts, type ManagedNewsPost } from "../lib/news-store";
+import { articleSchema } from "../lib/article-schema";
+import { absoluteUrl } from "../lib/site";
 
 export const Route = createFileRoute("/admin/posts")({
   component: AdminPostsPage,
   head: () => ({
-    meta: [{ title: "Post Manager | CPM Int'l Research Institute" }],
+    meta: [{ title: "Article Drafts | CPM Int'l Research Institute" }, { name: "robots", content: "noindex, nofollow" }],
   }),
 });
 
-const categories = ["Events", "Research", "Partnership", "Publication", "Innovation", "Training"];
+const categories = ["Research", "Partnerships", "Publication", "Innovation", "Training"];
+const slugify = (title: string) => title.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 type PostForm = Omit<ManagedNewsPost, "id" | "updatedAt">;
 
@@ -23,6 +26,15 @@ const emptyForm: PostForm = {
   category: "Research",
   featured: false,
   status: "draft",
+  slug: "",
+  kind: "news",
+  seoTitle: "",
+  seoDescription: "",
+  imageUrl: "",
+  imageAlt: "",
+  eventLocation: "",
+  eventDate: "",
+  authorType: "Organization",
 };
 
 function AdminPostsPage() {
@@ -52,7 +64,7 @@ function AdminPostsPage() {
   const editPost = (post: ManagedNewsPost) => {
     const { id: _id, updatedAt: _updatedAt, ...postForm } = post;
     setEditingId(post.id);
-    setForm(postForm);
+    setForm({ ...emptyForm, ...postForm, kind: postForm.kind ?? (postForm.category === "Events" ? "event" : "news"), category: postForm.category === "Events" || postForm.category === "Partnership" ? "Partnerships" : postForm.category });
     setShowEditor(true);
     setShowPreview(false);
     setNotice("");
@@ -83,7 +95,23 @@ function AdminPostsPage() {
     saveManagedNewsPosts(nextPosts);
     setEditingId(post.id);
     setForm({ ...post });
-    setNotice(status === "published" ? "Post published to the News page." : "Draft saved.");
+    setNotice(status === "published" ? "Marked ready in this browser. Export the article for publication on the website." : "Draft saved in this browser.");
+  };
+
+  const exportArticle = () => {
+    const kind = form.kind ?? "news";
+    const result = articleSchema.safeParse({
+      slug: form.slug?.trim() || slugify(form.title), title: form.title.trim(), summary: form.excerpt.trim(),
+      kind, topic: form.category, date: form.date, author: { name: form.author.trim(), type: form.authorType ?? "Organization" }, featured: form.featured,
+      ...(form.imageUrl?.trim() ? { image: { src: form.imageUrl.trim(), alt: form.imageAlt?.trim() || "" } } : {}),
+      ...(kind === "event" ? { event: { date: form.eventDate || form.date, location: form.eventLocation?.trim() || "" } } : {}),
+      body: form.content.trim().split(/\n\s*\n/).filter(Boolean).map((text) => text.startsWith("## ") ? { type: "heading", text: text.slice(3).trim() } : { type: "paragraph", text: text.trim() }),
+      seo: { title: form.seoTitle?.trim() || `${form.title.trim()} | CPM Int’l`, description: form.seoDescription?.trim() || form.excerpt.trim() },
+    });
+    if (!result.success) { setNotice(result.error.issues.map((issue) => `${issue.path.join(" ")}: ${issue.message}`).join(" · ")); return; }
+    const url = URL.createObjectURL(new Blob([JSON.stringify(result.data, null, 2) + "\n"], { type: "application/json" }));
+    const link = document.createElement("a"); link.href = url; link.download = `${result.data.slug}.json`; link.click(); URL.revokeObjectURL(url);
+    setNotice("Article exported with its SEO information. Send this file to your website publisher; exporting does not make it public.");
   };
 
   const deletePost = (postId: string) => {
@@ -102,7 +130,7 @@ function AdminPostsPage() {
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
               CPM Int'l content
             </p>
-            <h1 className="mt-2 font-serif text-3xl leading-tight">Post manager</h1>
+            <h1 className="mt-2 font-serif text-3xl leading-tight">Article drafts</h1>
           </div>
           <div className="flex items-center gap-3">
             <Link
@@ -110,7 +138,7 @@ function AdminPostsPage() {
               className="hidden items-center gap-2 border border-border bg-background px-4 py-2 text-sm font-medium transition hover:border-primary sm:inline-flex"
             >
               <Eye className="h-4 w-4" aria-hidden />
-              View News
+              View News &amp; Events
             </Link>
             <button
               type="button"
@@ -124,7 +152,8 @@ function AdminPostsPage() {
         </div>
       </header>
 
-      <main className="mx-auto grid max-w-[1400px] gap-8 px-6 py-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:px-10 lg:py-12">
+      <div className="mx-auto max-w-[1400px] px-6 pt-6 lg:px-10"><p className="border border-primary/20 bg-primary/5 px-5 py-4 text-sm leading-6">Drafts are saved on this device. Export a finished article and send it to your website publisher to make it available to visitors and search engines.</p></div>
+      <main className="mx-auto grid max-w-[1400px] gap-8 px-6 py-8 lg:grid-cols-[minmax(250px,1fr)_minmax(0,2fr)] lg:px-10 lg:py-12">
         <section>
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
@@ -141,8 +170,7 @@ function AdminPostsPage() {
               <FileText className="mx-auto h-8 w-8 text-primary" aria-hidden />
               <h3 className="mt-4 font-serif text-xl">Start your newsroom</h3>
               <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-                Create a post, save it as a draft while it is being reviewed, or publish it directly
-                to the public News page.
+                Write a story, prepare its search information, and export it for publication.
               </p>
               <button
                 type="button"
@@ -165,7 +193,7 @@ function AdminPostsPage() {
                       <span
                         className={`px-2 py-1 font-medium ${post.status === "published" ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}
                       >
-                        {post.status === "published" ? "Published" : "Draft"}
+                        {post.status === "published" ? "Ready for publication" : "Draft"}
                       </span>
                       <span className="text-muted-foreground">{post.category}</span>
                     </div>
@@ -226,6 +254,7 @@ function AdminPostsPage() {
             </div>
 
             <div className="space-y-5">
+              <label className="block text-sm font-medium">Story type<select value={form.kind ?? "news"} onChange={(event) => updateForm("kind", event.target.value as "news" | "event")} className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm"><option value="news">News</option><option value="event">Event report</option></select></label>
               <label className="block text-sm font-medium">
                 Title
                 <input
@@ -250,7 +279,7 @@ function AdminPostsPage() {
                 <textarea
                   value={form.content}
                   onChange={(event) => updateForm("content", event.target.value)}
-                  placeholder="Write the full update here..."
+                  placeholder="Write the full update here. Separate paragraphs with a blank line. Start a section heading with ##."
                   rows={8}
                   className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm leading-relaxed outline-none focus:border-primary"
                 />
@@ -265,8 +294,9 @@ function AdminPostsPage() {
                     className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-primary"
                   />
                 </label>
+                <label className="block text-sm font-medium">Author type<select value={form.authorType ?? "Organization"} onChange={(event) => updateForm("authorType", event.target.value as "Person" | "Organization")} className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm"><option value="Organization">Institute or team</option><option value="Person">Individual author</option></select></label>
                 <label className="block text-sm font-medium">
-                  Category
+                  Topic
                   <select
                     value={form.category}
                     onChange={(event) => updateForm("category", event.target.value)}
@@ -294,17 +324,26 @@ function AdminPostsPage() {
                   onChange={(event) => updateForm("featured", event.target.checked)}
                   className="h-4 w-4 accent-primary"
                 />
-                Feature this post near the top of News
+                Feature this story in News &amp; Events
               </label>
+              {form.kind === "event" && <div className="grid gap-5 sm:grid-cols-2"><label className="block text-sm font-medium">Event location<input value={form.eventLocation ?? ""} onChange={(event) => updateForm("eventLocation", event.target.value)} className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm" /></label><label className="block text-sm font-medium">Event date<input type="date" value={form.eventDate ?? ""} onChange={(event) => updateForm("eventDate", event.target.value)} className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm" /></label></div>}
+              <fieldset className="space-y-5 border-t border-border pt-5"><legend className="px-2 font-serif text-xl">Article image</legend><label className="block text-sm font-medium">Image URL or website path<input value={form.imageUrl ?? ""} onChange={(event) => updateForm("imageUrl", event.target.value)} placeholder="/research-visit.jpg" className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm" /></label><label className="block text-sm font-medium">Image description (alt text)<input value={form.imageAlt ?? ""} onChange={(event) => updateForm("imageAlt", event.target.value)} placeholder="Describe the people or activity shown" className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm" /></label></fieldset>
+              <fieldset className="space-y-5 border-t border-border pt-5"><legend className="px-2 font-serif text-xl">Search engine information</legend>
+                <label className="block text-sm font-medium">Article URL<input value={form.slug ?? ""} onChange={(event) => updateForm("slug", event.target.value)} placeholder={slugify(form.title) || "descriptive-article-name"} className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm" /><span className="mt-1 block text-xs font-normal text-muted-foreground">Use lowercase words separated by hyphens. Keep this address stable after publication.</span></label>
+                <label className="block text-sm font-medium">SEO title<input value={form.seoTitle ?? ""} onChange={(event) => updateForm("seoTitle", event.target.value)} placeholder={`${form.title || "Article title"} | CPM Int’l`} className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm" /><span className="mt-1 block text-xs font-normal text-muted-foreground">{(form.seoTitle || `${form.title} | CPM Int’l`).length} characters. Keep it clear and specific.</span></label>
+                <label className="block text-sm font-medium">Search description<textarea value={form.seoDescription ?? ""} onChange={(event) => updateForm("seoDescription", event.target.value)} placeholder={form.excerpt || "A concise summary of this article"} rows={3} className="mt-2 w-full border border-input bg-background px-3 py-2.5 text-sm" /><span className="mt-1 block text-xs font-normal text-muted-foreground">{(form.seoDescription || form.excerpt).length} characters. Used for search and social previews.</span></label>
+                <div className="border border-border bg-card p-4"><p className="mb-3 text-xs uppercase tracking-wider text-muted-foreground">Search preview</p><p className="break-all text-xs text-muted-foreground">{absoluteUrl(`/news/${form.slug || slugify(form.title) || "article-name"}`)}</p><p className="mt-2 text-lg text-primary">{form.seoTitle || `${form.title || "Article title"} | CPM Int’l`}</p><p className="mt-1 text-sm leading-6 text-muted-foreground">{form.seoDescription || form.excerpt || "Your article description will appear here."}</p></div>
+              </fieldset>
             </div>
 
             {notice && (
-              <p className="mt-5 border border-primary/30 bg-primary/5 px-3 py-2 text-sm text-primary">
+              <p role="status" className="mt-5 border border-primary/30 bg-primary/5 px-3 py-2 text-sm text-primary">
                 {notice}
               </p>
             )}
 
             <div className="mt-6 flex flex-wrap gap-2 border-t border-border pt-5">
+              <button type="button" onClick={exportArticle} className="inline-flex min-h-11 items-center gap-2 bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"><Download className="h-4 w-4" aria-hidden />Export article</button>
               <button
                 type="button"
                 onClick={() => persistPost("draft")}
@@ -319,7 +358,7 @@ function AdminPostsPage() {
                 className="inline-flex items-center gap-2 bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
               >
                 <Send className="h-4 w-4" aria-hidden />
-                Publish
+                Mark ready
               </button>
               <button
                 type="button"
@@ -356,11 +395,10 @@ function AdminPostsPage() {
       <footer className="mx-auto flex max-w-[1400px] items-center gap-2 px-6 pb-10 text-xs text-muted-foreground lg:px-10">
         <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
         <Link to="/news" className="hover:text-primary">
-          Back to public News
+          Back to News &amp; Events
         </Link>
         <span className="ml-2">
-          Browser storage prototype; connect this boundary to authenticated server storage before
-          production use.
+          Drafts stay on this device until exported for publication.
         </span>
       </footer>
     </div>

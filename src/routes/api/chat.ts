@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { getInstituteLocationReply, SITE } from "../../lib/site";
 
 type ChatMessage = { role: "user" | "assistant" | "system"; content: string };
 
@@ -8,6 +9,8 @@ Key Knowledge Base:
 
 1. ABOUT CPM INSTITUTE:
 - Full Name: CPM International Research Institute for Climate Health.
+- Headquarters: ${SITE.address}. This is an independent institute based in Ibadan, Oyo State, Nigeria. OAU and OAUTHC are collaborators. They do not host the institute; do not describe CPM as based in Ile-Ife or Osun State.
+- Contact: ${SITE.email}; ${SITE.phone}.
 - Leadership: Professor Joseph Omololu-Aso (Director-General / CEO & Professor of Infectious Disease and Climate Change Intervention at Obafemi Awolowo University).
 - Key Partners: Obafemi Awolowo University (OAU), Obafemi Awolowo University Teaching Hospitals Complex (OAUTHC) led by CMD Prof. John Akíntúndé Ọládọ̀tun Òkèníyì, NCDC, Redeemer's University (ACEGID), and international partners.
 - Mission: Advance climate health intelligence through science, innovation, education, technology, policy, and global partnership; strengthen health security in Africa and worldwide.
@@ -34,7 +37,7 @@ a) ACEGID Scientific Delegation & Facility Tour (Redeemer's University, Ede):
    - Led by Prof. Joseph Omololu-Aso with OAU & OAUTHC leadership.
    - Programme: "Transforming Clinical Diagnostics with PCR: From Microbiome Analysis to HPV Genotyping".
    - Toured cutting-edge genomics, molecular diagnostics, bioinformatics, and outbreak response infrastructure.
-   - Showcases 25 high-resolution event photographs on the /events page gallery.
+   - Full report and photographs: /news/acegid-scientific-visit-pathogen-genomics.
 b) Olubadan of Ibadanland Royal Audience (13 April 2026):
    - Audience with His Imperial Majesty Oba Rashidi Adewolu Akanmu Ladoja, Olubadan of Ibadanland.
    - Facilitated by Are Aago Rear Admiral Ibikunle Akintola (Rtd.).
@@ -63,6 +66,8 @@ export const Route = createFileRoute("/api/chat")({
 
         const messages = Array.isArray(body.messages) ? body.messages : [];
         const lastMsg = messages[messages.length - 1]?.content || "";
+        const locationReply = getInstituteLocationReply(lastMsg);
+        if (locationReply) return Response.json({ reply: locationReply });
 
         const key = process.env.LOVABLE_API_KEY || process.env.OPENAI_API_KEY || process.env.GEMINI_API_KEY;
 
@@ -108,13 +113,15 @@ export const Route = createFileRoute("/api/chat")({
 
 function getFallbackResponse(query: string): string {
   const q = query.toLowerCase();
+  const locationReply = getInstituteLocationReply(query);
+  if (locationReply) return locationReply;
 
   if (q.includes("chip") || q.includes("digital twin") || q.includes("platform")) {
     return "CHIP™ (Climate Health Intelligence Platform) is CPM International Research Institute's flagship scientific innovation — an AI-enabled Climate Health Digital Twin that transforms public health surveillance into a predictive decision-support ecosystem. It unifies one platform, one database, one AI engine, one Digital Twin, and one decision dashboard across 9 core capabilities. Learn more on our /chip page!";
   }
 
   if (q.includes("acegid") || q.includes("redeemer") || q.includes("ede") || q.includes("pcr") || q.includes("genomics")) {
-    return "CPM International Research Institute, along with OAU and OAUTHC leadership, recently led a scientific delegation to ACEGID at Redeemer's University, Ede. The visit focused on pathogenomics, molecular diagnostics, AMR surveillance, and outbreak preparedness. You can explore the full report and interactive 25-photo gallery on our /events page!";
+    return "CPM International Research Institute, along with OAU and OAUTHC leadership, led a scientific delegation to ACEGID at Redeemer's University, Ede. The visit focused on pathogenomics, molecular diagnostics, AMR surveillance, and outbreak preparedness. Read the report and view the photographs at /news/acegid-scientific-visit-pathogen-genomics.";
   }
 
   if (q.includes("olubadan") || q.includes("ibadan") || q.includes("palace") || q.includes("ladoja")) {
@@ -131,10 +138,6 @@ function getFallbackResponse(query: string): string {
 
   if (q.includes("director") || q.includes("omololu") || q.includes("ceo") || q.includes("leader") || q.includes("okeniyi")) {
     return "CPM International Research Institute for Climate Health is led by Director-General/CEO Professor Joseph Omololu-Aso (OAU). Our collaborating leadership includes Chief Medical Director Prof. John Akíntúndé Ọládọ̀tun Òkèníyì (OAUTHC) and our multidisciplinary team of climate scientists, genomicists, and epidemiologists. Visit /leadership to read more!";
-  }
-
-  if (q.includes("contact") || q.includes("email") || q.includes("location") || q.includes("address") || q.includes("where")) {
-    return "CPM International Research Institute for Climate Health is headquartered in Osun State, Nigeria, in collaboration with Obafemi Awolowo University (OAU) and OAUTHC. You can get in touch with us via the contact form on our home page or by emailing our secretariat.";
   }
 
   return "Welcome to CPM International Research Institute for Climate Health! We advance research across climate-sensitive infectious diseases, pathogenomics, AI-driven surveillance (CHIP™), antimicrobial resistance, and One Health innovation. Feel free to ask about our CHIP™ platform, recent ACEGID genomics visit, Olubadan palace audience, or global partnerships!";

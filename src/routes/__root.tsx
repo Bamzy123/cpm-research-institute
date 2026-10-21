@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ChatAssistant } from "../components/ChatAssistant";
+import { organizationSchema } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -35,7 +36,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -79,13 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "CPM Int'l Research Institute for Climate Health" },
-      { name: "description", content: "The CPM Int'l Research Institute for Climate Health advances transformative science on climate, pathogens, genomics and AI to strengthen health security in Africa and worldwide." },
+      { name: "description", content: "CPM Int'l is an independent research institute based in Ibadan, Oyo State, Nigeria, advancing climate-health science, pathogen genomics and AI for public health." },
       { property: "og:title", content: "CPM Int'l Research Institute for Climate Health" },
-      { property: "og:description", content: "Advancing climate health intelligence through science, innovation and global partnership." },
+      { property: "og:description", content: "An independent research institute in Ibadan, Oyo State, Nigeria, advancing climate-health science, innovation and global partnership." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "CPM Int'l Research Institute for Climate Health" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:card", content: "summary" },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

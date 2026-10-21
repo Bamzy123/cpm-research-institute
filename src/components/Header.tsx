@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, ArrowRight, Building2, Heart } from "lucide-react";
+import { SITE } from "../lib/site";
 
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About CPM Int'l" },
   { href: "/#research", label: "Research" },
   { href: "/chip", label: "CHIP™" },
-  { href: "/events", label: "Events & News" },
+  { href: "/news", label: "News & Events" },
   { href: "/fellowships", label: "Fellowships" },
 ];
 
@@ -56,7 +57,7 @@ export function Header() {
             </Link>
             <div className="hidden xl:flex items-center gap-1.5 border-l border-border/70 pl-4 py-0.5 text-xs text-muted-foreground">
               <Building2 className="h-3.5 w-3.5 text-primary shrink-0" />
-              <span>Hosted at <strong>Obafemi Awolowo University</strong></span>
+              <span>Based in <strong>{SITE.city}, {SITE.country}</strong></span>
             </div>
           </div>
 
@@ -145,7 +146,7 @@ export function Header() {
             <div className="flex items-center justify-between border-b border-border px-6 py-5">
               <div className="flex flex-col">
                 <span className="font-serif text-lg font-semibold tracking-tight text-primary">CPM Int'l</span>
-                <span className="text-[11px] text-muted-foreground">Hosted at Obafemi Awolowo University</span>
+                <span className="text-[11px] text-muted-foreground">Based in {SITE.city}, {SITE.region}, {SITE.country}</span>
               </div>
               <button
                 type="button"

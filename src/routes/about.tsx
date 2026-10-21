@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { SITE, absoluteUrl } from "../lib/site";
 
 
 import {
@@ -21,9 +22,13 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Learn about CPM Int'l Research Institute for Climate Health — our identity, vision, mission, and the multidisciplinary mandate that drives everything we do.",
+          "CPM Int'l is an independent research institute based at 7 Grand-mart Hub, Akobo Ojuirin, Ibadan, Oyo State, Nigeria. Learn about our mission, governance and partnerships.",
       },
+      { property: "og:title", content: "About CPM Int'l — Research Institute in Ibadan, Nigeria" },
+      { property: "og:description", content: "Independent climate-health research from Ibadan, Oyo State, Nigeria. Discover CPM Int'l, our mission, governance and scientific collaborations." },
+      { property: "og:url", content: absoluteUrl("/about") },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/about") }],
   }),
 });
 
@@ -159,8 +164,7 @@ function AboutPage() {
               <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-muted-foreground">
                 <p className="font-medium text-foreground">
                   The CPM International Research Institute for Climate Health (CPM Int’l) is an independent, 
-                  multidisciplinary research and innovation institute hosted at <strong>Obafemi Awolowo University (OAU), 
-                    Ile-Ife, Nigeria</strong> — committed to advancing scientific excellence at the intersection of climate
+                  multidisciplinary research and innovation institute based in <strong>{SITE.city}, {SITE.region}, {SITE.country}</strong> — committed to advancing scientific excellence at the intersection of climate
                      change, infectious diseases, artificial intelligence, pathogen genomics, One Health, and health 
                      systems innovation.
                 </p>
@@ -205,7 +209,7 @@ function AboutPage() {
               Institute Facts & Legal Framework
             </h2>
             <p className="mt-3 text-sm text-muted-foreground">
-              Official registration, institutional hosting, and governing structures supporting transparent scientific inquiry.
+              Institutional location, registration, and governing structures supporting transparent scientific inquiry.
             </p>
           </div>
 
@@ -222,11 +226,11 @@ function AboutPage() {
 
             <div className="border border-border bg-card p-6 flex flex-col justify-between">
               <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Host Institution</p>
-                <p className="mt-2 font-serif text-xl font-semibold text-foreground">Obafemi Awolowo University</p>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Institute Headquarters</p>
+                <p className="mt-2 font-serif text-xl font-semibold text-foreground">{SITE.city}, {SITE.region}</p>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                Hosted at Obafemi Awolowo University (OAU), Ile-Ife, Nigeria, fostering academic research and laboratory collaboration.
+                {SITE.address}. OAU and OAUTHC are research collaborators; CPM operates independently from its Ibadan headquarters.
               </p>
             </div>
 

@@ -15,7 +15,7 @@ export const Route = createFileRoute("/fellowships")({
       {
         name: "description",
         content:
-          "Apply for CPM Int'l Research Institute Fellowships, Pathogen Genomics Traineeships, and AI Data Science Residencies hosted at Obafemi Awolowo University, Nigeria.",
+          "Explore fellowships, pathogen genomics traineeships and AI data science residencies at CPM Int'l Research Institute, based in Ibadan, Oyo State, Nigeria.",
       },
     ],
   }),
@@ -52,7 +52,7 @@ const eligibilityCriteria = [
   "Hold a Master's or Ph.D. in Public Health, Microbiology, Genomics, Environmental Science, Data Science, or related disciplines.",
   "Demonstrated commitment to climate-health research, One Health frameworks, or infectious disease surveillance in Africa.",
   "Proficiency in scientific writing and quantitative/computational analytical methods (R, Python, GIS, or laboratory NGS).",
-  "Availability for physical or hybrid residency at Obafemi Awolowo University, Ile-Ife, Nigeria, or partner regional hubs.",
+  "Availability for physical or hybrid residency in Ibadan, Nigeria, or at a partner research location specified for the programme.",
 ];
 
 function FellowshipsPage() {
@@ -93,7 +93,7 @@ function FellowshipsPage() {
           </p>
           <div className="mt-8 inline-flex items-center gap-2 border px-4 py-2 text-xs font-medium text-white" style={{ borderColor: "oklch(1 0 0 / 0.2)", background: "oklch(1 0 0 / 0.05)" }}>
             <Building2 className="h-4 w-4" style={{ color: "oklch(0.72 0.14 75)" }} />
-            <span>Hosted at Obafemi Awolowo University, Ile-Ife, Nigeria</span>
+            <span>Based in Ibadan, Oyo State, Nigeria</span>
           </div>
         </div>
       </section>

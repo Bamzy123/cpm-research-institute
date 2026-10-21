@@ -8,6 +8,8 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
+    "articles:import": "node --experimental-strip-types scripts/import-article.mjs",
+    "test:content": "node --experimental-strip-types --test scripts/newsroom.test.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

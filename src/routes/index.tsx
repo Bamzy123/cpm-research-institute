@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import React, { useEffect, useRef, useState, type FormEvent } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { SITE, absoluteUrl } from "../lib/site";
 
 
 import {
@@ -20,6 +21,15 @@ import citadelPhoto from "../assets/citadel.jpeg";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "CPM Int'l Research Institute for Climate Health | Ibadan, Nigeria" },
+      { name: "description", content: "CPM Int'l Research Institute for Climate Health is based in Ibadan, Oyo State, Nigeria. Explore our climate-health research, scientific partnerships and innovation." },
+      { property: "og:title", content: "CPM Int'l Research Institute for Climate Health | Ibadan, Nigeria" },
+      { property: "og:url", content: absoluteUrl("/") },
+    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
+  }),
 });
 
 // ── Data ─────────────────────────────────────────────────────────────
@@ -136,7 +146,7 @@ const whyCPM = [
 ];
 
 const partnerships = [
-  { country: "Nigeria", region: "Africa", x: "76%", y: "54%", detail: "Host country: Obafemi Awolowo University, Ile-Ife" },
+  { country: "Nigeria", region: "Africa", x: "76%", y: "54%", detail: "Institute headquarters: Ibadan, Oyo State, Nigeria" },
   { country: "Uganda", region: "Africa", x: "79%", y: "58%", detail: "East Africa research collaboration" },
   { country: "Tanzania", region: "Africa", x: "80%", y: "63%", detail: "One Health field research programme" },
   { country: "United Kingdom", region: "Europe", x: "49%", y: "22%", detail: "Academic and research institute partnerships" },
@@ -319,7 +329,7 @@ function Index() {
           </p>
           <div className="mt-4 inline-flex items-center gap-2 border px-4 py-2 text-xs font-medium text-white/95 backdrop-blur-sm" style={{ borderColor: "oklch(1 0 0 / 0.25)", background: "oklch(1 0 0 / 0.08)" }}>
             <Building2 className="h-4 w-4" style={{ color: "oklch(0.72 0.14 75)" }} />
-            <span>Hosted at <strong>Obafemi Awolowo University (OAU)</strong>, Ile-Ife, Nigeria</span>
+            <span>Based in <strong>{SITE.city}, {SITE.region}, {SITE.country}</strong></span>
           </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
@@ -559,7 +569,9 @@ function Index() {
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
-                  to="/events"
+                  to="/news/$slug"
+                  params={{ slug: "strategic-sessions-climate-health-field-surveillance" }}
+                  hash="gallery"
                   className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider transition-all hover:opacity-90 rounded-sm shadow-md"
                   style={{ background: "oklch(0.72 0.14 75)", color: "oklch(0.15 0.04 230)" }}
                 >
@@ -843,7 +855,7 @@ function Index() {
                   <MapPin className="h-5 w-5 shrink-0 text-primary" aria-hidden />
                   <div>
                     <dt className="font-medium text-foreground">Address</dt>
-                    <dd className="mt-1 text-muted-foreground">7, Grand-mart  Hub,  Opposite Omololu Hospital, Akobo Ojuirin, Ibadan Oyo State,Nigeria</dd>
+                    <dd className="mt-1 text-muted-foreground">{SITE.address}</dd>
                   </div>
                 </div>
                 <div className="flex gap-4">

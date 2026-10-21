@@ -9,6 +9,15 @@ export type ManagedNewsPost = {
   featured: boolean;
   status: "draft" | "published";
   updatedAt: string;
+  slug?: string;
+  kind?: "news" | "event";
+  seoTitle?: string;
+  seoDescription?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  eventLocation?: string;
+  eventDate?: string;
+  authorType?: "Person" | "Organization";
 };
 
 const STORAGE_KEY = "cpm-managed-news-posts";

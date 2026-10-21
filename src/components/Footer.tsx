@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
 import { MapPin, Mail, Phone, Building2 } from "lucide-react";
+import { SITE } from "../lib/site";
 
 const researchAreas = [
   "Climate Change & Health",
@@ -16,7 +17,7 @@ const navItems = [
   { href: "/about", label: "About CPM Int'l" },
   { href: "/#research", label: "Research Areas" },
   { href: "/chip", label: "CHIP™ Digital Twin" },
-  { href: "/events", label: "Events & News" },
+  { href: "/news", label: "News & Events" },
   { href: "/fellowships", label: "Fellowships & Training" },
   { href: "/leadership", label: "Institute Leadership" },
   { href: "/resources", label: "Resources & Publications" },
@@ -50,7 +51,7 @@ export function Footer() {
               className="mt-4 text-sm leading-relaxed"
               style={{ color: "oklch(0.65 0.03 220)" }}
             >
-              An independent multidisciplinary research institute hosted at <strong>Obafemi Awolowo University, Ile-Ife, Nigeria</strong> — dedicated to advancing scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, AI, and One Health.
+              An independent multidisciplinary research institute based in <strong>{SITE.city}, {SITE.region}, {SITE.country}</strong> — dedicated to advancing scientific discovery, innovation, and evidence-based solutions at the intersection of climate change, infectious diseases, AI, and One Health.
             </p>
             <p
               className="mt-5 text-xs uppercase tracking-[0.2em]"
@@ -127,7 +128,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-sm font-medium text-white">Contact & Host</p>
+            <p className="text-sm font-medium text-white">Contact & Headquarters</p>
             <ul
               className="mt-4 space-y-3 text-sm"
               style={{ color: "oklch(0.65 0.03 220)" }}
@@ -138,7 +139,7 @@ export function Footer() {
                   style={{ color: "oklch(0.72 0.14 75)" }}
                 />
                 <span className="text-xs font-medium text-white">
-                  Obafemi Awolowo University (OAU), Ile-Ife, Osun State, Nigeria
+                  {SITE.city}, {SITE.region}, {SITE.country}
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -147,7 +148,7 @@ export function Footer() {
                   style={{ color: "oklch(0.72 0.14 75)" }}
                 />
                 <span className="text-xs">
-                  7, Grand-mart Hub, Opposite Omololu Hospital, Akobo Ojuirin, Ibadan, Oyo State, Nigeria
+                  {SITE.address}
                 </span>
               </li>
               <li className="flex items-center gap-2">
@@ -155,14 +156,14 @@ export function Footer() {
                   className="h-3.5 w-3.5 shrink-0"
                   style={{ color: "oklch(0.72 0.14 75)" }}
                 />
-                <span className="text-xs">info@cpm-institute.org</span>
+                <a href={`mailto:${SITE.email}`} className="text-xs hover:underline">{SITE.email}</a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone
                   className="h-3.5 w-3.5 shrink-0"
                   style={{ color: "oklch(0.72 0.14 75)" }}
                 />
-                <span className="text-xs">+234 803 377 0933</span>
+                <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="text-xs hover:underline">{SITE.phone}</a>
               </li>
             </ul>
           </div>

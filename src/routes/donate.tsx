@@ -15,7 +15,7 @@ export const Route = createFileRoute("/donate")({
       {
         name: "description",
         content:
-          "Invest in groundbreaking climate-health science, AI digital twin innovations, and pathogen genomics research at CPM Int'l Research Institute, hosted at Obafemi Awolowo University.",
+          "Support climate-health science, AI innovation and pathogen genomics research at CPM Int'l Research Institute in Ibadan, Oyo State, Nigeria.",
       },
     ],
   }),
@@ -54,7 +54,7 @@ const bankDetails = {
   accountNumber: "1023849120",
   swiftCode: "FBNINGLAXXX",
   currency: "NGN / USD / EUR",
-  hostAffiliation: "Hosted at Obafemi Awolowo University, Ile-Ife, Nigeria",
+  headquarters: "Ibadan, Oyo State, Nigeria",
 };
 
 function DonatePage() {
@@ -101,7 +101,7 @@ function DonatePage() {
           </p>
           <div className="mt-8 inline-flex items-center gap-2 border px-4 py-2 text-xs font-medium text-white" style={{ borderColor: "oklch(1 0 0 / 0.2)", background: "oklch(1 0 0 / 0.05)" }}>
             <Building2 className="h-4 w-4" style={{ color: "oklch(0.72 0.14 75)" }} />
-            <span>Hosted at Obafemi Awolowo University, Ile-Ife, Nigeria</span>
+            <span>Based in Ibadan, Oyo State, Nigeria</span>
           </div>
         </div>
       </section>
@@ -166,8 +166,8 @@ function DonatePage() {
                     <dd className="text-sm font-semibold text-foreground mt-0.5">{bankDetails.accountName}</dd>
                   </div>
                   <div className="border-b border-border/60 pb-3">
-                    <dt className="text-muted-foreground font-medium">Host Institution Affiliation</dt>
-                    <dd className="text-foreground mt-0.5">{bankDetails.hostAffiliation}</dd>
+                    <dt className="text-muted-foreground font-medium">Institute Headquarters</dt>
+                    <dd className="text-foreground mt-0.5">{bankDetails.headquarters}</dd>
                   </div>
                   <div className="border-b border-border/60 pb-3">
                     <dt className="text-muted-foreground font-medium">Bank Name</dt>
@@ -321,7 +321,7 @@ function DonatePage() {
                   </button>
 
                   <p className="text-[11px] text-center text-muted-foreground">
-                    CPM Int'l Research Institute is an independent research institution registered in Nigeria, hosted at Obafemi Awolowo University.
+                    CPM Int'l Research Institute is an independent research institution based in Ibadan, Oyo State, Nigeria.
                   </p>
                 </form>
               )}
