@@ -16,10 +16,10 @@ export const eventRecords: EventRecord[] = [
   {
     id: "cpm",
     anchor: "event-cpm",
-    label: "CPM Strategic Sessions",
+    label: "CPM Int’l Strategic Sessions",
     title:
       "CPM International Research Institute Executive Strategic Sessions, Field Surveillance & Multidisciplinary Consortium Workshops",
-    location: "CPM Research Hubs & Field Sites, Nigeria",
+    location: "CPM Int’l Research Hubs & Field Sites, Nigeria",
     category: "Strategic Sessions & Field Operations",
     summary:
       "Institutional planning, One Health field preparedness, genomics integration and regional stakeholder engagement.",

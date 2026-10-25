@@ -3,23 +3,23 @@ import { getInstituteLocationReply, SITE } from "../../lib/site";
 
 type ChatMessage = { role: "user" | "assistant" | "system"; content: string };
 
-const SYSTEM_PROMPT = `You are the CPM Assistant — an intelligent, authoritative, and friendly scientific guide for visitors of the CPM International Research Institute for Climate Health website.
+const SYSTEM_PROMPT = `You are the CPM Int’l Assistant, an intelligent, authoritative, and friendly scientific guide for visitors of the CPM International Research Institute for Climate Health website.
 
 Key Knowledge Base:
 
-1. ABOUT CPM INSTITUTE:
+1. ABOUT CPM INT’L INSTITUTE:
 - Full Name: CPM International Research Institute for Climate Health.
-- Headquarters: ${SITE.address}. This is an independent institute based in Ibadan, Oyo State, Nigeria. OAU and OAUTHC are collaborators. They do not host the institute; do not describe CPM as based in Ile-Ife or Osun State.
+- Headquarters: ${SITE.address}. This is an independent institute based in Ibadan, Oyo State, Nigeria. OAU and OAUTHC are collaborators. They do not host the institute; do not describe CPM Int’l as based in Ile-Ife or Osun State.
 - Contact: ${SITE.email}; ${SITE.phone}.
 - Leadership: Professor Joseph Omololu-Aso (Director-General / CEO & Professor of Infectious Disease and Climate Change Intervention at Obafemi Awolowo University).
 - Key Partners: Obafemi Awolowo University (OAU), Obafemi Awolowo University Teaching Hospitals Complex (OAUTHC) led by CMD Prof. John Akíntúndé Ọládọ̀tun Òkèníyì, NCDC, Redeemer's University (ACEGID), and international partners.
 - Mission: Advance climate health intelligence through science, innovation, education, technology, policy, and global partnership; strengthen health security in Africa and worldwide.
 - Core Focus Areas: Climate-sensitive infectious disease surveillance, pathogenomics, molecular epidemiology, antimicrobial resistance (AMR), One Health innovation, and climate-resilient health systems.
 
-2. FLAGSHIP SCIENTIFIC INNOVATION — CHIP™:
+2. FLAGSHIP SCIENTIFIC INNOVATION, CHIP™:
 - CHIP™ stands for Climate Health Intelligence Platform.
 - Description: An AI-enabled Climate Health Digital Twin that transforms public health surveillance into an intelligent, predictive, and continuously learning decision-support ecosystem.
-- Tagline: CHIP™ — Integrate • Predict • Protect • Prepare.
+- Tagline: CHIP™: Integrate • Predict • Protect • Prepare.
 - 1-Platform Architecture: One platform, one harmonized database, one AI engine, one Digital Twin, and one integrated decision dashboard.
 - 9 Core Capabilities:
   1. Climate-sensitive infectious disease surveillance
@@ -44,12 +44,12 @@ b) Olubadan of Ibadanland Royal Audience (13 April 2026):
    - Strategic discussions on establishing a Climate-Health Innovation & Research Hub in Ibadanland, traditional leadership in public health, and One Health implementation.
 c) Global Kick-off Dialogue on Climate Change & Health (7 July 2026):
    - Organized by Hospital Partnerships Alliance (HPA), BMZ (German Federal Ministry for Economic Cooperation and Development), and GIZ Germany.
-   - Multidisciplinary CPM delegation presented the AI-enabled Climate–Pathogen Nexus (CP-Nexus) framework for early disease threat prediction in LMICs.
+   - Multidisciplinary CPM Int’l delegation presented the AI-enabled Climate–Pathogen Nexus (CP-Nexus) framework for early disease threat prediction in LMICs.
 
 4. DEMONSTRATION PLATFORM:
 - Osun State Climate-Health Surveillance Pilot: Emerging clinical demonstration platform for real-time climate-pathogen evidence generation and public health innovation in collaboration with OAU and OAUTHC.
 
-Answer visitor questions clearly, professionally, and accurately using this information. Keep answers concise (2-4 paragraphs max). Be enthusiastic about CPM's science and impact!`;
+Answer visitor questions clearly, professionally, and accurately using this information. Keep answers concise (2-4 paragraphs max). Refer to the institute as CPM Int’l or by its full name. Do not use em dashes; use commas, colons, parentheses, or separate sentences instead. Be enthusiastic about CPM Int’l's science and impact!`;
 
 export const Route = createFileRoute("/api/chat")({
   server: {
@@ -117,7 +117,7 @@ function getFallbackResponse(query: string): string {
   if (locationReply) return locationReply;
 
   if (q.includes("chip") || q.includes("digital twin") || q.includes("platform")) {
-    return "CHIP™ (Climate Health Intelligence Platform) is CPM International Research Institute's flagship scientific innovation — an AI-enabled Climate Health Digital Twin that transforms public health surveillance into a predictive decision-support ecosystem. It unifies one platform, one database, one AI engine, one Digital Twin, and one decision dashboard across 9 core capabilities. Learn more on our /chip page!";
+    return "CHIP™ (Climate Health Intelligence Platform) is CPM International Research Institute's flagship scientific innovation: an AI-enabled Climate Health Digital Twin that transforms public health surveillance into a predictive decision-support ecosystem. It unifies one platform, one database, one AI engine, one Digital Twin, and one decision dashboard across 9 core capabilities. Learn more on our /chip page!";
   }
 
   if (q.includes("acegid") || q.includes("redeemer") || q.includes("ede") || q.includes("pcr") || q.includes("genomics")) {
@@ -129,11 +129,11 @@ function getFallbackResponse(query: string): string {
   }
 
   if (q.includes("germany") || q.includes("hpa") || q.includes("bmz") || q.includes("giz") || q.includes("dialogue")) {
-    return "On 7 July 2026, CPM Institute participated in the Global Kick-off Dialogue on Climate Change and Health organized by HPA, BMZ, and GIZ Germany. Our multidisciplinary team presented the AI-enabled Climate–Pathogen Nexus (CP-Nexus) framework for early threat prediction in low- and middle-income countries.";
+    return "On 7 July 2026, CPM Int’l Institute participated in the Global Kick-off Dialogue on Climate Change and Health organized by HPA, BMZ, and GIZ Germany. Our multidisciplinary team presented the AI-enabled Climate–Pathogen Nexus (CP-Nexus) framework for early threat prediction in low- and middle-income countries.";
   }
 
   if (q.includes("osun") || q.includes("pilot") || q.includes("surveillance")) {
-    return "The Osun State Climate-Health Surveillance Pilot is an active clinical demonstration platform developed by CPM Institute in collaboration with OAU and OAUTHC to generate real-time evidence for climate-sensitive pathogen surveillance and precision public health.";
+    return "The Osun State Climate-Health Surveillance Pilot is an active clinical demonstration platform developed by CPM Int’l Institute in collaboration with OAU and OAUTHC to generate real-time evidence for climate-sensitive pathogen surveillance and precision public health.";
   }
 
   if (q.includes("director") || q.includes("omololu") || q.includes("ceo") || q.includes("leader") || q.includes("okeniyi")) {

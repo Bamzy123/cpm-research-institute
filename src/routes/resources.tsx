@@ -94,7 +94,7 @@ const resources: Resource[] = [
     description: "Peer-reviewed research article examining temporal patterns of infectious diseases in relation to climate shifts.",
     type: "Publication",
     date: "2026-04-15",
-    authors: "CPM Research Collaboration",
+    authors: "CPM Int’l Research Collaboration",
     downloadUrl: "#",
     downloadFormat: "PDF",
   },

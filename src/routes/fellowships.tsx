@@ -4,7 +4,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import {
   GraduationCap, BookOpen, Dna, Cpu, CheckCircle2,
-  Calendar, Award, Users, ArrowRight, FileText, Send, Building2
+  Calendar, Award, Users, ArrowRight, FileText, Send
 } from "lucide-react";
 
 export const Route = createFileRoute("/fellowships")({
@@ -91,10 +91,6 @@ function FellowshipsPage() {
           <p className="mt-6 max-w-2xl text-base lg:text-lg leading-relaxed mx-auto" style={{ color: "oklch(0.82 0.03 220)" }}>
             Nurturing the next generation of climate health researchers, genomic scientists, and data science leaders across Africa and international research networks.
           </p>
-          <div className="mt-8 inline-flex items-center gap-2 border px-4 py-2 text-xs font-medium text-white" style={{ borderColor: "oklch(1 0 0 / 0.2)", background: "oklch(1 0 0 / 0.05)" }}>
-            <Building2 className="h-4 w-4" style={{ color: "oklch(0.72 0.14 75)" }} />
-            <span>Based in Ibadan, Oyo State, Nigeria</span>
-          </div>
         </div>
       </section>
 

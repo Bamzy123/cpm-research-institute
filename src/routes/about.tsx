@@ -18,13 +18,13 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About — CPM Int'l Research Institute for Climate Health" },
+      { title: "About | CPM Int'l Research Institute for Climate Health" },
       {
         name: "description",
         content:
           "CPM Int'l is an independent research institute based at 7 Grand-mart Hub, Akobo Ojuirin, Ibadan, Oyo State, Nigeria. Learn about our mission, governance and partnerships.",
       },
-      { property: "og:title", content: "About CPM Int'l — Research Institute in Ibadan, Nigeria" },
+      { property: "og:title", content: "About CPM Int'l | Research Institute in Ibadan, Nigeria" },
       { property: "og:description", content: "Independent climate-health research from Ibadan, Oyo State, Nigeria. Discover CPM Int'l, our mission, governance and scientific collaborations." },
       { property: "og:url", content: absoluteUrl("/about") },
     ],
@@ -163,8 +163,8 @@ function AboutPage() {
               
               <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-muted-foreground">
                 <p className="font-medium text-foreground">
-                  The CPM International Research Institute for Climate Health (CPM Int’l) is an independent, 
-                  multidisciplinary research and innovation institute based in <strong>{SITE.city}, {SITE.region}, {SITE.country}</strong> — committed to advancing scientific excellence at the intersection of climate
+                  The CPM International Research Institute for Climate Health (CPM Int’l) is a
+                  multidisciplinary research and innovation institute based in <strong>{SITE.city}, {SITE.region}, {SITE.country}</strong>, committed to advancing scientific excellence at the intersection of climate
                      change, infectious diseases, artificial intelligence, pathogen genomics, One Health, and health 
                      systems innovation.
                 </p>
@@ -172,7 +172,7 @@ function AboutPage() {
                   We were established on a simple but powerful conviction: the future of global health depends on our ability to anticipate health threats rather than merely respond to them.
                 </p>
                 <p>
-                  As climate change continues to reshape the distribution, transmission, and severity of infectious diseases, new scientific approaches are required to protect populations and strengthen health systems. CPM exists to pioneer those approaches through cutting-edge research, digital innovation, strategic partnerships, and evidence-based solutions that improve lives.
+                  As climate change continues to reshape the distribution, transmission, and severity of infectious diseases, new scientific approaches are required to protect populations and strengthen health systems. CPM Int’l exists to pioneer those approaches through cutting-edge research, digital innovation, strategic partnerships, and evidence-based solutions that improve lives.
                 </p>
                 <p>
                   Our Institute brings together scientists, clinicians, engineers, environmental experts, epidemiologists, data scientists, policymakers, and development partners to transform scientific knowledge into practical tools that strengthen preparedness, resilience, and sustainable development.
@@ -184,7 +184,7 @@ function AboutPage() {
               <div className="relative">
                 <img
                   src={about}
-                  alt="CPM research team"
+                  alt="CPM Int’l research team"
                   className="w-full border border-border object-cover shadow-md"
                   style={{ aspectRatio: "4/3" }}
                 />
@@ -230,7 +230,7 @@ function AboutPage() {
                 <p className="mt-2 font-serif text-xl font-semibold text-foreground">{SITE.city}, {SITE.region}</p>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                {SITE.address}. OAU and OAUTHC are research collaborators; CPM operates independently from its Ibadan headquarters.
+                {SITE.address}. OAU and OAUTHC are research collaborators; CPM Int’l operates independently from its Ibadan headquarters.
               </p>
             </div>
 
@@ -287,7 +287,7 @@ function AboutPage() {
               </div>
               <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-muted-foreground">
                 <p>
-                  CPM International Research Institute was founded with a vision to build a globally connected research ecosystem capable of addressing one of the twenty-first century’s greatest challenges—the complex relationship between climate change and human health.
+                  CPM International Research Institute was founded with a vision to build a globally connected research ecosystem capable of addressing one of the twenty-first century’s greatest challenges: the complex relationship between climate change and human health.
                 </p>
                 <p>
                   Recognizing that conventional disease surveillance systems often operate independently of environmental intelligence, the Institute set out to create a new generation of scientific frameworks that integrate climate science, public health, artificial intelligence, laboratory medicine, genomics, and digital technologies into unified decision-support systems.
@@ -315,7 +315,7 @@ function AboutPage() {
             
             <div className="mt-8 space-y-4 text-sm leading-relaxed text-muted-foreground max-w-3xl mx-auto">
               <p>
-                This philosophy shapes every aspect of our work—from research and innovation to training, policy engagement, and international collaboration.
+                This philosophy shapes every aspect of our work, from research and innovation to training, policy engagement, and international collaboration.
               </p>
               <p>
                 Our strength lies in our ability to integrate diverse scientific disciplines into practical solutions that anticipate emerging health threats and improve decision-making.
@@ -410,7 +410,7 @@ function AboutPage() {
               </h2>
               <div className="mt-8 space-y-5 text-sm leading-relaxed text-white/80">
                 <p>
-                  At the heart of CPM Int'l is CHIP™ (Climate Health Intelligence Platform)—our flagship scientific framework.
+                  At the heart of CPM Int'l is CHIP™ (Climate Health Intelligence Platform), our flagship scientific framework.
                 </p>
                 <p>
                   CHIP™ is an AI-enabled Climate Health Digital Twin that continuously integrates climate observations, environmental intelligence, disease surveillance, laboratory diagnostics, pathogen genomics, satellite information, and predictive analytics into a unified decision-support ecosystem.

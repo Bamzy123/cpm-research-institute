@@ -14,9 +14,9 @@ export const Route = createFileRoute("/chip")({
   component: ChipPage,
   head: () => ({
     meta: [
-      { title: "CHIP™ — Climate Health Intelligence Platform | CPM Int'l Research Institute" },
-      { name: "description", content: "CHIP™ is the flagship scientific innovation of CPM Int'l Research Institute for Climate Health — an AI-enabled Climate Health Digital Twin for predictive public health." },
-      { property: "og:title", content: "CHIP™ — Climate Health Intelligence Platform" },
+      { title: "CHIP™: Climate Health Intelligence Platform | CPM Int'l Research Institute" },
+      { name: "description", content: "CHIP™ is the flagship scientific innovation of CPM Int'l Research Institute for Climate Health, an AI-enabled Climate Health Digital Twin for predictive public health." },
+      { property: "og:title", content: "CHIP™: Climate Health Intelligence Platform" },
       { property: "og:description", content: "The flagship scientific innovation of CPM Int'l Research Institute for Climate Health." },
       { property: "og:image", content: "/chip.jpeg" },
       { property: "og:type", content: "article" },
@@ -107,7 +107,7 @@ function ChipPage() {
       <Header />
 
       {/* ══════════════════════════════════════════════════════════════
-          1. HERO BAND — Full Green Band & Stat Chips
+          1. HERO BAND: Full Green Band & Stat Chips
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
@@ -116,7 +116,7 @@ function ChipPage() {
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300 backdrop-blur-md shadow-sm">
               <Sparkles className="h-4 w-4 text-emerald-300 shrink-0" />
-              <span>CHIP™ — FLAGSHIP SCIENTIFIC INNOVATION</span>
+              <span>CHIP™: FLAGSHIP SCIENTIFIC INNOVATION</span>
             </div>
 
             <h1 className="mt-5 font-serif text-4xl leading-[1.08] tracking-tight sm:text-6xl lg:text-[76px] font-normal">
@@ -124,7 +124,7 @@ function ChipPage() {
             </h1>
 
             <p className="mt-5 max-w-3xl text-lg sm:text-xl leading-relaxed text-primary-foreground/85">
-              CPM International Research Institute's Flagship Scientific Innovation — An AI-Enabled Climate Health Digital Twin for Predictive Public Health Decision-Support.
+              CPM International Research Institute's Flagship Scientific Innovation: An AI-Enabled Climate Health Digital Twin for Predictive Public Health Decision-Support.
             </p>
 
             {/* Stat chips */}
@@ -155,7 +155,7 @@ function ChipPage() {
             <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden flex items-center justify-center">
               <img
                 src="/chip.jpeg"
-                alt="Climate Health Intelligence Platform (CHIP™) — AI Digital Twin Ecosystem"
+                alt="Climate Health Intelligence Platform (CHIP™): AI Digital Twin Ecosystem"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
@@ -173,7 +173,7 @@ function ChipPage() {
                   <Sparkles className="h-4 w-4" /> Featured Innovation Diagram
                 </div>
                 <figcaption className="text-sm sm:text-base font-medium text-white/95 leading-snug max-w-4xl">
-                  The Climate Health Intelligence Platform (CHIP™) — An AI-enabled Climate Health Digital Twin integrating climate, environmental, epidemiological, laboratory, genomic, and geospatial intelligence into a single predictive ecosystem.
+                  The Climate Health Intelligence Platform (CHIP™): An AI-enabled Climate Health Digital Twin integrating climate, environmental, epidemiological, laboratory, genomic, and geospatial intelligence into a single predictive ecosystem.
                 </figcaption>
               </div>
             </div>
@@ -210,7 +210,7 @@ function ChipPage() {
               <div className="my-8 rounded-2xl border border-primary/20 bg-secondary/50 p-6 sm:p-8 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">The Climate Health Digital Twin</p>
                 <blockquote className="font-serif text-xl sm:text-2xl leading-relaxed text-foreground italic">
-                  "At the heart of CHIP™ is the concept of the Climate Health Digital Twin — a living digital representation of the climate environment–pathogen–host–health system. By continuously updating with historical and real-time observations, the Digital Twin enables advanced predictive analytics, scenario simulation, and evidence-informed decision-making for climate-sensitive infectious diseases."
+                  "At the heart of CHIP™ is the concept of the Climate Health Digital Twin: a living digital representation of the climate environment–pathogen–host–health system. By continuously updating with historical and real-time observations, the Digital Twin enables advanced predictive analytics, scenario simulation, and evidence-informed decision-making for climate-sensitive infectious diseases."
                 </blockquote>
               </div>
 
@@ -264,7 +264,7 @@ function ChipPage() {
       </article>
 
       {/* ══════════════════════════════════════════════════════════════
-          4. CAPABILITIES — 3×3 Interactive Grid
+          4. CAPABILITIES: 3×3 Interactive Grid
       ══════════════════════════════════════════════════════════════ */}
       <section className="border-b border-border/60 bg-secondary/30 py-16 sm:py-24">
         <div ref={capSection.ref} style={reveal(capSection.inView)} className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
@@ -325,7 +325,7 @@ function ChipPage() {
               </p>
 
               <p>
-                As the Institute’s flagship innovation, CHIP™ embodies CPM’s commitment to integrating science, digital technology, and multidisciplinary collaboration to build resilient health systems capable of anticipating rather than merely reacting to climate-sensitive public health threats.
+                As the Institute’s flagship innovation, CHIP™ embodies CPM Int’l’s commitment to integrating science, digital technology, and multidisciplinary collaboration to build resilient health systems capable of anticipating rather than merely reacting to climate-sensitive public health threats.
               </p>
             </div>
 
@@ -339,7 +339,7 @@ function ChipPage() {
                   Anticipating Public Health Threats Before Transmission Begins
                 </h3>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                  CHIP™ replaces reactive epidemic response with continuous AI digital twin simulation — converting weather parameters, satellite indices, and genomic reads into actionable risk scores.
+                  CHIP™ replaces reactive epidemic response with continuous AI digital twin simulation, converting weather parameters, satellite indices, and genomic reads into actionable risk scores.
                 </p>
 
                 <div className="mt-6 flex flex-wrap gap-2">
@@ -357,7 +357,7 @@ function ChipPage() {
       </article>
 
       {/* ══════════════════════════════════════════════════════════════
-          6. SIGNATURE GRAND CLOSING BAND — Wordmark & Motto
+          6. SIGNATURE GRAND CLOSING BAND: Wordmark & Motto
       ══════════════════════════════════════════════════════════════ */}
       <section className="overflow-hidden bg-primary text-primary-foreground">
         <div
@@ -446,7 +446,7 @@ function ChipPage() {
               className="max-h-[78vh] w-auto object-contain rounded-xl shadow-2xl"
             />
             <p className="mt-4 text-center text-sm font-medium text-white/90 max-w-3xl">
-              Climate Health Intelligence Platform (CHIP™) — AI-Enabled Climate Health Digital Twin
+              Climate Health Intelligence Platform (CHIP™): AI-Enabled Climate Health Digital Twin
             </p>
           </div>
         </div>

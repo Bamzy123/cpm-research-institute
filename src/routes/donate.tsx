@@ -3,7 +3,7 @@ import React, { useState, type FormEvent } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import {
-  Heart, Shield, Building2, FlaskConical, Dna, Cpu, Award,
+  Heart, Shield, FlaskConical, Dna, Cpu, Award,
   CheckCircle2, ArrowRight, Banknote, CreditCard, HelpCircle
 } from "lucide-react";
 
@@ -99,10 +99,6 @@ function DonatePage() {
           <p className="mt-6 max-w-2xl text-base lg:text-lg leading-relaxed mx-auto" style={{ color: "oklch(0.82 0.03 220)" }}>
             Your contributions directly accelerate climate health predictive modeling, pathogen genomic sequencing, and capacity building for researchers across Africa and worldwide.
           </p>
-          <div className="mt-8 inline-flex items-center gap-2 border px-4 py-2 text-xs font-medium text-white" style={{ borderColor: "oklch(1 0 0 / 0.2)", background: "oklch(1 0 0 / 0.05)" }}>
-            <Building2 className="h-4 w-4" style={{ color: "oklch(0.72 0.14 75)" }} />
-            <span>Based in Ibadan, Oyo State, Nigeria</span>
-          </div>
         </div>
       </section>
 

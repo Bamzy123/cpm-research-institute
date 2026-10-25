@@ -93,7 +93,7 @@ export function articleHead(article: Article) {
 export function archiveHead(search: NewsSearch) {
   const filtered = Boolean(search.type || search.q || search.topic);
   const url = absoluteUrl(`/news${!filtered && search.page ? `?page=${search.page}` : ""}`);
-  const title = `News & Events${search.page ? ` — Page ${search.page}` : ""} | CPM Int’l Research Institute`;
+  const title = `News & Events${search.page ? ` | Page ${search.page}` : ""} | CPM Int’l Research Institute`;
   const description =
     "Research news, scientific visits and institutional updates from CPM Int'l Research Institute for Climate Health in Ibadan, Nigeria.";
   return {

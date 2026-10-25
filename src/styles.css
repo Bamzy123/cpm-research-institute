@@ -113,7 +113,7 @@
   .fade-up { animation: none; opacity: 1; transform: none; }
 }
 
-/* ── Mobile nav — right-side slide panel ────────────────────────────── */
+/* ── Mobile nav: right-side slide panel ────────────────────────────── */
 @keyframes cpm-nav-in {
   from { transform: translateX(100%); }
   to   { transform: translateX(0); }
@@ -203,4 +203,37 @@
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
   border: none;
+}
+
+@layer components {
+  .home-eyebrow {
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+  .home-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2.15rem, 3.65vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    font-weight: 400;
+  }
+  .home-text-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.875rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--primary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-weight: 600;
+    transition: border-color 160ms;
+  }
+  .home-text-link:hover {
+    border-color: var(--primary);
+  }
 }

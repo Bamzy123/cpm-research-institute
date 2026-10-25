@@ -15,7 +15,7 @@ Alternatively, edit `articles.json` directly. `src/lib/article-schema.ts` valida
 
 Each published article automatically receives a canonical URL, title/description, Open Graph and Twitter metadata, NewsArticle and BreadcrumbList JSON-LD, related links and sitemap inclusion. Pages without a relevant photograph use text cards and do not claim an unrelated social image. Filter/search URLs are noindex; unfiltered archive pagination is indexable. Unknown article slugs return HTTP 404. Old `/events/<id>` links permanently redirect to the corresponding article; old event fragments are handled in the browser.
 
-Institute identity and the public domain are in `src/lib/site.ts`. CPM is based at **7, Grand-mart Hub, Opposite Omololu Hospital, Akobo Ojuirin, Ibadan, Oyo State, Nigeria**. OAU/OAUTHC references describe research collaboration and individual academic affiliations, not hosting or headquarters.
+Institute identity and the public domain are in `src/lib/site.ts`. CPM Int’l is based at **7, Grand-mart Hub, Opposite Omololu Hospital, Akobo Ojuirin, Ibadan, Oyo State, Nigeria**. OAU/OAUTHC references describe research collaboration and individual academic affiliations, not hosting or headquarters.
 
 After deployment, submit `/sitemap.xml` in Google Search Console and request indexing for the homepage, About page and updated articles. Google controls recrawling, snippets and AI summaries; these changes prepare the site but cannot force an immediate update or guarantee rankings.
 
