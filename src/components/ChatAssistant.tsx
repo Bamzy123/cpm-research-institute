@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, X, Send, Loader2, Sparkles, HelpCircle } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, HelpCircle } from "lucide-react";
 import { getInstituteLocationReply } from "../lib/site";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -84,7 +84,7 @@ export function ChatAssistant() {
           <header className="flex items-center justify-between border-b border-border bg-primary px-4 py-3.5 text-primary-foreground">
             <div className="flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-emerald-300">
-                <Sparkles className="h-4 w-4" />
+                <MessageCircle className="h-4 w-4" aria-hidden />
               </div>
               <div>
                 <p className="font-serif text-base font-medium leading-tight">CPM Int’l Assistant</p>

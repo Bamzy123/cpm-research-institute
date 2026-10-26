@@ -7,8 +7,8 @@ import { SITE, absoluteUrl } from "../lib/site";
 
 import {
   ArrowRight, Menu, X,
-  Microscope, Globe2, BrainCircuit, Dna, Activity, BarChart3,
-  Mail, Phone, MapPin, Shield, Sparkles, Cpu, Users, 
+  Microscope, Globe2, Network, Dna, Activity, BarChart3,
+  Mail, Phone, MapPin, Shield, Lightbulb, Cpu, Users,
   CheckCircle2, GraduationCap, Compass, BookOpen, HeartPulse
 } from "lucide-react";
 import about from "../assets/about.jpeg"
@@ -56,7 +56,7 @@ const pillars = [
     body: "Investigating the distribution, ecology, and transmission patterns of vector-borne, water-borne, and zoonotic pathogens." 
   },
   { 
-    icon: BrainCircuit, 
+    icon: Network,
     title: "Artificial Intelligence and Digital Health", 
     body: "Developing machine learning architectures and digital twins to predict outbreaks and enhance public health decision-support." 
   },
@@ -92,7 +92,7 @@ const researchChallenges = [
 
 const values = [
   { icon: Shield, name: "Scientific Excellence", desc: "Pursuing research of the highest quality." },
-  { icon: Sparkles, name: "Innovation", desc: "Developing transformative ideas and technologies." },
+  { icon: Lightbulb, name: "Innovation", desc: "Developing transformative ideas and technologies." },
   { icon: Compass, name: "Integrity", desc: "Upholding ethical conduct, transparency, and accountability." },
   { icon: Users, name: "Collaboration", desc: "Working across disciplines, institutions, and borders." },
   { icon: HeartPulse, name: "Impact", desc: "Translating science into meaningful societal benefit." },
@@ -546,7 +546,7 @@ function AboutPage() {
             {values.map(({ icon: Icon, name, desc }) => (
               <div key={name} className="border border-border bg-card p-6 rounded-sm card-lift flex gap-4 items-start">
                 <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/5">
-                  <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                  <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} aria-hidden />
                 </div>
                 <div>
                   <h4 className="font-serif text-base font-semibold text-foreground">{name}</h4>

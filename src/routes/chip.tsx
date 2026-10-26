@@ -6,8 +6,8 @@ import { Footer } from "../components/Footer";
 
 import {
   ArrowLeft, Activity, Cpu, AlertCircle, Globe2, Dna, Monitor, Leaf,
-  HeartPulse, Target, Sparkles, CheckCircle2, Maximize2, X, Shield, Menu,
-  Layers, Database, BrainCircuit, Eye, ArrowRight
+  HeartPulse, Target, Microscope, CheckCircle2, Maximize2, X, Shield, Menu,
+  Layers, Database, Network, Eye, ArrowRight
 } from "lucide-react";
 
 export const Route = createFileRoute("/chip")({
@@ -115,7 +115,7 @@ function ChipPage() {
         <div ref={heroSection.ref} style={reveal(heroSection.inView)} className="relative mx-auto max-w-[1400px] px-4 py-16 sm:px-6 lg:px-10 lg:py-28">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300 backdrop-blur-md shadow-sm">
-              <Sparkles className="h-4 w-4 text-emerald-300 shrink-0" />
+              <Microscope className="h-4 w-4 text-emerald-300 shrink-0" aria-hidden />
               <span>CHIP™: FLAGSHIP SCIENTIFIC INNOVATION</span>
             </div>
 
@@ -170,7 +170,7 @@ function ChipPage() {
               {/* Caption Overlay */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-5 sm:p-8 text-white">
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1.5">
-                  <Sparkles className="h-4 w-4" /> Featured Innovation Diagram
+                  <Layers className="h-4 w-4" aria-hidden /> Featured Innovation Diagram
                 </div>
                 <figcaption className="text-sm sm:text-base font-medium text-white/95 leading-snug max-w-4xl">
                   The Climate Health Intelligence Platform (CHIP™): An AI-enabled Climate Health Digital Twin integrating climate, environmental, epidemiological, laboratory, genomic, and geospatial intelligence into a single predictive ecosystem.
@@ -191,7 +191,7 @@ function ChipPage() {
             {/* Main Article Body */}
             <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/85 lg:col-span-7">
               <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Flagship Scientific Innovation
+                <Microscope className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden /> Flagship Scientific Innovation
               </div>
 
               <h2 className="font-serif text-3xl sm:text-4xl font-normal leading-tight text-foreground tracking-tight">
@@ -270,7 +270,7 @@ function ChipPage() {
         <div ref={capSection.ref} style={reveal(capSection.inView)} className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <div className="max-w-3xl mb-12">
             <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Integrated Capabilities
+              <Network className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden /> Integrated Capabilities
             </div>
             <h2 className="mt-4 font-serif text-3xl sm:text-4xl font-normal leading-tight text-foreground tracking-tight">
               CHIP™ is Designed to Support
@@ -309,7 +309,7 @@ function ChipPage() {
             
             <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/85 lg:col-span-7">
               <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" /> Strategic Impact & Preparedness
+                <Shield className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden /> Strategic Impact & Preparedness
               </div>
 
               <h2 className="font-serif text-3xl sm:text-4xl font-normal leading-tight text-foreground tracking-tight">
@@ -333,7 +333,7 @@ function ChipPage() {
             <div className="lg:col-span-5">
               <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-background to-secondary/50 p-8 shadow-lg">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-md mb-6">
-                  <BrainCircuit className="h-7 w-7" />
+                  <Activity className="h-7 w-7" aria-hidden />
                 </div>
                 <h3 className="font-serif text-2xl font-normal text-foreground">
                   Anticipating Public Health Threats Before Transmission Begins
