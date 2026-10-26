@@ -21,6 +21,7 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminPostsRouteImport } from './routes/admin.posts'
+import { Route as AdminPreviewRouteImport } from './routes/admin.preview'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as EventsIndexRouteImport } from './routes/events.index'
 import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
@@ -87,6 +88,11 @@ const AdminPostsRoute = AdminPostsRouteImport.update({
   path: '/admin/posts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminPreviewRoute = AdminPreviewRouteImport.update({
+  id: '/admin/preview',
+  path: '/admin/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/posts': typeof AdminPostsRoute
+  '/admin/preview': typeof AdminPreviewRoute
   '/api/chat': typeof ApiChatRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/news/$slug': typeof NewsSlugRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/posts': typeof AdminPostsRoute
+  '/admin/preview': typeof AdminPreviewRoute
   '/api/chat': typeof ApiChatRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/news/$slug': typeof NewsSlugRoute
@@ -163,6 +171,7 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/posts': typeof AdminPostsRoute
+  '/admin/preview': typeof AdminPreviewRoute
   '/api/chat': typeof ApiChatRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/news/$slug': typeof NewsSlugRoute
@@ -184,6 +193,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/admin/posts'
+    | '/admin/preview'
     | '/api/chat'
     | '/events/$eventId'
     | '/news/$slug'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/admin/posts'
+    | '/admin/preview'
     | '/api/chat'
     | '/events/$eventId'
     | '/news/$slug'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/admin/posts'
+    | '/admin/preview'
     | '/api/chat'
     | '/events/$eventId'
     | '/news/$slug'
@@ -240,6 +252,7 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminPostsRoute: typeof AdminPostsRoute
+  AdminPreviewRoute: typeof AdminPreviewRoute
   ApiChatRoute: typeof ApiChatRoute
 }
 
@@ -329,6 +342,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPostsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/preview': {
+      id: '/admin/preview'
+      path: '/admin/preview'
+      fullPath: '/admin/preview'
+      preLoaderRoute: typeof AdminPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -405,6 +425,7 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminPostsRoute: AdminPostsRoute,
+  AdminPreviewRoute: AdminPreviewRoute,
   ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport

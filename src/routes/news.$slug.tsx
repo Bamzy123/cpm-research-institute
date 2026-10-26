@@ -276,7 +276,7 @@ function ArticleContent({ article }: { article: Article }) {
               <div className="border-t border-border pt-6">
                 <p className="font-serif text-xl">About the institute</p>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                  CPM Int'l is an independent research institute based in Ibadan, Oyo State,
+                  CPM Int'l is a research institute based in Ibadan, Oyo State,
                   Nigeria.
                 </p>
                 <Link
