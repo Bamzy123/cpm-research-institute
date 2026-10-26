@@ -17,20 +17,20 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "CPM Int'l Research Institute for Climate Health is an independent institute in Ibadan, Nigeria. Explore our climate-health research, CHIP platform and scientific collaborations.",
+          "CPM Int'l Research Institute for Climate Health is a research institute in Ibadan, Nigeria. Explore our climate-health research, CHIP platform and scientific collaborations.",
       },
       { property: "og:title", content: "CPM Int'l Research Institute for Climate Health" },
       {
         property: "og:description",
         content:
-          "Advancing health in a changing climate. Discover CPM Int'l research, public health innovation and scientific partnerships.",
+          "Transforming Climate Intelligence into Health Security. Discover CPM Int'l research, public health innovation and scientific partnerships.",
       },
       { property: "og:url", content: absoluteUrl("/") },
       { name: "twitter:title", content: "CPM Int'l Research Institute for Climate Health" },
       {
         name: "twitter:description",
         content:
-          "Advancing health in a changing climate through research, intelligence and collaboration.",
+          "Transforming Climate Intelligence into Health Security through research, innovation and collaboration.",
       },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/") }],
@@ -61,16 +61,17 @@ function HomePage() {
             <p className="home-eyebrow">Climate health research</p>
             <h1
               id="home-heading"
-              className="mt-6 font-serif text-5xl leading-[1.04] tracking-[-0.045em] sm:text-6xl lg:text-[64px] xl:text-[76px]"
+              className="mt-6 font-serif text-[44px] leading-[1.06] tracking-[-0.04em] sm:text-6xl lg:text-[58px] xl:text-[64px]"
             >
-              Advancing health
-              <br className="hidden sm:block" /> in a changing
-              <br className="hidden sm:block" />{" "}
-              <em className="font-normal text-primary">climate.</em>
+              Transforming
+              <br className="hidden sm:block" /> Climate Intelligence
+              <br className="hidden sm:block" /> into{" "}
+              <em className="font-normal text-primary">Health Security</em>
             </h1>
-            <p className="mt-7 max-w-[460px] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-              At CPM Int’l, we connect climate science, infectious disease research and artificial
-              intelligence to help communities prepare for emerging health threats.
+            <p className="mt-7 max-w-[520px] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+              CPM Int'l Research Institute for Climate Health advances scientific discovery,
+              innovation, and evidence-based solutions at the intersection of climate change,
+              infectious diseases, artificial intelligence, and One Health.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a
@@ -99,7 +100,7 @@ function HomePage() {
             </div>
             <figcaption className="flex items-start justify-between gap-5 border-b border-border py-4 text-xs leading-5 text-muted-foreground">
               <span>
-                Independent research.
+                Collaborative research.
                 <br />A shared commitment to public health.
               </span>
               <span className="pt-0.5 font-medium uppercase tracking-[0.12em] text-primary">
